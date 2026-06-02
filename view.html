@@ -24,6 +24,10 @@
             line-height: 1.4;
         }
 
+        /* LOADING SHIMMER */
+        .loading-shimmer { width: 100%; text-align: center; padding: 100px 0; color: #6b7280; font-size: 18px; font-weight: 500; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        
         .page-wrapper {
             padding: 28px 20px 48px 20px;
         }
@@ -581,6 +585,7 @@
             color: #fff;
         }
 
+        /* Price info */
         .dock-price-group {
             display: flex;
             flex-direction: column;
@@ -609,6 +614,7 @@
             margin-left: 5px;
         }
 
+        /* Size dropdown */
         .dock-size-wrapper {
             position: relative;
             flex-shrink: 0;
@@ -742,6 +748,7 @@
             display: inline;
         }
 
+        /* Dock buttons */
         .dock-cart-btn {
             display: flex;
             align-items: center;
@@ -793,6 +800,7 @@
             box-shadow: 0 8px 22px rgba(230,29,38,0.4);
         }
 
+        /* Tooltip on dock */
         .dock-no-size-tip {
             position: absolute;
             bottom: calc(100% + 10px);
@@ -831,6 +839,14 @@
             padding: 0 20px 48px;
             display: none;
         }
+        .also-like-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
         .also-like-line {
             border: none;
             border-top: 1px solid #e0e0e0;
@@ -840,9 +856,30 @@
             font-size: 22px;
             font-weight: 700;
             color: #111;
-            margin-bottom: 20px;
             letter-spacing: -0.2px;
         }
+        .view-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: 1px solid #e0e0e0;
+            color: #4a4a4a;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .view-all-btn:hover {
+            border-color: #E61D26;
+            color: #E61D26;
+            background: #fff0f0;
+        }
+
         .also-like-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -875,21 +912,41 @@
             object-fit: cover;
             border-radius: 12px;
         }
-        .al-badge {
+        
+        /* DYNAMIC BADGES LOGIC CSS */
+        .al-badges-container {
             position: absolute;
             top: 12px;
             left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 2;
+        }
+        .al-badge {
             font-size: 11px;
             font-weight: 700;
             padding: 4px 12px;
             border-radius: 20px;
-            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
         }
-        .al-badge-bestseller {
-            background: #ffe6e6;
-            color: #E61D26;
-            border: 1px solid #f5c2c2;
-        }
+        /* Match BADGE_DEFS classes from admin */
+        .badge-bestseller { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+        .badge-recommended { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+        .badge-spicy { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .badge-new { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
+        .badge-trending { background: #fce7f3; color: #831843; border: 1px solid #f9a8d4; }
+        .badge-limited { background: #ffedd5; color: #7c2d12; border: 1px solid #fdba74; }
+        .badge-mild { background: #ecfdf5; color: #064e3b; border: 1px solid #34d399; }
+        .badge-premium { background: #f0f9ff; color: #0c4a6e; border: 1px solid #7dd3fc; }
+        .badge-gift { background: #fdf4ff; color: #581c87; border: 1px solid #d8b4fe; }
+        .badge-seasonal { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; }
+        .badge-homemade { background: #f0fdf4; color: #14532d; border: 1px solid #86efac; }
+        .badge-glutenfree { background: #f0f9ff; color: #1e3a5f; border: 1px solid #93c5fd; }
+
         .al-body {
             padding: 14px 14px 18px;
             display: flex;
@@ -1023,6 +1080,9 @@
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
+            align-items: center;
+            text-align: center;
+            color: white;
         }
         .brand-logo,
         .brand-main-offer {
@@ -1039,6 +1099,7 @@
             object-fit: contain;
             border-radius: 6px;
         }
+
         .delivery-info-line {
             display: flex;
             align-items: center;
@@ -1736,7 +1797,6 @@
             .current-price { font-size: 26px; }
             .btn { padding: 15px 13px; font-size: 15px; }
             .qty-btn { width: 40px; height: 40px; }
-            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .combo-card--premium { flex-direction: column; border-radius: 24px; }
             .combo-left-brand { flex: auto; padding: 22px 18px; }
             .brand-images-wrapper { flex-direction: row; gap: 12px; align-items: center; justify-content: center; }
@@ -1748,31 +1808,33 @@
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
 
-            /* Recently viewed – single row horizontal scroll on mobile */
-            .rv-grid {
+            /* Also Like & Recently viewed – single row horizontal scroll on mobile */
+            .scrollable-grid {
                 display: flex;
                 flex-direction: row;
                 flex-wrap: nowrap;
                 overflow-x: auto;
-                gap: 12px;
+                gap: 16px;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
                 padding-bottom: 4px;
             }
-            .rv-grid::-webkit-scrollbar {
+            .scrollable-grid::-webkit-scrollbar {
                 display: none;
             }
+            .al-card,
             .rv-card {
                 min-width: 160px;
                 max-width: 160px;
                 flex-shrink: 0;
                 scroll-snap-align: start;
             }
-            .rv-card-name { font-size: 13px; }
-            .rv-card-price { font-size: 14px; }
-            .rv-card-btn { font-size: 12px; padding: 10px 10px; }
+            .rv-card-name, .al-title { font-size: 13px; }
+            .rv-card-price, .al-price { font-size: 14px; }
+            .rv-card-btn, .al-btn { font-size: 12px; padding: 10px 10px; gap: 4px; }
             .recently-viewed-section { padding: 0 16px 48px; }
+            .also-like-section { padding: 0 16px 48px; }
 
             /* ====== SPECIFICITY BOOSTED MOBILE BUTTON STYLES ====== */
             .btn.btn-cart,
@@ -1808,56 +1870,6 @@
             }
         }
 
-        @media (max-width: 479px) {
-            .page-wrapper { padding: 12px 12px 16px; }
-            .container { gap: 14px; }
-            .product-title { font-size: 19px; }
-            .current-price { font-size: 24px; }
-            .old-price { font-size: 16px; }
-            .variant-box { padding: 6px 10px; }
-            .variant-title { font-size: 13px; }
-            .price-small { font-size: 12px; }
-            .qty-btn { width: 38px; height: 38px; font-size: 17px; }
-            .qty-value { width: 38px; font-size: 15px; }
-            .btn { padding: 14px 11px; font-size: 14px; }
-            .btn-buynow { font-size: 15px; padding: 14px 12px; }
-            .upi-icon { height: 17px; max-width: 95px; }
-            .feature-item { min-width: 50px; max-width: 75px; font-size: 11px; }
-            .feature-item i { font-size: 18px; }
-            .also-like-section { padding: 0 12px 32px; }
-            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
-            .al-title { font-size: 12px; }
-            .al-price { font-size: 14px; }
-            .al-btn { font-size: 11px; padding: 9px 7px; }
-            .pickle-combo-section { padding: 0 12px 32px; }
-            .combo-card--premium { flex-direction: column; border-radius: 18px; }
-            .combo-left-brand { flex: auto; padding: 16px 13px; }
-            .brand-images-wrapper { flex-direction: row; gap: 8px; align-items: center; justify-content: center; }
-            .brand-logo, .brand-main-offer { width: 50%; }
-            .combo-right-grid { padding: 14px 12px 14px 26px; }
-            .pickle-grid-premium { gap: 12px; }
-            .pickle-image-plate { width: 56px; height: 56px; left: -16px; border-width: 2px; }
-            .pickle-item-premium { padding: 9px 9px 9px 44px; min-height: 60px; border-radius: 10px; }
-            .pickle-name-premium { font-size: 11px; }
-            .pickle-check-premium { display: none; }
-            .grid-title { font-size: 16px; }
-            .selection-progress-area { flex-direction: column; align-items: stretch; gap: 12px; }
-            .progress-left { justify-content: center; }
-            .combo-btn { font-size: 13px; padding: 11px 9px; }
-            .btn-combo-buynow { font-size: 14px; padding: 11px 9px; }
-            .whatsapp-order-btn { font-size: 13px; padding: 9px 12px; }
-            .sticky-bar-price { font-size: 15px; }
-            .sticky-bar-btn { font-size: 13px; padding: 10px 8px; }
-            .btn-viewdetails { width: 100%; }
-            .combo-action-buttons { width: 100%; }
-
-            /* rv on very small screens */
-            .rv-card { min-width: 140px; max-width: 140px; }
-            .rv-card-name { font-size: 12px; }
-            .rv-card-price { font-size: 13px; }
-            .rv-card-btn { font-size: 11px; padding: 8px 8px; gap: 4px; }
-        }
-
         @media (max-width: 380px) {
             .page-wrapper { padding: 10px 10px 14px; }
             .product-title { font-size: 17px; }
@@ -1867,7 +1879,7 @@
             .feature-item { flex: 1 1 0; min-width: 0; max-width: none; padding: 0; }
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
-            .rv-card { min-width: 128px; max-width: 128px; }
+            .al-card, .rv-card { min-width: 128px; max-width: 128px; }
         }
 
         @media (min-width: 768px) and (max-width: 900px) {
@@ -1902,7 +1914,7 @@
                     <i class="fas fa-chevron-down size-arrow"></i>
                 </div>
                 <div class="dock-size-dropdown" id="dockSizeDropdown" role="listbox">
-                </div>
+                    </div>
                 <div class="dock-no-size-tip" id="dockNoSizeTip">Please select a size first</div>
             </div>
 
@@ -1929,9 +1941,12 @@
 
     <div class="also-like-section" id="alsoLikeSection" style="display: none;">
         <hr class="also-like-line">
-        <h2 class="also-like-heading">You may also like</h2>
-        <div class="also-like-grid" id="alsoLikeGrid">
+        <div class="also-like-header">
+            <h2 class="also-like-heading" style="margin-bottom:0;">You may also like</h2>
+            <a href="#" class="view-all-btn" id="alsoLikeViewAll">View Category <i class="fas fa-arrow-right"></i></a>
         </div>
+        <div class="scrollable-grid" id="alsoLikeGrid">
+            </div>
     </div>
 
     <div class="pickle-combo-section" id="comboSection">
@@ -1968,7 +1983,7 @@
                     </span>
                 </div>
                 <div class="pickle-grid-premium" id="pickleGridPremium">
-                </div>
+                    </div>
                 <div class="selection-progress-area">
                     <div class="progress-left">
                         <div class="progress-ring">
@@ -1997,8 +2012,7 @@
         </div>
     </div>
 
-    <!-- ===== RECENTLY VIEWED SECTION ===== -->
-    <div class="recently-viewed-section" id="recentlyViewedSection">
+    <div class="recently-viewed-section" id="recentlyViewedSection" style="display: none; padding-top:0;">
         <hr class="rv-divider">
         <div class="rv-header">
             <h2 class="rv-heading">
@@ -2009,8 +2023,8 @@
                 <i class="fas fa-xmark"></i> Clear
             </button>
         </div>
-        <div class="rv-grid" id="rvGrid">
-        </div>
+        <div class="scrollable-grid rv-grid" id="rvGrid">
+            </div>
     </div>
 
     <div class="combo-toast-premium" id="toastPremium">
@@ -2022,6 +2036,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // Replace with your actual credentials
         const firebaseConfig = {
             apiKey: "AIzaSyCZbCr-Zt5KQblRQ8Pk58KuinCVP-TlXGo",
             authDomain: "happynonvegpickles-f2636.firebaseapp.com",
@@ -2037,36 +2052,52 @@
         window.thumbImages = [];
 
         /* ====================================================
+           BADGE CONSTANTS (Matches Admin Panel)
+           ==================================================== */
+        const BADGE_DEFS = [
+            { key: 'bestseller',  label: 'Best Seller',   icon: '🔥', cls: 'al-badge-bestseller' },
+            { key: 'recommended', label: 'Recommended',   icon: '⭐', cls: 'al-badge-bestseller' },
+            { key: 'spicy',       label: 'Spicy',         icon: '🌶️', cls: 'al-badge-spicy' },
+            { key: 'new',         label: 'New Arrival',   icon: '✨', cls: 'al-badge-bestseller' },
+            { key: 'trending',    label: 'Trending',      icon: '📈', cls: 'al-badge-spicy' },
+            { key: 'limited',     label: 'Limited Stock', icon: '⏳', cls: 'al-badge-spicy' },
+            { key: 'mild',        label: 'Mild & Tangy',  icon: '🍋', cls: 'al-badge-bestseller' },
+            { key: 'premium',     label: 'Premium',       icon: '💎', cls: 'al-badge-spicy' },
+            { key: 'gift',        label: 'Gift Pick',     icon: '🎁', cls: 'al-badge-bestseller' },
+            { key: 'seasonal',    label: 'Seasonal',      icon: '🌿', cls: 'al-badge-bestseller' },
+            { key: 'homemade',    label: 'Homemade Style',icon: '🏠', cls: 'al-badge-spicy' },
+            { key: 'glutenfree',  label: 'Gluten Free',   icon: '🌾', cls: 'al-badge-bestseller' }
+        ];
+
+        function getTopBadgeHtml(badgesArray) {
+            if (!badgesArray || badgesArray.length === 0) return '';
+            const firstBadgeKey = badgesArray[0];
+            const def = BADGE_DEFS.find(d => d.key === firstBadgeKey);
+            if (!def) return '';
+            return `<span class="al-badges-container"><span class="al-badge ${def.cls}">${def.icon} ${def.label}</span></span>`;
+        }
+
+        /* ====================================================
            RECENTLY VIEWED – localStorage helpers
            Key: hnvp_recently_viewed
-           Stores array of { id, name, image, minPrice, maxPrice }
-           Max 4 items. Current product always moves to index 0.
            ==================================================== */
         const RV_KEY = 'hnvp_recently_viewed';
         const RV_MAX = 4;
 
         function getRVList() {
-            try {
-                return JSON.parse(localStorage.getItem(RV_KEY)) || [];
-            } catch (e) {
-                return [];
-            }
+            try { return JSON.parse(localStorage.getItem(RV_KEY)) || []; } 
+            catch (e) { return []; }
         }
 
         function saveRVList(list) {
-            try {
-                localStorage.setItem(RV_KEY, JSON.stringify(list));
-            } catch (e) {}
+            try { localStorage.setItem(RV_KEY, JSON.stringify(list)); } 
+            catch (e) {}
         }
 
         function addToRV(product) {
-            // product = { id, name, image, minPrice, maxPrice }
             let list = getRVList();
-            // Remove if already present
             list = list.filter(function(p) { return p.id !== product.id; });
-            // Add current product at the FRONT
             list.unshift(product);
-            // Trim to max
             list = list.slice(0, RV_MAX);
             saveRVList(list);
         }
@@ -2077,12 +2108,7 @@
 
         function renderRecentlyViewed(currentProductId) {
             var list = getRVList();
-            // Filter out the current product so we don't show the page we're on
-            // Actually per requirement: "when user opens a page, save the id and place recent open product card at first"
-            // So we show ALL including current if there are others, but typically it's already saved above.
-            // We show only items OTHER than the very current one to avoid duplicate display.
             var displayList = list.filter(function(p) { return p.id !== currentProductId; });
-
             var section = document.getElementById('recentlyViewedSection');
             var grid = document.getElementById('rvGrid');
 
@@ -2092,7 +2118,6 @@
             }
 
             section.style.display = 'block';
-
             grid.innerHTML = displayList.map(function(prod, idx) {
                 var priceText = prod.minPrice === prod.maxPrice
                     ? '&#8377;' + prod.minPrice
@@ -2120,6 +2145,7 @@
             if (!productId) { window.location.href = 'index.html'; return; }
 
             try {
+                // 1. Fetch Product
                 const productRef = doc(db, 'products', productId);
                 const snap = await getDoc(productRef);
 
@@ -2135,10 +2161,9 @@
 
                 window.productData = { id: snap.id, ...snap.data() };
 
-                // ── Save to Recently Viewed IMMEDIATELY after confirming product exists ──
+                // Save to Recently Viewed
                 var minP = window.productData.minPrice;
                 var maxP = window.productData.maxPrice;
-                // If no minPrice/maxPrice fields, derive from variants
                 if (!minP && window.productData.variants && window.productData.variants.length > 0) {
                     var prices = window.productData.variants.map(function(v) { return v.price; });
                     minP = Math.min.apply(null, prices);
@@ -2152,10 +2177,11 @@
                     maxPrice: maxP || 0
                 });
 
-                // Construct images array
+                // Construct images array properly checking for blanks
                 window.thumbImages = [window.productData.image];
-                if (window.productData.additionalImages && window.productData.additionalImages.length > 0) {
-                    window.thumbImages.push(...window.productData.additionalImages.filter(img => img.trim() !== ''));
+                if (window.productData.additionalImages && Array.isArray(window.productData.additionalImages)) {
+                    const validAddImages = window.productData.additionalImages.filter(img => typeof img === 'string' && img.trim() !== '');
+                    window.thumbImages.push(...validAddImages);
                 }
 
                 const catId = window.productData.categoryId;
@@ -2167,7 +2193,7 @@
                 renderProduct();
 
                 if (catSnap && catSnap.exists() && catSnap.data().products) {
-                    renderAlsoLike(catSnap.data().products, productId);
+                    renderAlsoLike(catSnap.data().products, productId, catId);
                 }
 
                 const activeCombo = combosSnap.docs.map(d => ({id: d.id, ...d.data()})).find(c => c.isActive === true);
@@ -2176,10 +2202,8 @@
                     renderCombo(activeCombo);
                 }
 
-                // ── Render Recently Viewed (after all other sections) ──
                 renderRecentlyViewed(productId);
 
-                // Clear button
                 document.getElementById('rvClearBtn').addEventListener('click', function() {
                     clearRV();
                     document.getElementById('recentlyViewedSection').style.display = 'none';
@@ -2330,18 +2354,27 @@
             document.getElementById('dockSizeDropdown').innerHTML = dropdownHtml;
         }
 
-        function renderAlsoLike(categoryProductsMap, currentProductId) {
-            const relatedProds = Object.values(categoryProductsMap)
+        function renderAlsoLike(categoryProductsMap, currentProductId, catId) {
+            // Sort by priority logic (sortOrder -> createdAt)
+            const sortedRelatedProds = Object.values(categoryProductsMap)
                 .filter(p => p.id !== currentProductId && p.isavailable !== false)
-                .slice(0, 4);
+                .sort((a, b) => {
+                    if (a.sortOrder !== undefined && b.sortOrder !== undefined) return a.sortOrder - b.sortOrder;
+                    if (a.sortOrder !== undefined) return -1;
+                    if (b.sortOrder !== undefined) return 1;
+                    return (b.createdAt || 0) - (a.createdAt || 0);
+                });
 
-            if (relatedProds.length === 0) return;
+            const slicedProds = sortedRelatedProds.slice(0, 4);
+            if (slicedProds.length === 0) return;
+
+            document.getElementById('alsoLikeViewAll').href = `index.html#block-${catId}`;
 
             const grid = document.getElementById('alsoLikeGrid');
-            grid.innerHTML = relatedProds.map(prod => `
+            grid.innerHTML = slicedProds.map(prod => `
                 <a href="view.html?id=${prod.id}" class="al-card" style="text-decoration:none; color:inherit;">
                     <div class="al-image-wrapper">
-                        <span class="al-badge al-badge-bestseller">Recommended</span>
+                        ${getTopBadgeHtml(prod.badges)}
                         <img src="${prod.image}" alt="${prod.name}">
                     </div>
                     <div class="al-body">
