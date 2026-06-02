@@ -974,6 +974,7 @@
             justify-content: center;
             gap: 8px;
             transition: background 0.2s;
+            text-decoration: none;
         }
         .al-btn:hover {
             background: #E61D26;
@@ -1595,6 +1596,7 @@
                 font-size: 13px;
             }
 
+            /* IMPORTANT: dropdown anchored above the pill, not fixed center */
             .dock-size-dropdown {
                 position: absolute;
                 bottom: calc(100% + 10px);
@@ -1609,6 +1611,7 @@
                 transform: translateY(0) scale(1);
             }
 
+            /* hide buy now, show cart button filling remaining space */
             .dock-buynow-btn {
                 display: none !important;
             }
@@ -1624,6 +1627,7 @@
                 display: inline;
             }
 
+            /* OLD sticky bar hidden */
             .sticky-buy-bar { display: none !important; }
 
             body { padding-bottom: 90px; }
@@ -1656,6 +1660,7 @@
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
 
+            /* ====== SPECIFICITY BOOSTED MOBILE BUTTON STYLES ====== */
             .btn.btn-cart,
             .btn.btn-wishlist,
             .btn.btn-buynow {
@@ -2049,7 +2054,6 @@
                 renderRecentlyViewed(productId);
 
                 initUI();
-                
 
             } catch (error) {
                 console.error("Error:", error);
@@ -2541,12 +2545,8 @@
                 openDropdown();
             }
 
-function handleDockVisibility() {
-                // If heroBuyNow is missing, we fallback to the mainActionButtons container
-                var targetEl = document.getElementById('heroBuyNow') || document.getElementById('mainActionButtons');
-                if (!targetEl) return; // Fail gracefully if neither exists
-
-                var rect = targetEl.getBoundingClientRect();
+            function handleDockVisibility() {
+                var rect = heroBuyNow.getBoundingClientRect();
                 if (rect.bottom < 0) {
                     pickleSticky.classList.add('dock-visible');
                 } else {
