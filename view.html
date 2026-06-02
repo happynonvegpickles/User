@@ -2,1155 +2,2348 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy NonVeg Pickles – Combo Offer</title>
-
-    <!-- Fonts & Icons -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickle Detail | SyncSkill Pickles</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Preload SVG icons for sidebar -->
-    <link rel="preload" as="image" href="./assets/dashboard.svg">
-    <link rel="preload" as="image" href="./assets/hover_dashboard.svg">
-    <link rel="preload" as="image" href="./assets/fill_dashboard.svg">
-    <link rel="preload" as="image" href="./assets/inventory.svg">
-    <link rel="preload" as="image" href="./assets/hover_inventory.svg">
-    <link rel="preload" as="image" href="./assets/fill_inventory.svg">
-    <link rel="preload" as="image" href="./assets/coupons.svg">
-    <link rel="preload" as="image" href="./assets/hover_coupons.svg">
-    <link rel="preload" as="image" href="./assets/fill_coupons.svg">
-    <link rel="preload" as="image" href="./assets/site.svg">
-    <link rel="preload" as="image" href="./assets/hover_site.svg">
-    <link rel="preload" as="image" href="./assets/fill_site.svg">
-    <link rel="preload" as="image" href="./assets/panel_close.svg">
-    <link rel="preload" as="image" href="./assets/panel_open.svg">
-    <link rel="preload" as="image" href="./assets/herosection.svg">
-    <link rel="preload" as="image" href="./assets/hover_herosection.svg">
-    <link rel="preload" as="image" href="./assets/fill_herosection.svg">
-    <link rel="preload" as="image" href="./assets/sections.svg">
-    <link rel="preload" as="image" href="./assets/hover_sections.svg">
-    <link rel="preload" as="image" href="./assets/fill_sections.svg">
-    <link rel="preload" as="image" href="./assets/popup.svg">
-    <link rel="preload" as="image" href="./assets/hover_popup.svg">
-    <link rel="preload" as="image" href="./assets/fill_popup.svg">
-    <link rel="preload" as="image" href="./assets/combo.svg">
-    <link rel="preload" as="image" href="./assets/hover_combo.svg">
-    <link rel="preload" as="image" href="./assets/fill_combo.svg">
-
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ========== GLOBAL VARIABLES ========== */
-        :root {
-            --text-sub: #6b7280;
-            --header-height-desktop: 70px;
-            --sidebar-width: 260px;
-            --sidebar-collapsed-width: 90px;
-            --row-height: 52px;
-            --sidebar-bg: #ffffff;
-            --header-bg: #ffffff;
-            --page-bg: #f4f5f7;
-            --text-color: rgb(24, 24, 26);
-            --icon-color: #6b7280;
-            --brand-primary: #643DE4;
-            --active-bg: #f4f0fa;
-            --hover-bg: #f3f4f6;
-            --border-subtle: #e5e7eb;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --shadow-premium: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-            --tooltip-bg: #1f2937;
-            --danger-color: #ef4444;
-            --success-color: #10B981;
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; text-decoration: none !important; }
+
         body {
-            min-height: 100vh;
-            background: var(--page-bg);
-            font-family: "DM Sans", Roboto, sans-serif;
-            font-weight: 500;
-            color: var(--text-color);
-            overflow: hidden;
-            display: none; /* hidden until Firebase auth confirms */
-        }
-
-        /* LOGO */
-        .brand-logo { display: flex; align-items: center; text-decoration: none; transition: all 0.3s; }
-        .brand-logo img { height: 45px; width: auto; display: block; }
-        .mini-logo { display: none; align-items: center; justify-content: center; }
-        .mini-logo img { height: 45px; width: auto; display: block; }
-
-        /* ICON SYSTEM */
-        .icon { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex-shrink: 0; }
-        .icon-custom { position: relative; width: 24px; height: 24px; }
-        .icon-custom > span {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: contain; background-repeat: no-repeat; background-position: center;
-        }
-        .icon-custom .icon-normal { display: block; }
-        .icon-custom .icon-hover, .icon-custom .icon-active { display: none; }
-        .nav-item:hover:not(.active) .icon-custom .icon-normal { display: none; }
-        .nav-item:hover:not(.active) .icon-custom .icon-hover { display: block; }
-        .nav-item.active .icon-custom .icon-normal,
-        .nav-item.active .icon-custom .icon-hover { display: none; }
-        .nav-item.active .icon-custom .icon-active { display: block; }
-        .nav-item.active.dropdown-open .icon-custom .icon-normal,
-        .nav-item.active.dropdown-open .icon-custom .icon-hover { display: none; }
-        .nav-item.active.dropdown-open .icon-custom .icon-active { display: block; }
-
-        /* ICON FILE MAPPINGS */
-        .icon-dashboard .icon-normal  { background-image: url('./assets/dashboard.svg'); }
-        .icon-dashboard .icon-hover   { background-image: url('./assets/hover_dashboard.svg'); }
-        .icon-dashboard .icon-active  { background-image: url('./assets/fill_dashboard.svg'); }
-        .icon-inventory .icon-normal  { background-image: url('./assets/inventory.svg'); }
-        .icon-inventory .icon-hover   { background-image: url('./assets/hover_inventory.svg'); }
-        .icon-inventory .icon-active  { background-image: url('./assets/fill_inventory.svg'); }
-        .icon-coupons .icon-normal    { background-image: url('./assets/coupons.svg'); }
-        .icon-coupons .icon-hover     { background-image: url('./assets/hover_coupons.svg'); }
-        .icon-coupons .icon-active    { background-image: url('./assets/fill_coupons.svg'); }
-        .icon-site .icon-normal       { background-image: url('./assets/site.svg'); }
-        .icon-site .icon-hover        { background-image: url('./assets/hover_site.svg'); }
-        .icon-site .icon-active       { background-image: url('./assets/fill_site.svg'); }
-
-        /* SUBMENU ICON MAPPINGS */
-        .icon-herosection .icon-normal  { background-image: url('./assets/herosection.svg'); }
-        .icon-herosection .icon-hover   { background-image: url('./assets/hover_herosection.svg'); }
-        .icon-herosection .icon-active  { background-image: url('./assets/fill_herosection.svg'); }
-        .icon-sections .icon-normal     { background-image: url('./assets/sections.svg'); }
-        .icon-sections .icon-hover      { background-image: url('./assets/hover_sections.svg'); }
-        .icon-sections .icon-active     { background-image: url('./assets/fill_sections.svg'); }
-        .icon-popup .icon-normal        { background-image: url('./assets/popup.svg'); }
-        .icon-popup .icon-hover         { background-image: url('./assets/hover_popup.svg'); }
-        .icon-popup .icon-active        { background-image: url('./assets/fill_popup.svg'); }
-        .icon-combo .icon-normal        { background-image: url('./assets/combo.svg'); }
-        .icon-combo .icon-hover         { background-image: url('./assets/hover_combo.svg'); }
-        .icon-combo .icon-active        { background-image: url('./assets/fill_combo.svg'); }
-
-        /* Submenu item icon states */
-        .nav-submenu-item .icon-custom .icon-normal { display: block; }
-        .nav-submenu-item .icon-custom .icon-hover,
-        .nav-submenu-item .icon-custom .icon-active { display: none; }
-        .nav-submenu-item:hover .icon-custom .icon-normal { display: none; }
-        .nav-submenu-item:hover .icon-custom .icon-hover { display: block; }
-        .nav-submenu-item.active .icon-custom .icon-normal,
-        .nav-submenu-item.active .icon-custom .icon-hover { display: none; }
-        .nav-submenu-item.active .icon-custom .icon-active { display: block; }
-
-        /* DESKTOP LAYOUT */
-        .page-desktop { display: flex; height: 100vh; width: 100vw; }
-        .d-sidebar {
-            width: var(--sidebar-width); height: 100%; background: var(--sidebar-bg);
-            border-right: 1px solid var(--border-subtle); display: flex; flex-direction: column;
-            flex-shrink: 0; transition: width 0.3s cubic-bezier(0.4,0,0.2,1); z-index: 100;
-        }
-        .d-sidebar-header {
-            min-height: var(--header-height-desktop); display: flex; align-items: center;
-            justify-content: space-between; padding: 30px 24px; transition: all 0.3s;
-        }
-        .d-sidebar-inner {
-            flex: 1; padding: 10px 16px; display: flex; flex-direction: column;
-            overflow-y: auto; overflow-x: hidden;
-        }
-        .sidebar-toggle {
-            background: none; border: none; cursor: pointer; color: var(--icon-color);
-            display: flex; align-items: center; justify-content: center;
-            padding: 6px; border-radius: 8px; transition: 0.2s;
-        }
-        .sidebar-toggle:hover { background: var(--hover-bg); color: var(--text-color); }
-
-        /* NAV ITEMS */
-        .nav-item {
-            position: relative; display: flex; align-items: center; height: var(--row-height);
-            padding: 0 16px; margin: 2px 0; border-radius: var(--radius-md); gap: 14px;
-            cursor: pointer; color: var(--text-color); text-decoration: none;
-            transition: background 0.2s, color 0.2s; white-space: nowrap; user-select: none;
-        }
-        .nav-item:hover { background: var(--hover-bg); }
-        .nav-item.active { background: var(--active-bg); color: var(--brand-primary); font-weight: 700; }
-
-        .nav-chevron {
-            margin-left: auto; width: 16px; height: 16px; stroke: currentColor;
-            flex-shrink: 0; transition: transform 0.25s ease;
-        }
-        .nav-item.dropdown-open .nav-chevron { transform: rotate(90deg); }
-
-        /* SUBMENU */
-        .nav-submenu {
-            display: none; margin: 2px 0 4px 20px; padding-left: 16px;
-            border-left: 2px solid var(--border-subtle); flex-direction: column;
-        }
-        .nav-submenu.open { display: flex; }
-        .nav-submenu-item {
-            display: flex; align-items: center; height: 50px; padding: 0 14px;
-            border-radius: 8px; margin: 1px 0; gap: 12px; cursor: pointer;
-            color: var(--text-color); font-size: 15px; font-weight: 600;
-            text-decoration: none; transition: background 0.15s, color 0.15s; white-space: nowrap;
-        }
-        .nav-submenu-item:hover { background: var(--hover-bg); color: var(--brand-primary); }
-        .nav-submenu-item.active { background: var(--active-bg); color: var(--brand-primary); font-weight: 700; }
-
-        /* ACCOUNT */
-        .d-account-section {
-            margin-top: auto; padding: 24px 16px; border-top: 1px solid var(--border-subtle); cursor: pointer;
-        }
-        .account-card { display: flex; align-items: center; gap: 12px; }
-        .account-avatar { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-subtle); object-fit: cover; flex-shrink: 0; }
-        .account-text { display: flex; flex-direction: column; overflow: hidden; transition: opacity 0.2s; }
-        .account-name { font-size: 15px; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-        .account-email { font-size: 13px; color: var(--text-sub); white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-
-        .d-main-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .d-topbar {
-            height: 80px; background: var(--header-bg); border-bottom: 1px solid var(--border-subtle);
-            padding: 0 40px; display: flex; align-items: center; font-weight: 700; font-size: 20px;
-        }
-        .d-content { flex: 1; padding: 16px; overflow-y: auto; }
-
-        /* COLLAPSED SIDEBAR */
-        .d-sidebar.collapsed { width: var(--sidebar-collapsed-width); }
-        .d-sidebar.collapsed .brand-logo,
-        .d-sidebar.collapsed .account-text,
-        .d-sidebar.collapsed .btn-close-svg,
-        .d-sidebar.collapsed .nav-chevron,
-        .d-sidebar.collapsed .nav-submenu { display: none !important; }
-        .d-sidebar.collapsed .nav-label { display: none; }
-        .d-sidebar.collapsed .mini-logo,
-        .d-sidebar.collapsed .btn-open-svg { display: flex; }
-        .btn-open-svg { display: none; }
-        .d-sidebar.collapsed .d-sidebar-header { flex-direction: column; height: auto; padding: 30px 0 20px; gap: 30px; }
-        .d-sidebar.collapsed .nav-item { justify-content: center; padding: 0; }
-        .d-sidebar.collapsed .d-account-section { display: flex; justify-content: center; padding: 24px 0; }
-        .d-sidebar.collapsed .d-sidebar-inner { overflow: visible; }
-        .d-sidebar.collapsed .nav-item:hover .nav-label {
-            display: block; position: absolute; left: 100%; top: 50%; transform: translateY(-50%);
-            background-color: var(--tooltip-bg); color: #fff; padding: 8px 12px; border-radius: 6px;
-            font-size: 13px; font-weight: 500; white-space: nowrap; z-index: 1000; margin-left: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); pointer-events: none;
-        }
-        .d-sidebar.collapsed .nav-item:hover .nav-label::before {
-            content: ""; position: absolute; left: -6px; top: 50%; transform: translateY(-50%);
-            border-width: 6px 6px 6px 0; border-style: solid;
-            border-color: transparent var(--tooltip-bg) transparent transparent;
-        }
-
-        /* MOBILE HEADER & OVERLAY (hidden on desktop) */
-        .m-header { display: none; }
-        .m-header {
-            height: 72px; background: #fff; border-bottom: 1px solid var(--border-subtle);
-            align-items: center; justify-content: space-between;
-            padding: 0 16px; position: fixed; top: 0; width: 100%; z-index: 1000;
-        }
-        .m-menu-btn { width: 40px; height: 40px; border-radius: 10px; border: 1px solid #e5e7eb; background: #f9fafb; display: flex; align-items: center; justify-content: center; }
-        .m-menu-lines { width: 18px; height: 14px; position: relative; }
-        .m-menu-lines::before, .m-menu-lines::after, .m-menu-lines span { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: #111827; border-radius: 10px; }
-        .m-menu-lines::before { top: 0; }
-        .m-menu-lines span { top: 6px; }
-        .m-menu-lines::after { bottom: 0; }
-        .m-overlay {
-            position: fixed; inset: 0; background: rgba(15,23,42,0.45); opacity: 0;
-            pointer-events: none; transition: 0.25s; z-index: 2000;
-        }
-        .m-overlay.open { opacity: 1; pointer-events: auto; }
-        .m-drawer {
-            position: absolute; left: 0; top: 0; width: 300px; max-width: 85vw; height: 100%;
-            background: #fff; transform: translateX(-100%); transition: 0.25s;
-            display: flex; flex-direction: column; overflow-y: auto;
-        }
-        .m-overlay.open .m-drawer { transform: translateX(0); }
-        .m-drawer-header { height: 80px; padding: 0 20px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-        .m-drawer-close { width: 40px; height: 40px; border-radius: 10px; border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center; background: #f9fafb; }
-        .m-drawer-close-icon { width: 14px; height: 14px; position: relative; }
-        .m-drawer-close-icon::before, .m-drawer-close-icon::after { content: ""; position: absolute; inset: 0; margin: auto; width: 14px; height: 2px; background: #111827; }
-        .m-drawer-close-icon::before { transform: rotate(45deg); }
-        .m-drawer-close-icon::after { transform: rotate(-45deg); }
-        .m-drawer-nav { padding: 20px 12px; flex: 1; }
-        .m-account-section { padding: 20px; border-top: 1px solid var(--border-subtle); background: #fff; }
-
-        /* PROFILE POPUP */
-        .profile-popup {
-            position: fixed; background: #fff; border-radius: 12px; box-shadow: var(--shadow-premium);
-            border: 1px solid #e5e7eb; width: 260px; z-index: 3000; opacity: 0; pointer-events: none;
-            transition: 0.2s; overflow: hidden;
-        }
-        .profile-popup.active { opacity: 1; pointer-events: all; }
-        .popup-header { padding: 16px; border-bottom: 1px solid #e5e7eb; background: #f9fafb; display: flex; align-items: center; gap: 12px; }
-        .popup-list { list-style: none; padding: 8px; }
-        .popup-list a { display: flex; align-items: center; gap: 12px; padding: 12px; text-decoration: none; color: var(--text-color); border-radius: 8px; cursor: pointer; }
-        .popup-list a:hover { background: #f3f4f6; }
-
-        /* ========== GLOBAL BUTTONS ========== */
-        .primary-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
-            border-radius: var(--radius-md);
-            border: none;
-            font-weight: 600;
-            font-size: 16px;
-            color: #ffffff;
-            background: var(--brand-primary);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-            font-family: inherit;
-        }
-        .primary-btn:hover { background: #5228d3; transform: translateY(-1px); }
-        .primary-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-subtle);
+            font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
             background: #ffffff;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-color);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            letter-spacing: 0.2px;
-            font-family: inherit;
+            color: #1a1a1a;
+            line-height: 1.4;
         }
-        .btn-secondary:hover { background: #f9fafb; transform: translateY(-1px); }
-        .danger-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 24px;
-            border-radius: var(--radius-md);
-            border: none;
-            font-weight: 600;
-            font-size: 16px;
-            color: #ffffff;
-            background: var(--danger-color);
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .danger-btn:hover { background: #dc2626; transform: translateY(-1px); }
 
-        /* ========== PAGE CONTENT STYLES (scoped to .content-inner) ========== */
-        .content-inner {
-            --brand-primary: #643DE4;
-            --danger-color: #ef4444;
-            --success-color: #10B981;
-            --switch-on: #10B981;
-            --switch-off: #d1d5db;
-            --hover-bg: #f3f4f6;
-            --border-subtle: #e5e7eb;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            max-width: 1000px;
+        /* LOADING SHIMMER */
+        .loading-shimmer { width: 100%; text-align: center; padding: 100px 0; color: #6b7280; font-size: 18px; font-weight: 500; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        
+        .page-wrapper {
+            padding: 28px 20px 48px 20px;
+        }
+
+        .container {
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 16px 16px 24px;
-            width: 100%;
-            font-family: 'IBM Plex Sans', Roboto, sans-serif;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            color: var(--text-color);
-        }
-        .content-inner .page-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: rgb(29, 30, 32);
-        }
-        .content-inner .breadcrumbs {
             display: flex;
-            gap: 8px;
-            align-items: center;
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 48px;
+            align-items: flex-start;
         }
-        .content-inner .breadcrumbs .divider { color: #d1d5db; }
-        .content-inner .breadcrumbs img { width: 18px; height: 18px; vertical-align: middle; }
-        .content-inner .header-section {
+
+        .gallery-col {
+            flex: 1 1 480px;
+            min-width: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-        .content-inner .card {
-            background: #ffffff;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-subtle);
-            margin-bottom: 24px;
-            overflow: hidden;
-        }
-        .content-inner .card-header {
-            padding: 24px 20px;
-            border-bottom: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .content-inner .card-body { padding: 24px 20px; }
-        .content-inner .card-footer {
-            padding: 20px;
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: flex-end;
             gap: 12px;
-            background: #fafafa;
+        }
+        .gallery-col.sticky-active {
+            position: sticky;
+            top: 28px;
+            align-self: flex-start;
         }
 
-        /* Toggle switch */
-        .content-inner .toggle-wrapper { display: flex; align-items: center; gap: 12px; }
-        .content-inner .toggle-switch { width: 44px; height: 24px; position: relative; display: inline-block; }
-        .content-inner .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .content-inner .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: var(--switch-off); transition: .3s; border-radius: 34px;
+        .thumbnails-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            width: 76px;
+            flex-shrink: 0;
         }
-        .content-inner .slider:before {
-            position: absolute; content: ""; height: 18px; width: 18px;
-            left: 3px; bottom: 3px; background-color: white;
-            transition: .3s; border-radius: 50%;
+        .thumb-scroll-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.15s;
+            flex-shrink: 0;
+            z-index: 2;
         }
-        .content-inner .toggle-switch input:checked + .slider { background-color: var(--switch-on); }
-        .content-inner .toggle-switch input:checked + .slider:before { transform: translateX(20px); }
-
-        /* Forms */
-        .content-inner .form-group { margin-bottom: 20px; }
-        .content-inner .form-label {
+        .thumb-scroll-btn:hover {
+            background: #f5f5f5;
+            border-color: #E61D26;
+            color: #E61D26;
+        }
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 70px;
+            height: 380px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .thumbnails::-webkit-scrollbar {
+            display: none;
+        }
+        .thumb-item {
+            width: 70px;
+            aspect-ratio: 4/5;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            background: #f5f5f5;
+            flex-shrink: 0;
+            transition: border 0.15s;
+            cursor: pointer;
+        }
+        .thumb-item.active {
+            border: 2px solid #E61D26;
+        }
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+        }
+
+        .main-image-wrapper {
+            flex: 1;
+            position: relative;
+            background: #f8f2ec;
+            border-radius: 18px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+        .main-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        .badge-best {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: #E61D26;
+            padding: 6px 16px;
+            border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
-            margin-bottom: 8px;
+            color: #fff;
+            letter-spacing: 0.3px;
         }
-        .content-inner .required-mark { color: var(--danger-color); }
-        .content-inner .form-input {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
+        .dots-container {
+            display: none;
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px 14px;
+            border-radius: 30px;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.2s;
+        }
+        .dot.active {
+            background: #E61D26;
+            transform: scale(1.2);
+        }
+
+        .details-col {
+            flex: 1 1 420px;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .product-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #111;
+            line-height: 1.3;
+        }
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        .stars {
+            color: #E61D26;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+        .review-count {
+            color: #4a4a4a;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+            margin: 4px 0 2px;
+        }
+        .current-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #111;
+        }
+        .old-price {
+            font-size: 20px;
+            color: #9a9a9a;
+            text-decoration: line-through;
+        }
+        .discount-badge {
+            background: #ffe6e6;
+            color: #E61D26;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 3px 14px;
+            border-radius: 40px;
+            border: 1px solid #f5c2c2;
+        }
+        .old-price.hidden,
+        .discount-badge.hidden {
+            display: none;
+        }
+        .tax-note {
+            font-size: 14px;
+            color: #4a4a4a;
+        }
+        .variant-header {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 6px 0 8px;
+            color: #111;
+        }
+
+        .variant-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .variant-box {
+            border: 1px solid #e6e6e6;
+            border-radius: 10px;
+            padding: 8px 12px;
             background: white;
+            cursor: pointer;
             transition: all 0.15s ease;
-            font-size: 0.95rem;
-            color: var(--text-color);
-            font-family: inherit;
+            flex: 1 0 auto;
+            min-width: 70px;
+            max-width: 160px;
         }
-        .content-inner .form-input:focus {
-            border-color: var(--brand-primary);
-            box-shadow: 0 0 0 3px rgba(100, 61, 228, 0.1);
+        .variant-box.active {
+            border: 2px solid #E61D26;
+            background: #fffbfb;
+        }
+        .variant-box:hover {
+            border-color: #E61D26;
+        }
+        .variant-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #111;
+            white-space: nowrap;
+        }
+        .price-small {
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+        .price-small .old {
+            font-weight: 400;
+            font-size: 12px;
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 4px;
+        }
+        .price-small .discount {
+            font-weight: 600;
+            font-size: 12px;
+            color: #E61D26;
+            margin-left: 4px;
+        }
+
+        .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 4px 0;
+        }
+        .quantity-label {
+            font-weight: 600;
+            font-size: 16px;
+            color: #111;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            overflow: hidden;
+            background: white;
+        }
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: white;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qty-btn:hover {
+            background: #f5f5f5;
+        }
+        .qty-btn.minus {
+            border-right: 1px solid #eee;
+        }
+        .qty-btn.plus {
+            border-left: 1px solid #eee;
+        }
+        .qty-value {
+            width: 48px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 0 4px;
+            background: white;
+            border: none;
             outline: none;
         }
 
-        /* Pickle grid */
-        .content-inner .filter-row { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 20px; }
-        .content-inner .pickle-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 16px;
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 4px;
         }
-        .content-inner .pickle-card {
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
+        .action-row {
+            display: flex;
+            gap: 12px;
+        }
+        .action-row .btn {
+            flex: 1;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: 15px;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.2px;
+        }
+        .btn-cart {
+            background: #1a1a1a;
+            color: white;
+        }
+        .btn-cart:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+        .btn-wishlist {
+            background: #f5f5f5;
+            color: #1a1a1a;
+            border: 1px solid #ddd;
+        }
+        .btn-wishlist:hover {
+            background: #fff0f0;
+            border-color: #E61D26;
+            color: #E61D26;
+        }
+        .btn-wishlist.active {
+            background: #fff0f0;
+            border-color: #E61D26;
+            color: #E61D26;
+        }
+        .btn-wishlist.active i {
+            animation: heartPop 0.35s ease;
+        }
+        @keyframes heartPop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.35); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+        .btn-buynow {
+            background: #E61D26;
+            color: white;
+            width: 100%;
+            font-size: 17px;
+            padding: 16px 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 14px rgba(230, 29, 38, 0.35);
+        }
+        .btn-buynow:hover {
+            background: #c41820;
+            transform: translateY(-2px);
+        }
+        .btn i {
+            font-size: 18px;
+        }
+        .upi-icon {
+            height: 22px;
+            width: auto;
+            max-width: 140px;
+            object-fit: contain;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .features-section {
+            margin-top: 8px;
+        }
+        .feature-line {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 14px 0;
+        }
+        .feature-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 8px;
+            text-align: center;
+        }
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #444;
+            flex: 1 1 60px;
+            min-width: 60px;
+            max-width: 100px;
+        }
+        .feature-item i {
+            font-size: 22px;
+            color: #E61D26;
+        }
+        .feature-item span {
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .shipping-returns-section {
+            margin-top: 0;
+        }
+        .sr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 0 14px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #111;
+            user-select: none;
+        }
+        .sr-header .arrow-icon {
+            transition: transform 0.3s;
+            font-size: 14px;
+            color: #555;
+        }
+        .sr-header.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+        .sr-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .sr-content.open {
+            max-height: 200px;
+            padding-bottom: 8px;
+        }
+        .sr-content p {
+            margin-bottom: 8px;
+        }
+        .sr-content p:last-child {
+            margin-bottom: 0;
+        }
+        .shipping-returns-section .feature-line {
+            margin-top: 6px;
+            margin-bottom: 6px;
+        }
+
+        .description-section {
+            margin-top: 4px;
+        }
+        .desc-heading {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+        }
+        .desc-body {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.7;
+            max-height: 4.8em;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .desc-body.expanded {
+            max-height: 600px;
+        }
+        .desc-toggle {
+            display: inline-block;
+            margin-top: 6px;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #E61D26;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ================================================
+           STICKY DOCK
+           ================================================ */
+        .pickle-sticky-dock-wrapper {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(140px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 999;
+            width: 600px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+        .pickle-sticky-dock-wrapper.dock-visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .pickle-sticky-dock {
+            background: #E61D26;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+            border-radius: 100px;
+            padding: 8px 8px 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            color: #fff;
+        }
+
+        /* Price info */
+        .dock-price-group {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            gap: 3px;
+            flex-shrink: 0;
+            min-width: 80px;
+            color: #fff;
+        }
+        .dock-price-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .dock-price-val {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .dock-price-strike {
+            font-size: 12px;
+            text-decoration: line-through;
+            color: rgba(255,255,255,0.7);
+            margin-left: 5px;
+        }
+
+        /* Size dropdown */
+        .dock-size-wrapper {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .dock-size-trigger {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 16px;
+            height: 50px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255,255,255,0.6);
+            background: transparent;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            white-space: nowrap;
+            user-select: none;
+        }
+        .dock-size-trigger:hover,
+        .dock-size-trigger.open {
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+        }
+        .dock-size-trigger .size-arrow {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            transition: transform 0.25s;
+        }
+        .dock-size-trigger.open .size-arrow {
+            transform: rotate(180deg);
+        }
+        .dock-size-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            margin-right: 2px;
+        }
+        .dock-selected-size {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .dock-size-dropdown {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 0;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 18px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+            overflow: hidden;
+            width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(8px) scale(0.97);
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dock-size-dropdown.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+        .dock-size-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 18px;
+            cursor: pointer;
+            transition: background 0.12s;
+            border-bottom: 1px solid #f5f5f5;
+            color: #111;
+        }
+        .dock-size-option:last-child {
+            border-bottom: none;
+        }
+        .dock-size-option:hover {
+            background: #fff5f5;
+        }
+        .dock-size-option.active {
+            background: #fff0f0;
+        }
+        .dock-size-option .opt-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #111;
+        }
+        .dock-size-option.active .opt-name {
+            color: #E61D26;
+        }
+        .dock-size-option .opt-price-wrap {
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            color: #111;
+        }
+        .dock-size-option .opt-price {
+            font-weight: 700;
+            font-size: 14px;
+            color: #111;
+        }
+        .dock-size-option.active .opt-price {
+            color: #E61D26;
+        }
+        .dock-size-option .opt-old {
+            font-size: 11px;
+            color: #bbb;
+            text-decoration: line-through;
+        }
+        .dock-size-option .opt-disc {
+            font-size: 11px;
+            font-weight: 700;
+            color: #E61D26;
+            background: #ffe6e6;
+            padding: 1px 6px;
+            border-radius: 20px;
+        }
+        .dock-size-option .check-icon {
+            font-size: 13px;
+            color: #E61D26;
+            margin-left: 6px;
+            display: none;
+        }
+        .dock-size-option.active .check-icon {
+            display: inline;
+        }
+
+        /* Dock buttons */
+        .dock-cart-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 50px;
+            padding: 0 22px;
+            border-radius: 50px;
+            background: #fff;
+            color: #1a1a1a;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            flex-shrink: 0;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .dock-cart-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        }
+        .dock-buynow-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 50px;
+            padding: 0 22px;
+            border-radius: 50px;
+            background: #fff;
+            color: #E61D26;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            flex: 1 1 0;
+            min-width: 0;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(230,29,38,0.3);
+        }
+        .dock-buynow-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(230,29,38,0.4);
+        }
+
+        /* Tooltip on dock */
+        .dock-no-size-tip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.95);
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            z-index: 1001;
+        }
+        .dock-no-size-tip.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        .dock-no-size-tip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #1a1a1a;
+        }
+
+        /* "You may also like" section */
+        .also-like-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 48px;
+        }
+        .also-like-line {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 36px 0 28px;
+        }
+        .also-like-heading {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+            letter-spacing: -0.2px;
+        }
+        .also-like-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .al-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        .al-card:hover {
+            transform: translateY(-4px);
+        }
+        .al-image-wrapper {
+            position: relative;
+            background: #f8f2ec;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 12px;
+        }
+        .al-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .al-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+        .al-badge-bestseller {
+            background: #ffe6e6;
+            color: #E61D26;
+            border: 1px solid #f5c2c2;
+        }
+        .al-badge-spicy {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .al-body {
+            padding: 14px 14px 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .al-rating {
+            font-size: 13px;
+            font-weight: 600;
+            color: #E61D26;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .al-rating span {
+            color: #888;
+            font-weight: 400;
+        }
+        .al-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            line-height: 1.35;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .al-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 14px;
+        }
+        .al-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 14px 18px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+        .al-btn:hover {
+            background: #E61D26;
+        }
+
+        /* Combo section */
+        .pickle-combo-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 48px;
+            display: none;
+        }
+        .combo-divider {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 0 0 28px;
+        }
+        .combo-section-heading {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+            letter-spacing: -0.2px;
+        }
+        .combo-card--premium {
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 32px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 30px 70px rgba(74, 14, 14, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(200, 160, 130, 0.15);
+            position: relative;
+        }
+        .combo-card--premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c41820, #f5c842, #c41820);
+            z-index: 2;
+        }
+        .combo-left-brand {
+            flex: 0 0 340px;
+            background: #350000;
+            padding: 36px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .combo-left-brand::after {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(245, 200, 66, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .combo-left-brand::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f5c842' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .brand-images-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .combo-display-price { font-size: 36px; font-weight: 700; color: #f5c842; }
+        .combo-display-title { font-size: 24px; font-weight: 700; line-height: 1.2; margin-top: 8px;}
+
+        .delivery-info-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+            margin: 4px 0 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .delivery-info-line i {
+            color: #f5c842;
+            font-size: 18px;
+        }
+        .delivery-badge {
+            background: rgba(245, 200, 66, 0.2);
+            color: #f5c842;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .brand-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 4px;
+            position: relative;
+            z-index: 1;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .whatsapp-order-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.5);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .whatsapp-order-btn .wa-icon {
+            font-size: 28px;
+            color: #25D366;
+        }
+        .whatsapp-order-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #25D366;
+            transform: translateY(-2px);
+        }
+        .combo-right-grid {
+            flex: 1;
+            padding: 36px 36px 32px 68px;
+            background: #fefcf9;
+            min-width: 300px;
+        }
+        .grid-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .grid-title {
+            font-family: 'IBM Plex Serif', serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #2d0a0a;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .grid-title span {
+            color: #c41820;
+            background: rgba(196, 24, 32, 0.05);
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(196, 24, 32, 0.15);
+        }
+        .grid-count {
+            font-size: 14px;
+            font-weight: 600;
+            color: #777;
+            background: #f5f0eb;
+            padding: 4px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .grid-count i {
+            color: #c41820;
+            font-size: 16px;
+        }
+        .grid-count strong {
+            color: #2d0a0a;
+            font-size: 16px;
+        }
+        .pickle-grid-premium {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .pickle-item-premium {
+            background: #fff;
+            border: 2px solid #ede8e3;
+            border-radius: 18px;
+            padding: 14px 14px 14px 80px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 12px;
-            cursor: pointer;
-            transition: border 0.2s;
+            position: relative;
+            user-select: none;
+            min-height: 82px;
+            overflow: visible;
         }
-        .content-inner .pickle-card:hover { border-color: var(--brand-primary); background: #fdfcff; }
-        .content-inner .pickle-card.selected { border-color: var(--brand-primary); background: #f2efff; }
-        .content-inner .pickle-card img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; }
-        .content-inner .pickle-card input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--brand-primary); cursor: pointer; }
-
-        /* Image rows */
-        .content-inner .image-row {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            padding: 12px;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            margin-bottom: 12px;
-            background: #fafafa;
+        .pickle-item-premium:hover {
+            border-color: #d4c5b8;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(74, 14, 14, 0.08);
         }
-        .content-inner .image-row span {
-            font-weight: 600;
-            width: 200px;
-            white-space: nowrap;
+        .pickle-item-premium.selected {
+            border-color: #c41820;
+            background: #fffbfa;
+            box-shadow: 0 6px 24px rgba(196, 24, 32, 0.15);
+        }
+        .pickle-item-premium.locked-out {
+            cursor: not-allowed;
+            opacity: 0.35;
+            pointer-events: none;
+            filter: grayscale(0.6);
+        }
+        .pickle-image-plate {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            flex-shrink: 0;
             overflow: hidden;
-            text-overflow: ellipsis;
+            border: 4px solid #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+            background: #f8f4f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: -34px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            transition: all 0.3s;
+        }
+        .pickle-image-plate img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .pickle-item-premium:hover .pickle-image-plate {
+            transform: translateY(-50%) scale(1.05);
+        }
+        .pickle-item-premium.selected .pickle-image-plate {
+            border-color: #c41820;
+            box-shadow: 0 0 0 4px rgba(196, 24, 32, 0.1);
+        }
+        .pickle-name-premium {
+            font-weight: 600;
+            font-size: 15px;
+            color: #2d0a0a;
+            line-height: 1.2;
+            flex: 1;
+        }
+        .pickle-item-premium.selected .pickle-name-premium {
+            color: #c41820;
+            font-weight: 700;
+        }
+        .pickle-check-premium {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: #fff;
+            transition: all 0.35s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: transparent;
+            z-index: 4;
+        }
+        .pickle-item-premium.selected .pickle-check-premium {
+            border-color: #c41820;
+            background: #c41820;
+            color: #fff;
+        }
+        .selection-progress-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #ede8e3;
+            flex-wrap: wrap;
+        }
+        .progress-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .progress-ring {
+            width: 48px;
+            height: 48px;
+            position: relative;
+        }
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+        .ring-bg {
+            fill: none;
+            stroke: #ede8e3;
+            stroke-width: 4;
+        }
+        .ring-fill {
+            fill: none;
+            stroke: #c41820;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-dasharray: 125.6;
+            stroke-dashoffset: 125.6;
+            transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.2s;
+        }
+        .ring-fill.complete {
+            stroke: #f5c842;
+        }
+        .ring-count {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: 700;
+            color: #2d0a0a;
+        }
+        .ring-count.complete {
+            color: #c41820;
+        }
+        .progress-text {
+            font-size: 15px;
+            color: #555;
+            font-weight: 500;
+        }
+        .progress-text strong {
+            color: #2d0a0a;
+        }
+        .highlight-red {
+            color: #c41820;
+            font-weight: 700;
+        }
+        .combo-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 15px;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+        }
+        .combo-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .combo-action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-viewdetails {
+            background: #f5f5f5;
+            color: #1a1a1a;
+            border: 1px solid #ddd;
+            justify-content: center;
+        }
+        .btn-viewdetails:hover {
+            background: #fff0f0;
+            border-color: #E61D26;
+            color: #E61D26;
+        }
+        .btn-viewdetails.hidden-btn {
+            display: none;
+        }
+        .btn-combo-cart {
+            background: #1a1a1a;
+            color: white;
+        }
+        .btn-combo-cart:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+        .btn-combo-buynow {
+            background: #E61D26;
+            color: white;
+            font-size: 17px;
+            padding: 16px 22px;
+            flex: 1;
+        }
+        .btn-combo-buynow:hover {
+            background: #c41820;
+            transform: translateY(-2px);
+        }
+        .combo-hidden-buttons {
+            display: none;
+        }
+        .combo-hidden-buttons.show {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+        .combo-toast-premium {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: #2d0a0a;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 9999;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 36px rgba(74, 14, 14, 0.35);
+            pointer-events: none;
+            border: 1px solid rgba(245, 200, 66, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .combo-toast-premium .toast-icon {
+            font-size: 20px;
+        }
+        .combo-toast-premium.show {
+            transform: translateX(-50%) translateY(0);
         }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .d-sidebar { display: none; }
-            .d-topbar { display: none; }
-            .d-content { padding: 8px; padding-top: 80px; padding-bottom: 100px; }
+        /* OLD sticky bar */
+        .sticky-buy-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 16px;
+            gap: 10px;
+            align-items: center;
+            z-index: 200;
+        }
+        .sticky-buy-bar.visible {
+            display: flex;
+        }
+        .sticky-bar-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+            flex-shrink: 0;
+        }
+        .sticky-bar-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .sticky-bar-cart {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .sticky-bar-buynow {
+            background: #E61D26;
+            color: #fff;
+        }
 
-            .m-header { display: flex; }
+        /* ================================================
+           RESPONSIVE
+           ================================================ */
+        @media (min-width: 1280px) {
+            .gallery-col { flex-basis: 520px; }
+            .details-col { flex-basis: 480px; }
+        }
 
-            .profile-popup { bottom: 100px; left: 50%; transform: translateX(-50%); }
-            .brand-logo img { height: 45px; }
+        @media (min-width: 960px) and (max-width: 1279px) {
+            .gallery-col { flex-basis: 420px; }
+            .details-col { flex-basis: 380px; }
+        }
 
-            .content-inner { padding: 16px; }
-            .content-inner .header-section { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .content-inner .filter-row { flex-direction: column; align-items: stretch; }
-            .content-inner .pickle-grid { grid-template-columns: 1fr; }
-            .content-inner .image-row { flex-direction: column; align-items: stretch; }
-            .content-inner .image-row span { width: 100%; }
+        @media (min-width: 768px) and (max-width: 959px) {
+            .container { gap: 28px; }
+            .gallery-col { flex-basis: 320px; }
+            .details-col { flex-basis: 280px; }
+            .product-title { font-size: 22px; }
+            .current-price { font-size: 26px; }
+            .thumbnails { height: 290px; }
+            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .combo-left-brand { flex: 0 0 240px; padding: 28px 18px; }
+            .combo-right-grid { padding: 28px 22px 28px 52px; }
+            .pickle-image-plate { width: 80px; height: 80px; left: -26px; }
+            .pickle-item-premium { padding-left: 62px; }
+        }
+
+        /* Mobile pill dock tweaks */
+        @media (max-width: 767px) {
+            .pickle-sticky-dock-wrapper {
+                bottom: 14px;
+                width: calc(100% - 24px);
+                max-width: 100%;
+            }
+            .pickle-sticky-dock {
+                padding: 10px 10px 10px 16px;  /* taller pill */
+                gap: 8px;
+                border-radius: 100px;
+                width: 100%;
+            }
+            .dock-price-group {
+                min-width: 56px;
+                flex-shrink: 0;
+            }
+            .dock-price-label {
+                display: none;
+            }
+            .dock-price-val {
+                font-size: 16px;
+            }
+            .dock-price-strike {
+                font-size: 11px;
+            }
+            .dock-size-wrapper {
+                flex-shrink: 0;
+            }
+            .dock-size-trigger {
+                height: 42px;
+                padding: 0 11px;
+                font-size: 13px;
+                gap: 5px;
+            }
+            .dock-size-label {
+                display: none;
+            }
+            .dock-selected-size {
+                font-size: 13px;
+            }
+
+            /* IMPORTANT: dropdown anchored above the pill, not fixed center */
+            .dock-size-dropdown {
+                position: absolute;
+                bottom: calc(100% + 10px);
+                left: 0;
+                top: auto;
+                transform: translateY(8px) scale(0.97);
+                width: 220px;
+                max-height: 280px;
+                overflow-y: auto;
+            }
+            .dock-size-dropdown.open {
+                transform: translateY(0) scale(1);
+            }
+
+            /* hide buy now, show cart button filling remaining space */
+            .dock-buynow-btn {
+                display: none !important;
+            }
+            .dock-cart-btn {
+                height: 44px;
+                padding: 0 14px;
+                font-size: 14px;
+                gap: 6px;
+                flex: 1 1 auto;
+                flex-shrink: 1;
+            }
+            .dock-cart-btn span {
+                display: inline;
+            }
+
+            /* OLD sticky bar hidden */
+            .sticky-buy-bar { display: none !important; }
+
+            body { padding-bottom: 90px; }
+            .page-wrapper { padding: 16px 16px 24px; }
+            .container { flex-direction: column; gap: 20px; }
+            .gallery-col {
+                flex: 1 1 100% !important;
+                width: 100% !important;
+                position: static !important;
+                top: auto !important;
+                align-self: auto !important;
+            }
+            .thumbnails-wrapper { display: none !important; }
+            .main-image-wrapper { width: 100%; border-radius: 14px; }
+            .dots-container { display: flex; }
+            .details-col { flex: 1 1 100% !important; }
+            .product-title { font-size: 21px; }
+            .current-price { font-size: 26px; }
+            .btn { padding: 15px 13px; font-size: 15px; }
+            .qty-btn { width: 40px; height: 40px; }
+            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .combo-card--premium { flex-direction: column; border-radius: 24px; }
+            .combo-left-brand { flex: auto; padding: 22px 18px; }
+            .brand-images-wrapper { flex-direction: row; gap: 12px; align-items: center; justify-content: center; }
+            .brand-logo, .brand-main-offer { width: 50%; }
+            .combo-right-grid { padding: 22px 18px 22px 38px; }
+            .pickle-image-plate { width: 72px; height: 72px; left: -22px; border-width: 3px; }
+            .pickle-item-premium { padding: 12px 12px 12px 58px; min-height: 72px; }
+            .pickle-name-premium { font-size: 13px; }
+            .btn-viewdetails { width: 100%; }
+            .combo-action-buttons { width: 100%; }
+
+            /* ====== SPECIFICITY BOOSTED MOBILE BUTTON STYLES ====== */
+            .btn.btn-cart,
+            .btn.btn-wishlist,
+            .btn.btn-buynow {
+                padding-top: 18px !important;
+                padding-bottom: 18px !important;
+                font-size: 16px !important;
+            }
+            .btn.btn-cart i,
+            .btn.btn-wishlist i,
+            .btn.btn-buynow i {
+                font-size: 18px !important;
+            }
+            .al-btn.al-btn {
+                padding-top: 15px !important;
+                padding-bottom: 15px !important;
+                font-size: 13px !important;
+            }
+            .al-btn.al-btn i {
+                font-size: 14px !important;
+            }
+            .btn-viewdetails.btn-viewdetails {
+                padding-top: 18px !important;
+                padding-bottom: 18px !important;
+                font-size: 14px !important;
+            }
+            .btn-combo-cart.btn-combo-cart,
+            .btn-combo-buynow.btn-combo-buynow {
+                padding-top: 18px !important;
+                padding-bottom: 18px !important;
+                font-size: 14px !important;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .page-wrapper { padding: 12px 12px 16px; }
+            .container { gap: 14px; }
+            .product-title { font-size: 19px; }
+            .current-price { font-size: 24px; }
+            .old-price { font-size: 16px; }
+            .variant-box { padding: 6px 10px; }
+            .variant-title { font-size: 13px; }
+            .price-small { font-size: 12px; }
+            .qty-btn { width: 38px; height: 38px; font-size: 17px; }
+            .qty-value { width: 38px; font-size: 15px; }
+            .btn { padding: 14px 11px; font-size: 14px; }
+            .btn-buynow { font-size: 15px; padding: 14px 12px; }
+            .upi-icon { height: 17px; max-width: 95px; }
+            .feature-item { min-width: 50px; max-width: 75px; font-size: 11px; }
+            .feature-item i { font-size: 18px; }
+            .also-like-section { padding: 0 12px 32px; }
+            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+            .al-title { font-size: 12px; }
+            .al-price { font-size: 14px; }
+            .al-btn { font-size: 11px; padding: 9px 7px; }
+            .pickle-combo-section { padding: 0 12px 32px; }
+            .combo-card--premium { flex-direction: column; border-radius: 18px; }
+            .combo-left-brand { flex: auto; padding: 16px 13px; }
+            .brand-images-wrapper { flex-direction: row; gap: 8px; align-items: center; justify-content: center; }
+            .brand-logo, .brand-main-offer { width: 50%; }
+            .combo-right-grid { padding: 14px 12px 14px 26px; }
+            .pickle-grid-premium { gap: 12px; }
+            .pickle-image-plate { width: 56px; height: 56px; left: -16px; border-width: 2px; }
+            .pickle-item-premium { padding: 9px 9px 9px 44px; min-height: 60px; border-radius: 10px; }
+            .pickle-name-premium { font-size: 11px; }
+            .pickle-check-premium { display: none; }
+            .grid-title { font-size: 16px; }
+            .selection-progress-area { flex-direction: column; align-items: stretch; gap: 12px; }
+            .progress-left { justify-content: center; }
+            .combo-btn { font-size: 13px; padding: 11px 9px; }
+            .btn-combo-buynow { font-size: 14px; padding: 11px 9px; }
+            .whatsapp-order-btn { font-size: 13px; padding: 9px 12px; }
+            .sticky-bar-price { font-size: 15px; }
+            .sticky-bar-btn { font-size: 13px; padding: 10px 8px; }
+            .btn-viewdetails { width: 100%; }
+            .combo-action-buttons { width: 100%; }
+        }
+
+        @media (max-width: 380px) {
+            .page-wrapper { padding: 10px 10px 14px; }
+            .product-title { font-size: 17px; }
+            .current-price { font-size: 22px; }
+            .feature-item:nth-child(5) { display: none; }
+            .feature-items { flex-wrap: nowrap; justify-content: space-around; }
+            .feature-item { flex: 1 1 0; min-width: 0; max-width: none; padding: 0; }
+            .btn-viewdetails { width: 100%; }
+            .combo-action-buttons { width: 100%; }
+        }
+
+        @media (min-width: 768px) and (max-width: 900px) {
+            .dock-price-label { display: none; }
+            .dock-price-group { min-width: 64px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== MOBILE HEADER ========== -->
-    <header class="m-header" id="mobile-header">
-        <button class="m-menu-btn" id="m-open-drawer">
-            <div class="m-menu-lines"><span></span></div>
-        </button>
-        <a href="#" class="brand-logo">
-            <img src="./assets/logo.png" alt="Happy NonVeg Pickles">
-        </a>
-        <div style="width:40px;"></div>
-    </header>
-
-    <!-- ========== MOBILE DRAWER OVERLAY ========== -->
-    <div class="m-overlay" id="m-overlay">
-        <div class="m-drawer">
-            <div class="m-drawer-header">
-                <span class="brand-logo">
-                    <img src="./assets/logo.png" alt="Happy NonVeg Pickles">
-                </span>
-                <button class="m-drawer-close" id="m-close-drawer">
-                    <div class="m-drawer-close-icon"></div>
-                </button>
+    <div class="pickle-sticky-dock-wrapper" id="pickleSticky">
+        <div class="pickle-sticky-dock">
+            <div class="dock-price-group">
+                <span class="dock-price-label">Price</span>
+                <div>
+                    <span class="dock-price-val" id="dockPriceVal">₹0</span>
+                    <span class="dock-price-strike" id="dockPriceStrike"></span>
+                </div>
             </div>
 
-            <nav class="m-drawer-nav">
-                <a href="dashboard.html" class="nav-item">
-                    <span class="icon icon-custom icon-dashboard">
-                        <span class="icon-normal"></span>
-                        <span class="icon-hover"></span>
-                        <span class="icon-active"></span>
-                    </span>
-                    <span class="nav-label">Dashboard</span>
-                </a>
-                <a href="manage-categories.html" class="nav-item">
-                    <span class="icon icon-custom icon-inventory">
-                        <span class="icon-normal"></span>
-                        <span class="icon-hover"></span>
-                        <span class="icon-active"></span>
-                    </span>
-                    <span class="nav-label">Inventory</span>
-                </a>
-                <a href="coupons.html" class="nav-item">
-                    <span class="icon icon-custom icon-coupons">
-                        <span class="icon-normal"></span>
-                        <span class="icon-hover"></span>
-                        <span class="icon-active"></span>
-                    </span>
-                    <span class="nav-label">Manage Coupons</span>
-                </a>
-
-                <!-- CUSTOMIZE SITE ACTIVE & OPEN -->
-                <div class="nav-item active dropdown-open" id="m-site-toggle">
-                    <span class="icon icon-custom icon-site">
-                        <span class="icon-normal"></span>
-                        <span class="icon-hover"></span>
-                        <span class="icon-active"></span>
-                    </span>
-                    <span class="nav-label">Customize Site</span>
-                    <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m9 18 6-6-6-6"/>
-                    </svg>
+            <div class="dock-size-wrapper" id="dockSizeWrapper">
+                <div class="dock-size-trigger" id="dockSizeTrigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="dock-size-label">Size</span>
+                    <span class="dock-selected-size" id="dockSelectedLabel">Select</span>
+                    <i class="fas fa-chevron-down size-arrow"></i>
                 </div>
+                <div class="dock-size-dropdown" id="dockSizeDropdown" role="listbox">
+                    </div>
+                <div class="dock-no-size-tip" id="dockNoSizeTip">Please select a size first</div>
+            </div>
 
-                <div class="nav-submenu open" id="m-site-submenu">
-                    <a href="manage_herosection.html" class="nav-submenu-item">
-                        <span class="icon icon-custom icon-herosection">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        Hero Section
-                    </a>
-                    <a href="manage-sections.html" class="nav-submenu-item">
-                        <span class="icon icon-custom icon-sections">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        Sections
-                    </a>
-                    <a href="manage-popup.html" class="nav-submenu-item">
-                        <span class="icon icon-custom icon-popup">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        Popup
-                    </a>
-                    <a href="manage-combo.html" class="nav-submenu-item active">
-                        <span class="icon icon-custom icon-combo">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        Combo Offer
-                    </a>
+            <button class="dock-cart-btn" id="dockCartBtn" onclick="app.addToCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Add to Cart</span>
+            </button>
+            <button class="dock-buynow-btn" id="dockBuyNowBtn" onclick="app.buyNow()">
+                Buy Now
+            </button>
+        </div>
+    </div>
+
+    <div class="page-wrapper" id="main-content">
+        <div class="loading-shimmer">
+            <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 12px;"></i><br>
+            Loading product details...
+        </div>
+    </div>
+
+    <div class="also-like-section" id="also-like-section" style="display: none;">
+        <hr class="also-like-line">
+        <h2 class="also-like-heading">You may also like</h2>
+        <div class="also-like-grid" id="also-like-grid">
+            </div>
+    </div>
+
+    <div class="pickle-combo-section" id="combo-section">
+        <hr class="combo-divider">
+        <h2 class="combo-section-heading">Build Your Combo</h2>
+        <div class="combo-card--premium">
+            <div class="combo-left-brand">
+                <div class="brand-images-wrapper">
+                    <div class="combo-display-price" id="combo-display-price" style="font-size: 36px; font-weight: 700; color: #f5c842;">₹0</div>
+                    <div class="combo-display-title" id="combo-display-title" style="font-size: 24px; font-weight: 700; color: white; margin-top: 12px;">Loading Combo...</div>
                 </div>
-            </nav>
-
-            <div class="m-account-section" id="profile-trigger-mobile">
-                <div class="account-card">
-                    <img class="account-avatar" src="" alt="User">
-                    <div class="account-text">
-                        <div class="account-name">Loading...</div>
-                        <div class="account-email">loading...</div>
+                <div class="delivery-info-line">
+                    <i class="fas fa-truck"></i>
+                    <span>All India Free Delivery</span>
+                    <span class="delivery-badge">Free</span>
+                </div>
+                <div class="brand-footer">
+                    <button class="whatsapp-order-btn">
+                        <span>You can also order on</span>
+                        <i class="fab fa-whatsapp wa-icon"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="combo-right-grid">
+                <div class="grid-header">
+                    <span class="grid-title">Choose your <span>4</span> pickles</span>
+                    <span class="grid-count">
+                        <i class="far fa-circle-check"></i>
+                        <span id="countDisplay">0</span>/<strong>4</strong>
+                    </span>
+                </div>
+                <div class="pickle-grid-premium" id="combo-grid-items">
+                    </div>
+                <div class="selection-progress-area">
+                    <div class="progress-left">
+                        <div class="progress-ring">
+                            <svg width="48" height="48" viewBox="0 0 48 48">
+                                <circle class="ring-bg" cx="24" cy="24" r="20" />
+                                <circle class="ring-fill" id="ringFill" cx="24" cy="24" r="20" />
+                            </svg>
+                            <span class="ring-count" id="ringCount">0</span>
+                        </div>
+                        <div class="progress-text" id="progressMsg">
+                            Select <strong>4</strong> pickles to unlock
+                        </div>
+                    </div>
+                    <div class="combo-action-buttons" id="comboActionButtons">
+                        <div class="combo-hidden-buttons show" id="hiddenButtons">
+                            <button class="combo-btn btn-combo-buynow" id="comboCheckoutBtn" disabled onclick="app.checkoutCombo()">
+                                <img src="https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/upi_options.svg" alt="UPI" class="upi-icon">
+                                Buy Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ========== DESKTOP LAYOUT ========== -->
-    <div class="page-desktop">
-        <aside class="d-sidebar" id="sidebar">
-            <div class="d-sidebar-header">
-                <a href="#" class="brand-logo">
-                    <img src="./assets/logo.png" alt="Happy NonVeg Pickles">
-                </a>
-                <span class="mini-logo">
-                    <img src="./assets/logo-small.png" alt="H">
-                </span>
-                <button class="sidebar-toggle" id="sidebar-toggle-btn">
-                    <img class="btn-close-svg" src="./assets/panel_close.svg" alt="Close sidebar" width="24" height="24">
-                    <img class="btn-open-svg" src="./assets/panel_open.svg" alt="Open sidebar" width="24" height="24">
-                </button>
-            </div>
-
-            <div class="d-sidebar-inner">
-                <nav>
-                    <a href="dashboard.html" class="nav-item">
-                        <span class="icon icon-custom icon-dashboard">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        <span class="nav-label">Dashboard</span>
-                    </a>
-                    <a href="manage-categories.html" class="nav-item">
-                        <span class="icon icon-custom icon-inventory">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        <span class="nav-label">Inventory</span>
-                    </a>
-                    <a href="coupons.html" class="nav-item">
-                        <span class="icon icon-custom icon-coupons">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        <span class="nav-label">Manage Coupons</span>
-                    </a>
-
-                    <!-- CUSTOMIZE SITE ACTIVE & OPEN -->
-                    <div class="nav-item active dropdown-open" id="d-site-toggle">
-                        <span class="icon icon-custom icon-site">
-                            <span class="icon-normal"></span>
-                            <span class="icon-hover"></span>
-                            <span class="icon-active"></span>
-                        </span>
-                        <span class="nav-label">Customize Site</span>
-                        <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </div>
-
-                    <div class="nav-submenu open" id="d-site-submenu">
-                        <a href="manage_herosection.html" class="nav-submenu-item">
-                            <span class="icon icon-custom icon-herosection">
-                                <span class="icon-normal"></span>
-                                <span class="icon-hover"></span>
-                                <span class="icon-active"></span>
-                            </span>
-                            Hero Section
-                        </a>
-                        <a href="manage-sections.html" class="nav-submenu-item">
-                            <span class="icon icon-custom icon-sections">
-                                <span class="icon-normal"></span>
-                                <span class="icon-hover"></span>
-                                <span class="icon-active"></span>
-                            </span>
-                            Sections
-                        </a>
-                        <a href="manage-popup.html" class="nav-submenu-item">
-                            <span class="icon icon-custom icon-popup">
-                                <span class="icon-normal"></span>
-                                <span class="icon-hover"></span>
-                                <span class="icon-active"></span>
-                            </span>
-                            Popup
-                        </a>
-                        <a href="manage-combo.html" class="nav-submenu-item active">
-                            <span class="icon icon-custom icon-combo">
-                                <span class="icon-normal"></span>
-                                <span class="icon-hover"></span>
-                                <span class="icon-active"></span>
-                            </span>
-                            Combo Offer
-                        </a>
-                    </div>
-                </nav>
-
-                <div class="d-account-section" id="profile-trigger-desktop">
-                    <div class="account-card">
-                        <img class="account-avatar" src="" alt="User">
-                        <div class="account-text">
-                            <div class="account-name">Loading...</div>
-                            <div class="account-email">loading...</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <div class="d-main-wrapper">
-            <header class="d-topbar">Combo Offer</header>
-            <main class="d-content">
-                <!-- ========== PAGE CONTENT ========== -->
-                <div class="content-inner">
-                    <div class="header-section">
-                        <div>
-                            <div class="breadcrumbs">
-                                <img src="./assets/home_icon.svg" alt="Home" />
-                                <span class="divider">/</span>
-                                <span style="color: var(--text-sub);">Customize Site</span>
-                                <span class="divider">/</span>
-                                <span style="color: var(--brand-primary); font-weight: 600;">Combo Offer</span>
-                            </div>
-                            <h2 class="page-title" id="page-heading">Create Combo Offer</h2>
-                        </div>
-                        <div class="toggle-wrapper">
-                            <span style="font-weight: 600; color: var(--text-color);">Offer Status</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="combo-active" checked>
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 style="font-size: 16px; font-weight: 600;">Combo Details</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label">Combo Name <span class="required-mark">*</span></label>
-                                <input type="text" id="combo-name" class="form-input" placeholder="e.g. Mega Family Pack - Pick Any 8">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Price (₹) <span class="required-mark">*</span></label>
-                                <input type="number" id="combo-price" class="form-input" placeholder="Total combo price">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 style="font-size: 16px; font-weight: 600;">Select Pickles (Max 8)</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="filter-row">
-                                <div style="flex: 1;">
-                                    <label class="form-label">Filter by Weight Variant</label>
-                                    <input type="text" id="weight-filter" class="form-input" placeholder="e.g. 250g, 500g">
-                                </div>
-                                <button onclick="app.fetchPicklesByWeight()" class="btn-secondary" style="height: 46px;">
-                                    <i class="fas fa-search"></i> Fetch Pickles
-                                </button>
-                            </div>
-                            
-                            <div style="font-size: 13px; color: var(--text-sub); margin-bottom: 8px;">
-                                Selected: <span id="selection-count" style="font-weight: 700; color: var(--brand-primary);">0</span> / 8
-                            </div>
-
-                            <div id="pickle-grid" class="pickle-grid">
-                                <p style="color: var(--text-sub); font-size: 13px; grid-column: 1 / -1;">Enter a weight variant above and click fetch to see available pickles.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card" id="images-card" style="display: none;">
-                        <div class="card-header">
-                            <h3 style="font-size: 16px; font-weight: 600;">Custom Images for Selected Pickles</h3>
-                            <span style="font-size: 12px; color: var(--text-sub);">Assign a specific image for each pickle in this combo</span>
-                        </div>
-                        <div class="card-body" id="custom-images-container"></div>
-                    </div>
-
-                    <div style="display: flex; justify-content: flex-end; gap: 12px; margin-bottom: 40px;">
-                        <button onclick="window.history.back()" class="btn-secondary">Cancel</button>
-                        <button onclick="app.saveCombo()" id="save-btn" class="primary-btn">
-                            <i class="fas fa-save"></i> Save Combo Offer
-                        </button>
-                    </div>
-                </div>
-            </main>
-        </div>
+    <div class="combo-toast-premium" id="toastPremium">
+        <span class="toast-icon">&#10024;</span>
+        <span id="toastMessage"></span>
     </div>
 
-    <!-- ========== PROFILE POPUP ========== -->
-    <div class="profile-popup" id="profile-popup">
-        <div class="popup-header">
-            <img class="account-avatar" src="" alt="User">
-            <div class="account-text">
-                <div class="account-name">Loading...</div>
-                <div class="account-email">loading...</div>
-            </div>
-        </div>
-        <ul class="popup-list">
-            <li><a id="logout-btn" style="color:var(--danger-color)"><span>Logout</span></a></li>
-        </ul>
-    </div>
-
-    <!-- ========== COMBINED JAVASCRIPT ========== -->
     <script type="module">
-        // ========== FIREBASE INIT ==========
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        const firebaseConfig = { 
-            apiKey: "AIzaSyCxjDuFS_ntaOF-K8hFBaxQ0_8CR9yvbkM", 
-            authDomain: "pickle-fdc54.firebaseapp.com", 
-            projectId: "pickle-fdc54" 
+        // IMPORTANT: Replace with your actual credentials
+        const firebaseConfig = {
+            apiKey: "AIzaSyCZbCr-Zt5KQblRQ8Pk58KuinCVP-TlXGo",
+            authDomain: "happynonvegpickles-f2636.firebaseapp.com",
+            projectId: "happynonvegpickles-f2636",
+            storageBucket: "happynonvegpickles-f2636.firebasestorage.app",
+            messagingSenderId: "802823212924",
+            appId: "1:802823212924:web:d82c92737ffa950798def9"
         };
-        const firebaseApp = initializeApp(firebaseConfig);
-        const auth = getAuth(firebaseApp);
-        const db = getFirestore(firebaseApp);
-        const ALLOWED_ADMIN = "harshavardhanjw@gmail.com";
 
-        // ========== SVG PRELOAD (for sidebar) ==========
-        [
-            './assets/dashboard.svg','./assets/hover_dashboard.svg','./assets/fill_dashboard.svg',
-            './assets/inventory.svg','./assets/hover_inventory.svg','./assets/fill_inventory.svg',
-            './assets/coupons.svg','./assets/hover_coupons.svg','./assets/fill_coupons.svg',
-            './assets/site.svg','./assets/hover_site.svg','./assets/fill_site.svg',
-            './assets/herosection.svg','./assets/hover_herosection.svg','./assets/fill_herosection.svg',
-            './assets/sections.svg','./assets/hover_sections.svg','./assets/fill_sections.svg',
-            './assets/popup.svg','./assets/hover_popup.svg','./assets/fill_popup.svg',
-            './assets/combo.svg','./assets/hover_combo.svg','./assets/fill_combo.svg',
-            './assets/panel_close.svg','./assets/panel_open.svg'
-        ].forEach(src => { const i = new Image(); i.src = src; });
-
-        // ========== AUTH ==========
-        onAuthStateChanged(auth, (user) => {
-            if (!user || user.email !== ALLOWED_ADMIN) {
-                if (user) {
-                    signOut(auth).then(() => window.location.href = './');
-                } else {
-                    window.location.href = './';
-                }
-            } else {
-                document.body.style.display = 'block';
-                const avatars = document.querySelectorAll('.account-avatar');
-                const names = document.querySelectorAll('.account-name');
-                const emails = document.querySelectorAll('.account-email');
-                const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || 'Admin')}&background=673DE6&color=fff`;
-                avatars.forEach(img => img.src = user.photoURL || defaultAvatar);
-                names.forEach(name => name.textContent = user.displayName || 'Admin');
-                emails.forEach(email => email.textContent = user.email);
-            }
-        });
-
-        document.getElementById('logout-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            signOut(auth).then(() => window.location.href = './');
-        });
-
-        // ========== DASHBOARD UI ==========
-        const sidebar = document.getElementById('sidebar');
-        document.getElementById('sidebar-toggle-btn').addEventListener('click', () => sidebar.classList.toggle('collapsed'));
-
-        function clearNavActive(nav) {
-            nav.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        }
-
-        function setupDropdown(toggleId, submenuId) {
-            const toggle  = document.getElementById(toggleId);
-            const submenu = document.getElementById(submenuId);
-            if (!toggle || !submenu) return;
-
-            toggle.addEventListener('click', () => {
-                if (sidebar && sidebar.classList.contains('collapsed')) {
-                    sidebar.classList.remove('collapsed');
-                    setTimeout(() => {
-                        submenu.classList.add('open');
-                        toggle.classList.add('dropdown-open');
-                    }, 300);
-                    return;
-                }
-                const isOpen = submenu.classList.contains('open');
-                submenu.classList.toggle('open', !isOpen);
-                toggle.classList.toggle('dropdown-open', !isOpen);
-            });
-
-            submenu.querySelectorAll('.nav-submenu-item').forEach(item => {
-                item.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    const parentNav = toggle.closest('nav') || toggle.parentElement;
-                    clearNavActive(parentNav);
-                    submenu.querySelectorAll('.nav-submenu-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    toggle.classList.add('dropdown-open', 'active');
-                    submenu.classList.add('open');
-                });
-            });
-        }
-        setupDropdown('d-site-toggle', 'd-site-submenu');
-        setupDropdown('m-site-toggle', 'm-site-submenu');
-
-        // Mobile drawer
-        const mOverlay = document.getElementById('m-overlay');
-        document.getElementById('m-open-drawer').onclick = () => mOverlay.classList.add('open');
-        document.getElementById('m-close-drawer').onclick = () => mOverlay.classList.remove('open');
-        mOverlay.onclick = (e) => { if (e.target === mOverlay) mOverlay.classList.remove('open'); };
-
-        // Profile popup
-        const pPopup = document.getElementById('profile-popup');
-        ['profile-trigger-desktop','profile-trigger-mobile'].forEach(id => {
-            const el = document.getElementById(id);
-            if (!el) return;
-            el.onclick = (e) => {
-                e.stopPropagation();
-                if (window.innerWidth > 768) { pPopup.style.left = '16px'; pPopup.style.bottom = '80px'; }
-                pPopup.classList.toggle('active');
-            };
-        });
-        document.addEventListener('click', () => pPopup.classList.remove('active'));
-
-        // Regular nav active state
-        document.querySelectorAll('.nav-item:not(#d-site-toggle):not(#m-site-toggle)').forEach(item => {
-            item.addEventListener('click', function () {
-                const parentNav = this.closest('nav');
-                if (parentNav) clearNavActive(parentNav);
-                this.classList.add('active');
-                ['d-site-toggle', 'm-site-toggle'].forEach(id => {
-                    const t = document.getElementById(id);
-                    t?.classList.remove('active', 'dropdown-open');
-                });
-                ['d-site-submenu', 'm-site-submenu'].forEach(id => {
-                    const s = document.getElementById(id);
-                    if (s) {
-                        s.classList.remove('open');
-                        s.querySelectorAll('.nav-submenu-item').forEach(i => i.classList.remove('active'));
-                    }
-                });
-            });
-        });
-
-        // ========== COMBO OFFER LOGIC ==========
-        let existingComboId = null;
+        const db = getFirestore(initializeApp(firebaseConfig));
 
         window.app = {
-            allProducts: [],
-            filteredProducts: [],
-            selectedPickles: [],
+            productData: null,
+            selectedVariant: null,
+            quantity: 1,
+            comboData: null,
+            selectedComboItems: [],
+            
+            // Interaction State Variables
+            currentIndex: 0,
+            autoRotateInterval: null,
+            touchStartX: 0,
+            allImagesArray: [],
 
             init: async () => {
-                try {
-                    // Load all products
-                    const prodSnap = await getDocs(collection(db, 'products'));
-                    window.app.allProducts = prodSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get('id');
 
-                    // Check for existing combo (only one)
-                    const combosSnap = await getDocs(collection(db, 'combos'));
-                    if (!combosSnap.empty) {
-                        const comboDoc = combosSnap.docs[0];
-                        const combo = comboDoc.data();
-                        existingComboId = comboDoc.id;
-                        
-                        // Populate form
-                        document.getElementById('combo-name').value = combo.name || '';
-                        document.getElementById('combo-price').value = combo.price || '';
-                        document.getElementById('combo-active').checked = combo.isActive;
-                        document.getElementById('weight-filter').value = combo.weightVariant || '';
-                        document.getElementById('page-heading').innerText = 'Edit Combo Offer';
-
-                        // Load pickles for this weight variant
-                        window.app.filteredProducts = window.app.allProducts.filter(p => {
-                            if(!p.variants) return false;
-                            return p.variants.some(v => v.weight.toLowerCase() === combo.weightVariant.toLowerCase());
-                        });
-
-                        // Pre‑select the ones stored in the combo
-                        window.app.selectedPickles = [];
-                        if (combo.items) {
-                            combo.items.forEach(item => {
-                                const matchingProduct = window.app.filteredProducts.find(p => p.id === item.id);
-                                if (matchingProduct) {
-                                    const fallbackImg = matchingProduct.image || '';
-                                    window.app.selectedPickles.push({
-                                        id: item.id,
-                                        name: item.name,
-                                        fallbackImage: fallbackImg,
-                                        customImage: item.image !== fallbackImg ? item.image : ''
-                                    });
-                                }
-                            });
-                        }
-
-                        // Render the UI
-                        window.app.renderPickles();
-                        window.app.renderImageInputs();
-                    }
-                } catch (error) {
-                    console.error("Error initializing:", error);
-                    alert("Failed to load data. Please check your connection.");
-                }
-            },
-
-            fetchPicklesByWeight: () => {
-                const targetWeight = document.getElementById('weight-filter').value.trim().toLowerCase();
-                if(!targetWeight) return alert("Please enter a weight to filter (e.g. 250g)");
-
-                window.app.filteredProducts = window.app.allProducts.filter(p => {
-                    if(!p.variants) return false;
-                    return p.variants.some(v => v.weight.toLowerCase() === targetWeight);
-                });
-
-                window.app.selectedPickles = [];
-                window.app.renderPickles();
-                window.app.renderImageInputs();
-            },
-
-            renderPickles: () => {
-                const container = document.getElementById('pickle-grid');
-                
-                if(window.app.filteredProducts.length === 0) {
-                    container.innerHTML = `<p style="color: var(--danger-color); font-size: 13px; grid-column: 1 / -1;">No pickles found with this weight variant.</p>`;
+                if (!productId) {
+                    window.location.href = 'index.html';
                     return;
                 }
 
-                container.innerHTML = window.app.filteredProducts.map(p => {
-                    const isSelected = window.app.selectedPickles.some(sp => sp.id === p.id);
-                    return `
-                        <label class="pickle-card ${isSelected ? 'selected' : ''}" id="card-${p.id}">
-                            <input type="checkbox" value="${p.id}" ${isSelected ? 'checked' : ''} onchange="app.togglePickle('${p.id}', '${p.name.replace(/'/g, "\\'")}', '${p.image}')">
-                            <img src="${p.image || 'https://placehold.co/40'}" alt="img">
-                            <span style="font-size: 13px; font-weight: 600;">${p.name}</span>
-                        </label>
-                    `;
-                }).join('');
-                
-                document.getElementById('selection-count').innerText = window.app.selectedPickles.length;
-            },
+                try {
+                    // Fetch FULL product details directly from the root 'products' collection
+                    const productRef = doc(db, 'products', productId);
+                    const snap = await getDoc(productRef);
 
-            togglePickle: (id, name, fallbackImage) => {
-                const checkbox = document.querySelector(`input[value="${id}"]`);
-                const card = document.getElementById(`card-${id}`);
-
-                if(checkbox.checked) {
-                    if(window.app.selectedPickles.length >= 8) {
-                        checkbox.checked = false;
-                        alert("You can only select a maximum of 8 pickles for this combo.");
+                    if (!snap.exists() || snap.data().isavailable === false) {
+                        document.getElementById('main-content').innerHTML = `
+                            <div style="text-align:center; padding: 100px 20px;">
+                                <h2>Product Unavailable</h2>
+                                <p style="margin: 16px 0;">We could not find this product.</p>
+                                <a href="index.html" style="color:#E61D26; font-weight:600;">Return to Home</a>
+                            </div>`;
                         return;
                     }
-                    window.app.selectedPickles.push({ id, name, fallbackImage, customImage: '' });
-                    card.classList.add('selected');
-                } else {
-                    window.app.selectedPickles = window.app.selectedPickles.filter(p => p.id !== id);
-                    card.classList.remove('selected');
-                }
 
-                document.getElementById('selection-count').innerText = window.app.selectedPickles.length;
-                window.app.renderImageInputs();
+                    window.app.productData = { id: snap.id, ...snap.data() };
+                    
+                    if (window.app.productData.variants && window.app.productData.variants.length > 0) {
+                        window.app.selectedVariant = window.app.productData.variants[0];
+                    } else {
+                        window.app.selectedVariant = { weight: 'Standard', price: window.app.productData.price, mrp: 0 };
+                    }
+
+                    window.app.renderProductUI();
+
+                    // Parallel fetches for 'You May Also Like' (Category context) and Combos
+                    const catId = window.app.productData.categoryId;
+                    const catPromise = catId ? getDoc(doc(db, 'categories', catId)) : Promise.resolve(null);
+                    const combosPromise = getDocs(collection(db, 'combos'));
+
+                    const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
+
+                    if (catSnap && catSnap.exists() && catSnap.data().products) {
+                        window.app.renderAlsoLike(catSnap.data().products, productId);
+                    }
+
+                    const activeCombo = combosSnap.docs.map(d => ({id: d.id, ...d.data()})).find(c => c.isActive === true);
+                    if (activeCombo) {
+                        window.app.comboData = activeCombo;
+                        window.app.renderComboSection();
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching product:", error);
+                    alert("Failed to load product. Please check your connection.");
+                }
             },
 
-            renderImageInputs: () => {
-                const container = document.getElementById('custom-images-container');
-                const card = document.getElementById('images-card');
+            formatPrice: (val) => {
+                return parseInt(val, 10).toLocaleString('en-IN');
+            },
 
-                if(window.app.selectedPickles.length === 0) {
-                    card.style.display = 'none';
-                    return;
+            renderProductUI: () => {
+                const p = window.app.productData;
+                const container = document.getElementById('main-content');
+
+                // Compile all images
+                window.app.allImagesArray = [p.image];
+                if (p.additionalImages && p.additionalImages.length > 0) {
+                    window.app.allImagesArray.push(...p.additionalImages.filter(img => img.trim() !== ''));
                 }
+                const images = window.app.allImagesArray;
 
-                card.style.display = 'block';
-                container.innerHTML = window.app.selectedPickles.map(p => `
-                    <div class="image-row">
-                        <span>${p.name}</span>
-                        <input type="text" class="form-input" placeholder="Paste custom image URL for this combo" 
-                               value="${p.customImage}" onchange="app.updateCustomImage('${p.id}', this.value)">
+                // Build HTML
+                container.innerHTML = `
+                    <div class="container">
+                        <div class="gallery-col" id="galleryCol">
+                            ${images.length > 1 ? `
+                                <div class="thumbnails-wrapper">
+                                    <button class="thumb-scroll-btn" onclick="app.scrollThumbs(-1)"><i class="fas fa-chevron-up"></i></button>
+                                    <div class="thumbnails" id="thumbnailsContainer">
+                                        ${images.map((img, idx) => `
+                                            <div class="thumb-item ${idx === 0 ? 'active' : ''}" onclick="app.setActiveThumb(${idx})">
+                                                <img src="${img}" alt="View">
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                    <button class="thumb-scroll-btn" onclick="app.scrollThumbs(1)"><i class="fas fa-chevron-down"></i></button>
+                                </div>
+                            ` : ''}
+                            <div class="main-image-wrapper" id="mainImageWrapper">
+                                <img id="mainImage" src="${images[0]}" alt="${p.name}">
+                                ${p.isavailable ? '<div class="badge-best">Best Seller</div>' : ''}
+                                ${images.length > 1 ? `
+                                    <div class="dots-container" id="dotsContainer" style="display: flex;">
+                                        ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" onclick="app.setActiveThumb(${idx})"></span>`).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+
+                        <div class="details-col">
+                            <h1 class="product-title">${p.longName || p.name}</h1>
+                            <div class="rating-row">
+                                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></span>
+                                <span class="review-count">Authentic Taste</span>
+                            </div>
+
+                            <div class="price-row" id="price-display-wrapper">
+                                </div>
+                            <div class="tax-note">MRP Inclusive of All Taxes.</div>
+
+                            <div class="variant-header">Select Size</div>
+                            <div class="variant-grid" id="variantGrid">
+                                ${p.variants ? p.variants.map((v, idx) => {
+                                    const hasDiscount = v.mrp && v.mrp > v.price;
+                                    const discPercent = hasDiscount ? Math.round(((v.mrp - v.price) / v.mrp) * 100) : 0;
+                                    return `
+                                    <div class="variant-box ${idx === 0 ? 'active' : ''}" onclick="app.selectVariant(this, ${idx})">
+                                        <div class="variant-title">${v.weight}</div>
+                                        <div class="price-small">₹${v.price} ${hasDiscount ? `<span class="old">₹${v.mrp}</span> <span class="discount">${discPercent}% off</span>` : ''}</div>
+                                    </div>
+                                    `
+                                }).join('') : ''}
+                            </div>
+
+                            <div class="quantity-wrapper">
+                                <span class="quantity-label">Quantity</span>
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus" onclick="app.updateQty(-1)"><i class="fas fa-minus"></i></button>
+                                    <input type="text" id="qtyValue" class="qty-value" value="1" readonly>
+                                    <button class="qty-btn plus" onclick="app.updateQty(1)"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="action-buttons" id="mainActionButtons">
+                                <div class="action-row">
+                                    <button class="btn btn-cart" onclick="app.addToCart()">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                    <button class="btn btn-wishlist" id="wishlistBtn" onclick="app.toggleWishlist(this)">
+                                        <i class="fas fa-heart"></i> Wishlist
+                                    </button>
+                                </div>
+                                <button class="btn btn-buynow" id="heroBuyNow" onclick="app.buyNow()">
+                                    <img src="https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/upi_options.svg" alt="UPI Options" class="upi-icon">
+                                    Buy Now
+                                </button>
+                            </div>
+
+                            <div class="features-section">
+                                <hr class="feature-line">
+                                <div class="feature-items">
+                                    <div class="feature-item"><i class="fas fa-gem"></i><span>Premium Quality</span></div>
+                                    <div class="feature-item"><i class="fas fa-circle-check"></i><span>No Preservatives</span></div>
+                                    <div class="feature-item"><i class="fas fa-truck-fast"></i><span>Fast Delivery</span></div>
+                                    <div class="feature-item"><i class="fas fa-mortar-pestle"></i><span>Traditional Recipe</span></div>
+                                    <div class="feature-item"><i class="fas fa-shield-halved"></i><span>Secure Packaging</span></div>
+                                </div>
+                                <hr class="feature-line">
+                            </div>
+
+                            <div class="shipping-returns-section">
+                                <div class="sr-header" id="shippingReturnsToggle" onclick="app.toggleShipping()">
+                                    <span>Shipping &amp; Returns</span>
+                                    <i class="fas fa-chevron-down arrow-icon"></i>
+                                </div>
+                                <div class="sr-content" id="shippingReturnsContent">
+                                    <p><strong>Shipping:</strong> Free standard shipping on all orders over ₹999. Orders processed within 24–48 hours.</p>
+                                    <p><strong>Returns:</strong> Returns accepted within 7 days of delivery for original, unopened items.</p>
+                                </div>
+                                <hr class="feature-line">
+                            </div>
+
+                            <div class="description-section">
+                                <div class="desc-heading">Description</div>
+                                <div class="desc-body" id="descBody">
+                                    ${p.description ? p.description.replace(/\n/g, '<br>') : 'Authentic homemade style pickle.'}
+                                </div>
+                                <button class="desc-toggle" id="descToggle" onclick="app.toggleDesc(this)">View more</button>
+                            </div>
+                        </div>
                     </div>
-                `).join('');
+                `;
+
+                window.app.updatePriceDisplay();
+                window.app.initGalleryInteractions();
+                window.app.initStickyDock();
             },
 
-            updateCustomImage: (id, url) => {
-                const pickle = window.app.selectedPickles.find(p => p.id === id);
-                if(pickle) pickle.customImage = url;
+            // --- Sticky Dock & Dropdown Interactions ---
+            initStickyDock: () => {
+                const trigger = document.getElementById('dockSizeTrigger');
+                const dropdown = document.getElementById('dockSizeDropdown');
+                
+                // Populate Dropdown
+                const p = window.app.productData;
+                dropdown.innerHTML = p.variants ? p.variants.map((v, idx) => {
+                    const hasDiscount = v.mrp && v.mrp > v.price;
+                    const discPercent = hasDiscount ? Math.round(((v.mrp - v.price) / v.mrp) * 100) : 0;
+                    return `
+                        <div class="dock-size-option ${idx === 0 ? 'active' : ''}" onclick="app.selectVariantFromDock(this, ${idx})">
+                            <span class="opt-name">${v.weight}</span>
+                            <div class="opt-price-wrap">
+                                <span class="opt-price">₹${v.price}</span>
+                                ${hasDiscount ? `<span class="opt-old">₹${v.mrp}</span><span class="opt-disc">${discPercent}% off</span>` : ''}
+                                <i class="fas fa-check check-icon"></i>
+                            </div>
+                        </div>
+                    `
+                }).join('') : '';
+
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    trigger.classList.toggle('open');
+                    dropdown.classList.toggle('open');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!document.getElementById('dockSizeWrapper').contains(e.target)) {
+                        trigger.classList.remove('open');
+                        dropdown.classList.remove('open');
+                    }
+                });
+
+                window.addEventListener('scroll', () => {
+                    const heroBuyNow = document.getElementById('heroBuyNow');
+                    const pickleSticky = document.getElementById('pickleSticky');
+                    if(!heroBuyNow || !pickleSticky) return;
+
+                    const rect = heroBuyNow.getBoundingClientRect();
+                    if (rect.bottom < 0) {
+                        pickleSticky.classList.add('dock-visible');
+                    } else {
+                        pickleSticky.classList.remove('dock-visible');
+                        trigger.classList.remove('open');
+                        dropdown.classList.remove('open');
+                    }
+                }, { passive: true });
             },
 
-            saveCombo: async () => {
-                const name = document.getElementById('combo-name').value.trim();
-                const price = document.getElementById('combo-price').value.trim();
-                const isActive = document.getElementById('combo-active').checked;
-                const weight = document.getElementById('weight-filter').value.trim();
+            selectVariantFromDock: (optionElement, index) => {
+                document.querySelectorAll('.dock-size-option').forEach(o => o.classList.remove('active'));
+                optionElement.classList.add('active');
+                
+                // Sync main page UI
+                const mainVariantBoxes = document.querySelectorAll('.variant-box');
+                if(mainVariantBoxes[index]) {
+                    app.selectVariant(mainVariantBoxes[index], index);
+                }
+                
+                document.getElementById('dockSizeTrigger').classList.remove('open');
+                document.getElementById('dockSizeDropdown').classList.remove('open');
+            },
 
-                if(!name || !price) return alert("Combo Name and Price are required.");
-                if(window.app.selectedPickles.length === 0) return alert("Please select at least 1 pickle for the combo.");
+            // --- Gallery Logic ---
+            initGalleryInteractions: () => {
+                const mainWrapper = document.getElementById('mainImageWrapper');
+                
+                mainWrapper.addEventListener('touchstart', (e) => {
+                    window.app.touchStartX = e.changedTouches[0].screenX;
+                    app.stopAutoRotate();
+                }, { passive: true });
+                
+                mainWrapper.addEventListener('touchend', (e) => {
+                    const diff = window.app.touchStartX - e.changedTouches[0].screenX;
+                    if (Math.abs(diff) > 50) {
+                        app.setActiveThumb(diff > 0 ? window.app.currentIndex + 1 : window.app.currentIndex - 1);
+                    }
+                    if (window.innerWidth < 768) { app.startAutoRotate(); }
+                }, { passive: true });
 
-                const btn = document.getElementById('save-btn');
-                const originalHtml = btn.innerHTML;
-                btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Saving...`;
-                btn.disabled = true;
+                app.startAutoRotate();
+                
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768) {
+                        app.stopAutoRotate();
+                        document.getElementById('galleryCol').classList.add('sticky-active');
+                    } else {
+                        app.startAutoRotate();
+                        document.getElementById('galleryCol').classList.remove('sticky-active');
+                    }
+                });
+                
+                if (window.innerWidth >= 768) document.getElementById('galleryCol').classList.add('sticky-active');
+            },
 
-                const savedPickles = window.app.selectedPickles.map(p => ({
-                    id: p.id,
-                    name: p.name,
-                    image: p.customImage.trim() !== '' ? p.customImage : p.fallbackImage
-                }));
+            setActiveThumb: (index) => {
+                const images = window.app.allImagesArray;
+                if(images.length === 0) return;
 
-                const comboData = {
-                    name,
-                    price: parseFloat(price),
-                    weightVariant: weight,
-                    isActive,
-                    items: savedPickles,
-                    updatedAt: Date.now()
+                window.app.currentIndex = (index + images.length) % images.length;
+                const cIdx = window.app.currentIndex;
+
+                const mainImg = document.getElementById('mainImage');
+                mainImg.style.opacity = 0;
+                setTimeout(() => {
+                    mainImg.src = images[cIdx];
+                    mainImg.style.opacity = 1;
+                }, 150);
+
+                // Update Thumbs
+                document.querySelectorAll('.thumb-item').forEach((item, i) => item.classList.toggle('active', i === cIdx));
+                // Update Dots
+                document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === cIdx));
+                // Scroll container
+                const thumbContainer = document.getElementById('thumbnailsContainer');
+                if(thumbContainer) thumbContainer.scrollTo({ top: cIdx * 80, behavior: 'smooth' });
+            },
+
+            scrollThumbs: (dir) => {
+                app.setActiveThumb(window.app.currentIndex + dir);
+            },
+
+            startAutoRotate: () => {
+                if (window.innerWidth < 768) {
+                    app.stopAutoRotate();
+                    window.app.autoRotateInterval = setInterval(() => { app.setActiveThumb(window.app.currentIndex + 1); }, 5000);
+                }
+            },
+            stopAutoRotate: () => {
+                if (window.app.autoRotateInterval) { clearInterval(window.app.autoRotateInterval); window.app.autoRotateInterval = null; }
+            },
+
+            // --- Product Functions ---
+            selectVariant: (btnElement, index) => {
+                window.app.selectedVariant = window.app.productData.variants[index];
+                document.querySelectorAll('.variant-box').forEach(b => b.classList.remove('active'));
+                btnElement.classList.add('active');
+                
+                // Sync Dock Selection UI 
+                document.querySelectorAll('.dock-size-option').forEach((o, i) => o.classList.toggle('active', i === index));
+                
+                window.app.updatePriceDisplay();
+            },
+
+            updatePriceDisplay: () => {
+                const wrapper = document.getElementById('price-display-wrapper');
+                const v = window.app.selectedVariant;
+                
+                let html = `<span class="current-price">₹${v.price}</span>`;
+                if (v.mrp && v.mrp > v.price) {
+                    const discount = Math.round(((v.mrp - v.price) / v.mrp) * 100);
+                    html += `<span class="old-price">₹${v.mrp}</span>`;
+                    html += `<span class="discount-badge">Save ${discount}%</span>`;
+                }
+                wrapper.innerHTML = html;
+
+                // Sync Sticky Dock Values
+                document.getElementById('dockPriceVal').innerText = `₹${v.price}`;
+                document.getElementById('dockPriceStrike').innerText = (v.mrp && v.mrp > v.price) ? `₹${v.mrp}` : '';
+                document.getElementById('dockSelectedLabel').innerText = v.weight;
+            },
+
+            updateQty: (change) => {
+                let newQty = window.app.quantity + change;
+                if (newQty < 1) newQty = 1;
+                if (newQty > 10) newQty = 10;
+                window.app.quantity = newQty;
+                document.getElementById('qtyValue').value = newQty;
+            },
+
+            toggleWishlist: (btn) => {
+                btn.classList.toggle('active');
+                const on = btn.classList.contains('active');
+                btn.innerHTML = on ? '<i class="fas fa-heart"></i> Wishlisted' : '<i class="fas fa-heart"></i> Wishlist';
+            },
+
+            toggleShipping: () => {
+                document.getElementById('shippingReturnsToggle').classList.toggle('open');
+                document.getElementById('shippingReturnsContent').classList.toggle('open');
+            },
+
+            toggleDesc: (btn) => {
+                const expanded = document.getElementById('descBody').classList.toggle('expanded');
+                btn.textContent = expanded ? 'View less' : 'View more';
+            },
+
+            addToCart: () => {
+                const item = {
+                    productId: window.app.productData.id,
+                    name: window.app.productData.name,
+                    image: window.app.productData.image,
+                    weight: window.app.selectedVariant.weight,
+                    price: window.app.selectedVariant.price,
+                    quantity: window.app.quantity
                 };
 
-                // If no combo exists yet, we still need an ID for a new document
-                const comboRef = existingComboId 
-                    ? doc(db, 'combos', existingComboId) 
-                    : doc(collection(db, 'combos'));
+                let cart = JSON.parse(localStorage.getItem('syncskill_cart')) || [];
+                const idx = cart.findIndex(c => c.productId === item.productId && c.weight === item.weight);
+                
+                if (idx > -1) cart[idx].quantity += item.quantity;
+                else cart.push(item);
 
-                if (!existingComboId) {
-                    comboData.createdAt = Date.now();
-                }
+                localStorage.setItem('syncskill_cart', JSON.stringify(cart));
+                app.showToast(`🛒 ${item.weight} added to cart!`);
+            },
 
-                try {
-                    await setDoc(comboRef, comboData, { merge: true });
-                    alert("Combo offer saved successfully!");
-                    if (!existingComboId) {
-                        window.location.href = 'manage-combo.html'; // reload to edit mode
+            buyNow: () => {
+                window.app.addToCart();
+                window.location.href = 'checkout.html';
+            },
+
+            showToast: (msg, icon = '✨') => {
+                const toast = document.getElementById('toastPremium');
+                toast.innerHTML = `<span class="toast-icon">${icon}</span> <span id="toastMessage">${msg}</span>`;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2500);
+            },
+
+            // ================= "YOU MAY ALSO LIKE" LOGIC =================
+            renderAlsoLike: (categoryProductsMap, currentProductId) => {
+                // Filter out current product and unavailable products
+                const relatedProds = Object.values(categoryProductsMap)
+                    .filter(p => p.id !== currentProductId && p.isavailable !== false)
+                    .slice(0, 4); // Max 4 items
+
+                if (relatedProds.length === 0) return;
+
+                const grid = document.getElementById('also-like-grid');
+                grid.innerHTML = relatedProds.map(prod => `
+                    <a href="view.html?id=${prod.id}" class="al-card">
+                        <div class="al-image-wrapper">
+                            <span class="al-badge al-badge-bestseller">Recommended</span>
+                            <img src="${prod.image}" alt="${prod.name}">
+                        </div>
+                        <div class="al-body">
+                            <div class="al-rating"><i class="fas fa-star"></i> Authentic </div>
+                            <div class="al-title">${prod.name}</div>
+                            <div class="al-price">₹${prod.minPrice} - ₹${prod.maxPrice}</div>
+                            <button class="al-btn"><i class="fas fa-arrow-right"></i> View Product</button>
+                        </div>
+                    </a>
+                `).join('');
+
+                document.getElementById('also-like-section').style.display = 'block';
+            },
+
+            // ================= COMBO LOGIC =================
+            renderComboSection: () => {
+                const combo = window.app.comboData;
+                document.getElementById('combo-display-title').innerText = combo.name;
+                document.getElementById('combo-display-price').innerText = `₹${combo.price}`;
+
+                const grid = document.getElementById('combo-grid-items');
+                grid.innerHTML = (combo.items || []).map(item => `
+                    <div class="pickle-item-premium" id="combo-item-${item.id}" onclick="app.toggleComboItem('${item.id}', '${item.name.replace(/'/g, "\\'")}')">
+                        <div class="pickle-image-plate"><img src="${item.image}" alt="${item.name}"></div>
+                        <span class="pickle-name-premium">${item.name}</span>
+                        <div class="pickle-check-premium"><i class="fas fa-check"></i></div>
+                    </div>
+                `).join('');
+
+                document.getElementById('combo-section').style.display = 'block';
+            },
+
+            toggleComboItem: (id, name) => {
+                const card = document.getElementById(`combo-item-${id}`);
+                const isSelected = window.app.selectedComboItems.some(i => i.id === id);
+
+                if (isSelected) {
+                    window.app.selectedComboItems = window.app.selectedComboItems.filter(i => i.id !== id);
+                    card.classList.remove('selected');
+                } else {
+                    if (window.app.selectedComboItems.length >= 4) {
+                        app.showToast('You can only select 4 items for this combo!', '⚠️');
+                        return;
                     }
-                } catch (error) {
-                    console.error("Error saving combo:", error);
-                    alert("Failed to save combo offer.");
-                    btn.innerHTML = originalHtml;
-                    btn.disabled = false;
+                    window.app.selectedComboItems.push({ id, name });
+                    card.classList.add('selected');
                 }
+
+                window.app.updateComboUI();
+            },
+
+            updateComboUI: () => {
+                const count = window.app.selectedComboItems.length;
+                document.getElementById('countDisplay').innerText = count;
+                
+                const msg = document.getElementById('progressMsg');
+                const btn = document.getElementById('comboCheckoutBtn');
+                const ringFill = document.getElementById('ringFill');
+                const ringCount = document.getElementById('ringCount');
+                
+                const CIRCUMFERENCE = 2 * Math.PI * 20;
+
+                ringCount.innerText = count;
+                ringFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - count / 4);
+
+                if (count === 4) {
+                    msg.innerHTML = '<strong style="color:#c41820;">Ready! Proceed to Buy.</strong>';
+                    btn.disabled = false;
+                    ringFill.classList.add('complete');
+                    ringCount.classList.add('complete');
+                    
+                    document.querySelectorAll('.pickle-item-premium').forEach(card => {
+                        if (!card.classList.contains('selected')) card.classList.add('locked-out');
+                    });
+                } else {
+                    msg.innerHTML = `Select <span class="highlight-red">${4 - count}</span> more items to unlock`;
+                    btn.disabled = true;
+                    ringFill.classList.remove('complete');
+                    ringCount.classList.remove('complete');
+                    
+                    document.querySelectorAll('.pickle-item-premium').forEach(card => {
+                        card.classList.remove('locked-out');
+                    });
+                }
+            },
+
+            checkoutCombo: () => {
+                if (window.app.selectedComboItems.length !== 4) return;
+                const itemIds = window.app.selectedComboItems.map(i => i.id).join(',');
+                window.location.href = `checkout.html?comboId=${window.app.comboData.id}&items=${encodeURIComponent(itemIds)}`;
             }
         };
 
+        // Boot Application
         window.app.init();
     </script>
 </body>
