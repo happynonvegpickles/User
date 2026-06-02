@@ -2026,31 +2026,30 @@
 
                 const catId = window.productData.categoryId;
                 const catPromise = catId ? getDoc(doc(db, 'categories', catId)) : Promise.resolve(null);
-// Fetch Combo
                 const combosPromise = getDocs(collection(db, 'combos'));
 
                 const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
 
-                // Render main product
-                renderProduct();
-
-                // Render You May Also Like
-                if (catSnap && catSnap.exists() && catSnap.data().products) {
-                    renderAlsoLike(catSnap.data().products, productId);
+                if (catSnap && catSnap.exists()) {
+                    window.currentCategoryName = catSnap.data().name || 'Category';
                 }
 
-                // Render Combo
+                renderProduct();
+
+                if (catSnap && catSnap.exists() && catSnap.data().products) {
+                    renderAlsoLike(catSnap.data().products, productId, catId);
+                }
+
                 const activeCombo = combosSnap.docs.map(d => ({id: d.id, ...d.data()})).find(c => c.isActive === true);
                 if (activeCombo) {
                     window.activeComboId = activeCombo.id;
-                    window.comboData = activeCombo; // ADD THIS LINE
                     renderCombo(activeCombo);
                 }
 
-                // Attach all UI event listeners (replacing the original IIFE)
+                renderRecentlyViewed(productId);
+
                 initUI();
-
-
+                
 
             } catch (error) {
                 console.error("Error:", error);
@@ -2542,8 +2541,12 @@
                 openDropdown();
             }
 
-            function handleDockVisibility() {
-                var rect = heroBuyNow.getBoundingClientRect();
+function handleDockVisibility() {
+                // If heroBuyNow is missing, we fallback to the mainActionButtons container
+                var targetEl = document.getElementById('heroBuyNow') || document.getElementById('mainActionButtons');
+                if (!targetEl) return; // Fail gracefully if neither exists
+
+                var rect = targetEl.getBoundingClientRect();
                 if (rect.bottom < 0) {
                     pickleSticky.classList.add('dock-visible');
                 } else {
