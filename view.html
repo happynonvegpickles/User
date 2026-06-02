@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pickle Detail | SyncSkill Pickles</title>
+    <title>Product Detail | SyncSkill Pickles</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
@@ -24,10 +24,6 @@
             line-height: 1.4;
         }
 
-        /* LOADING SHIMMER */
-        .loading-shimmer { width: 100%; text-align: center; padding: 100px 0; color: #6b7280; font-size: 18px; font-weight: 500; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-        
         .page-wrapper {
             padding: 28px 20px 48px 20px;
         }
@@ -551,7 +547,7 @@
         }
 
         /* ================================================
-           STICKY DOCK
+           STICKY DOCK – now red background with white text
            ================================================ */
         .pickle-sticky-dock-wrapper {
             position: fixed;
@@ -837,6 +833,7 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 20px 48px;
+            display: none;
         }
         .also-like-line {
             border: none;
@@ -897,10 +894,6 @@
             color: #E61D26;
             border: 1px solid #f5c2c2;
         }
-        .al-badge-spicy {
-            background: #1a1a1a;
-            color: #fff;
-        }
         .al-body {
             padding: 14px 14px 18px;
             display: flex;
@@ -954,6 +947,7 @@
             justify-content: center;
             gap: 8px;
             transition: background 0.2s;
+            text-decoration: none;
         }
         .al-btn:hover {
             background: #E61D26;
@@ -1033,13 +1027,22 @@
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
-            align-items: center;
-            text-align: center;
-            color: white;
         }
-        .combo-display-price { font-size: 36px; font-weight: 700; color: #f5c842; }
-        .combo-display-title { font-size: 24px; font-weight: 700; line-height: 1.2; margin-top: 8px;}
-
+        .brand-logo,
+        .brand-main-offer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .brand-logo img,
+        .brand-main-offer .offer-image {
+            width: 100%;
+            height: auto;
+            max-width: 220px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
         .delivery-info-line {
             display: flex;
             align-items: center;
@@ -1691,12 +1694,19 @@
 </head>
 <body>
 
+    <div class="sticky-buy-bar" id="stickyBuyBar">
+        <span class="sticky-bar-price" id="stickyPrice">&#8377;0</span>
+        <button class="sticky-bar-btn sticky-bar-cart" id="stickyCartBtn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        <button class="sticky-bar-btn sticky-bar-buynow" id="stickyBuyBtn">Buy Now</button>
+    </div>
+
     <div class="pickle-sticky-dock-wrapper" id="pickleSticky">
         <div class="pickle-sticky-dock">
+
             <div class="dock-price-group">
                 <span class="dock-price-label">Price</span>
                 <div>
-                    <span class="dock-price-val" id="dockPriceVal">₹0</span>
+                    <span class="dock-price-val" id="dockPriceVal">&#8377;0</span>
                     <span class="dock-price-strike" id="dockPriceStrike"></span>
                 </div>
             </div>
@@ -1712,38 +1722,46 @@
                 <div class="dock-no-size-tip" id="dockNoSizeTip">Please select a size first</div>
             </div>
 
-            <button class="dock-cart-btn" id="dockCartBtn" onclick="app.addToCart()">
+            <button class="dock-cart-btn" id="dockCartBtn">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Add to Cart</span>
             </button>
-            <button class="dock-buynow-btn" id="dockBuyNowBtn" onclick="app.buyNow()">
+
+            <button class="dock-buynow-btn" id="dockBuyNowBtn">
                 Buy Now
             </button>
+
         </div>
     </div>
 
-    <div class="page-wrapper" id="main-content">
-        <div class="loading-shimmer">
-            <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 12px;"></i><br>
-            Loading product details...
+    <div class="page-wrapper">
+        <div class="container" id="productContainer">
+            <div class="loading-shimmer">
+                <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 12px;"></i><br>
+                Loading product details...
+            </div>
         </div>
     </div>
 
-    <div class="also-like-section" id="also-like-section" style="display: none;">
+    <div class="also-like-section" id="alsoLikeSection" style="display: none;">
         <hr class="also-like-line">
         <h2 class="also-like-heading">You may also like</h2>
-        <div class="also-like-grid" id="also-like-grid">
+        <div class="also-like-grid" id="alsoLikeGrid">
             </div>
     </div>
 
-    <div class="pickle-combo-section" id="combo-section">
+    <div class="pickle-combo-section" id="comboSection">
         <hr class="combo-divider">
         <h2 class="combo-section-heading">Build Your Combo</h2>
         <div class="combo-card--premium">
             <div class="combo-left-brand">
                 <div class="brand-images-wrapper">
-                    <div class="combo-display-price" id="combo-display-price" style="font-size: 36px; font-weight: 700; color: #f5c842;">₹0</div>
-                    <div class="combo-display-title" id="combo-display-title" style="font-size: 24px; font-weight: 700; color: white; margin-top: 12px;">Loading Combo...</div>
+                    <div class="brand-logo">
+                        <img src="https://raw.githubusercontent.com/hasrshajw/pickles_ecommerce/refs/heads/main/offer.png" alt="Offer Banner">
+                    </div>
+                    <div class="brand-main-offer">
+                        <img src="https://raw.githubusercontent.com/hasrshajw/pickles_ecommerce/refs/heads/main/999.png" alt="Offer 999" class="offer-image">
+                    </div>
                 </div>
                 <div class="delivery-info-line">
                     <i class="fas fa-truck"></i>
@@ -1765,7 +1783,7 @@
                         <span id="countDisplay">0</span>/<strong>4</strong>
                     </span>
                 </div>
-                <div class="pickle-grid-premium" id="combo-grid-items">
+                <div class="pickle-grid-premium" id="pickleGridPremium">
                     </div>
                 <div class="selection-progress-area">
                     <div class="progress-left">
@@ -1776,13 +1794,15 @@
                             </svg>
                             <span class="ring-count" id="ringCount">0</span>
                         </div>
-                        <div class="progress-text" id="progressMsg">
-                            Select <strong>4</strong> pickles to unlock
+                        <div class="progress-text">
+                            <span id="progressMsg">Select <strong>4</strong> pickles to unlock</span>
                         </div>
                     </div>
                     <div class="combo-action-buttons" id="comboActionButtons">
-                        <div class="combo-hidden-buttons show" id="hiddenButtons">
-                            <button class="combo-btn btn-combo-buynow" id="comboCheckoutBtn" disabled onclick="app.checkoutCombo()">
+                        <button class="combo-btn btn-viewdetails" id="viewMoreBtn">View Details</button>
+                        <div class="combo-hidden-buttons" id="hiddenButtons">
+                            <button class="combo-btn btn-combo-cart" id="addToCartBtn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="combo-btn btn-combo-buynow" id="buyNowBtn">
                                 <img src="https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/upi_options.svg" alt="UPI" class="upi-icon">
                                 Buy Now
                             </button>
@@ -1802,7 +1822,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // IMPORTANT: Replace with your actual credentials
+        // Replace with your actual credentials
         const firebaseConfig = {
             apiKey: "AIzaSyCZbCr-Zt5KQblRQ8Pk58KuinCVP-TlXGo",
             authDomain: "happynonvegpickles-f2636.firebaseapp.com",
@@ -1811,540 +1831,664 @@
             messagingSenderId: "802823212924",
             appId: "1:802823212924:web:d82c92737ffa950798def9"
         };
-
         const db = getFirestore(initializeApp(firebaseConfig));
 
-        window.app = {
-            productData: null,
-            selectedVariant: null,
-            quantity: 1,
-            comboData: null,
-            selectedComboItems: [],
-            
-            // Interaction State Variables
-            currentIndex: 0,
-            autoRotateInterval: null,
-            touchStartX: 0,
-            allImagesArray: [],
+        window.productData = null;
+        window.activeComboId = null;
+        window.thumbImages = [];
 
-            init: async () => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const productId = urlParams.get('id');
+        async function init() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
 
-                if (!productId) {
-                    window.location.href = 'index.html';
+            if (!productId) { window.location.href = 'index.html'; return; }
+
+            try {
+                // 1. Fetch Product
+                const productRef = doc(db, 'products', productId);
+                const snap = await getDoc(productRef);
+
+                if (!snap.exists() || snap.data().isavailable === false) {
+                    document.getElementById('productContainer').innerHTML = `
+                        <div style="text-align:center; padding: 100px 20px; width: 100%;">
+                            <h2>Product Unavailable</h2>
+                            <p style="margin: 16px 0;">We could not find this product.</p>
+                            <a href="index.html" style="color:#E61D26; font-weight:600;">Return to Home</a>
+                        </div>`;
                     return;
                 }
 
-                try {
-                    // Fetch FULL product details directly from the root 'products' collection
-                    const productRef = doc(db, 'products', productId);
-                    const snap = await getDoc(productRef);
-
-                    if (!snap.exists() || snap.data().isavailable === false) {
-                        document.getElementById('main-content').innerHTML = `
-                            <div style="text-align:center; padding: 100px 20px;">
-                                <h2>Product Unavailable</h2>
-                                <p style="margin: 16px 0;">We could not find this product.</p>
-                                <a href="index.html" style="color:#E61D26; font-weight:600;">Return to Home</a>
-                            </div>`;
-                        return;
-                    }
-
-                    window.app.productData = { id: snap.id, ...snap.data() };
-                    
-                    if (window.app.productData.variants && window.app.productData.variants.length > 0) {
-                        window.app.selectedVariant = window.app.productData.variants[0];
-                    } else {
-                        window.app.selectedVariant = { weight: 'Standard', price: window.app.productData.price, mrp: 0 };
-                    }
-
-                    window.app.renderProductUI();
-
-                    // Parallel fetches for 'You May Also Like' (Category context) and Combos
-                    const catId = window.app.productData.categoryId;
-                    const catPromise = catId ? getDoc(doc(db, 'categories', catId)) : Promise.resolve(null);
-                    const combosPromise = getDocs(collection(db, 'combos'));
-
-                    const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
-
-                    if (catSnap && catSnap.exists() && catSnap.data().products) {
-                        window.app.renderAlsoLike(catSnap.data().products, productId);
-                    }
-
-                    const activeCombo = combosSnap.docs.map(d => ({id: d.id, ...d.data()})).find(c => c.isActive === true);
-                    if (activeCombo) {
-                        window.app.comboData = activeCombo;
-                        window.app.renderComboSection();
-                    }
-
-                } catch (error) {
-                    console.error("Error fetching product:", error);
-                    alert("Failed to load product. Please check your connection.");
-                }
-            },
-
-            formatPrice: (val) => {
-                return parseInt(val, 10).toLocaleString('en-IN');
-            },
-
-            renderProductUI: () => {
-                const p = window.app.productData;
-                const container = document.getElementById('main-content');
-
-                // Compile all images
-                window.app.allImagesArray = [p.image];
-                if (p.additionalImages && p.additionalImages.length > 0) {
-                    window.app.allImagesArray.push(...p.additionalImages.filter(img => img.trim() !== ''));
-                }
-                const images = window.app.allImagesArray;
-
-                // Build HTML
-                container.innerHTML = `
-                    <div class="container">
-                        <div class="gallery-col" id="galleryCol">
-                            ${images.length > 1 ? `
-                                <div class="thumbnails-wrapper">
-                                    <button class="thumb-scroll-btn" onclick="app.scrollThumbs(-1)"><i class="fas fa-chevron-up"></i></button>
-                                    <div class="thumbnails" id="thumbnailsContainer">
-                                        ${images.map((img, idx) => `
-                                            <div class="thumb-item ${idx === 0 ? 'active' : ''}" onclick="app.setActiveThumb(${idx})">
-                                                <img src="${img}" alt="View">
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                    <button class="thumb-scroll-btn" onclick="app.scrollThumbs(1)"><i class="fas fa-chevron-down"></i></button>
-                                </div>
-                            ` : ''}
-                            <div class="main-image-wrapper" id="mainImageWrapper">
-                                <img id="mainImage" src="${images[0]}" alt="${p.name}">
-                                ${p.isavailable ? '<div class="badge-best">Best Seller</div>' : ''}
-                                ${images.length > 1 ? `
-                                    <div class="dots-container" id="dotsContainer" style="display: flex;">
-                                        ${images.map((_, idx) => `<span class="dot ${idx === 0 ? 'active' : ''}" onclick="app.setActiveThumb(${idx})"></span>`).join('')}
-                                    </div>
-                                ` : ''}
-                            </div>
-                        </div>
-
-                        <div class="details-col">
-                            <h1 class="product-title">${p.longName || p.name}</h1>
-                            <div class="rating-row">
-                                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></span>
-                                <span class="review-count">Authentic Taste</span>
-                            </div>
-
-                            <div class="price-row" id="price-display-wrapper">
-                                </div>
-                            <div class="tax-note">MRP Inclusive of All Taxes.</div>
-
-                            <div class="variant-header">Select Size</div>
-                            <div class="variant-grid" id="variantGrid">
-                                ${p.variants ? p.variants.map((v, idx) => {
-                                    const hasDiscount = v.mrp && v.mrp > v.price;
-                                    const discPercent = hasDiscount ? Math.round(((v.mrp - v.price) / v.mrp) * 100) : 0;
-                                    return `
-                                    <div class="variant-box ${idx === 0 ? 'active' : ''}" onclick="app.selectVariant(this, ${idx})">
-                                        <div class="variant-title">${v.weight}</div>
-                                        <div class="price-small">₹${v.price} ${hasDiscount ? `<span class="old">₹${v.mrp}</span> <span class="discount">${discPercent}% off</span>` : ''}</div>
-                                    </div>
-                                    `
-                                }).join('') : ''}
-                            </div>
-
-                            <div class="quantity-wrapper">
-                                <span class="quantity-label">Quantity</span>
-                                <div class="quantity-control">
-                                    <button class="qty-btn minus" onclick="app.updateQty(-1)"><i class="fas fa-minus"></i></button>
-                                    <input type="text" id="qtyValue" class="qty-value" value="1" readonly>
-                                    <button class="qty-btn plus" onclick="app.updateQty(1)"><i class="fas fa-plus"></i></button>
-                                </div>
-                            </div>
-
-                            <div class="action-buttons" id="mainActionButtons">
-                                <div class="action-row">
-                                    <button class="btn btn-cart" onclick="app.addToCart()">
-                                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                                    </button>
-                                    <button class="btn btn-wishlist" id="wishlistBtn" onclick="app.toggleWishlist(this)">
-                                        <i class="fas fa-heart"></i> Wishlist
-                                    </button>
-                                </div>
-                                <button class="btn btn-buynow" id="heroBuyNow" onclick="app.buyNow()">
-                                    <img src="https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/upi_options.svg" alt="UPI Options" class="upi-icon">
-                                    Buy Now
-                                </button>
-                            </div>
-
-                            <div class="features-section">
-                                <hr class="feature-line">
-                                <div class="feature-items">
-                                    <div class="feature-item"><i class="fas fa-gem"></i><span>Premium Quality</span></div>
-                                    <div class="feature-item"><i class="fas fa-circle-check"></i><span>No Preservatives</span></div>
-                                    <div class="feature-item"><i class="fas fa-truck-fast"></i><span>Fast Delivery</span></div>
-                                    <div class="feature-item"><i class="fas fa-mortar-pestle"></i><span>Traditional Recipe</span></div>
-                                    <div class="feature-item"><i class="fas fa-shield-halved"></i><span>Secure Packaging</span></div>
-                                </div>
-                                <hr class="feature-line">
-                            </div>
-
-                            <div class="shipping-returns-section">
-                                <div class="sr-header" id="shippingReturnsToggle" onclick="app.toggleShipping()">
-                                    <span>Shipping &amp; Returns</span>
-                                    <i class="fas fa-chevron-down arrow-icon"></i>
-                                </div>
-                                <div class="sr-content" id="shippingReturnsContent">
-                                    <p><strong>Shipping:</strong> Free standard shipping on all orders over ₹999. Orders processed within 24–48 hours.</p>
-                                    <p><strong>Returns:</strong> Returns accepted within 7 days of delivery for original, unopened items.</p>
-                                </div>
-                                <hr class="feature-line">
-                            </div>
-
-                            <div class="description-section">
-                                <div class="desc-heading">Description</div>
-                                <div class="desc-body" id="descBody">
-                                    ${p.description ? p.description.replace(/\n/g, '<br>') : 'Authentic homemade style pickle.'}
-                                </div>
-                                <button class="desc-toggle" id="descToggle" onclick="app.toggleDesc(this)">View more</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                window.app.updatePriceDisplay();
-                window.app.initGalleryInteractions();
-                window.app.initStickyDock();
-            },
-
-            // --- Sticky Dock & Dropdown Interactions ---
-            initStickyDock: () => {
-                const trigger = document.getElementById('dockSizeTrigger');
-                const dropdown = document.getElementById('dockSizeDropdown');
+                window.productData = { id: snap.id, ...snap.data() };
                 
-                // Populate Dropdown
-                const p = window.app.productData;
-                dropdown.innerHTML = p.variants ? p.variants.map((v, idx) => {
-                    const hasDiscount = v.mrp && v.mrp > v.price;
-                    const discPercent = hasDiscount ? Math.round(((v.mrp - v.price) / v.mrp) * 100) : 0;
-                    return `
-                        <div class="dock-size-option ${idx === 0 ? 'active' : ''}" onclick="app.selectVariantFromDock(this, ${idx})">
-                            <span class="opt-name">${v.weight}</span>
-                            <div class="opt-price-wrap">
-                                <span class="opt-price">₹${v.price}</span>
-                                ${hasDiscount ? `<span class="opt-old">₹${v.mrp}</span><span class="opt-disc">${discPercent}% off</span>` : ''}
-                                <i class="fas fa-check check-icon"></i>
-                            </div>
-                        </div>
-                    `
-                }).join('') : '';
-
-                trigger.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    trigger.classList.toggle('open');
-                    dropdown.classList.toggle('open');
-                });
-
-                document.addEventListener('click', (e) => {
-                    if (!document.getElementById('dockSizeWrapper').contains(e.target)) {
-                        trigger.classList.remove('open');
-                        dropdown.classList.remove('open');
-                    }
-                });
-
-                window.addEventListener('scroll', () => {
-                    const heroBuyNow = document.getElementById('heroBuyNow');
-                    const pickleSticky = document.getElementById('pickleSticky');
-                    if(!heroBuyNow || !pickleSticky) return;
-
-                    const rect = heroBuyNow.getBoundingClientRect();
-                    if (rect.bottom < 0) {
-                        pickleSticky.classList.add('dock-visible');
-                    } else {
-                        pickleSticky.classList.remove('dock-visible');
-                        trigger.classList.remove('open');
-                        dropdown.classList.remove('open');
-                    }
-                }, { passive: true });
-            },
-
-            selectVariantFromDock: (optionElement, index) => {
-                document.querySelectorAll('.dock-size-option').forEach(o => o.classList.remove('active'));
-                optionElement.classList.add('active');
-                
-                // Sync main page UI
-                const mainVariantBoxes = document.querySelectorAll('.variant-box');
-                if(mainVariantBoxes[index]) {
-                    app.selectVariant(mainVariantBoxes[index], index);
-                }
-                
-                document.getElementById('dockSizeTrigger').classList.remove('open');
-                document.getElementById('dockSizeDropdown').classList.remove('open');
-            },
-
-            // --- Gallery Logic ---
-            initGalleryInteractions: () => {
-                const mainWrapper = document.getElementById('mainImageWrapper');
-                
-                mainWrapper.addEventListener('touchstart', (e) => {
-                    window.app.touchStartX = e.changedTouches[0].screenX;
-                    app.stopAutoRotate();
-                }, { passive: true });
-                
-                mainWrapper.addEventListener('touchend', (e) => {
-                    const diff = window.app.touchStartX - e.changedTouches[0].screenX;
-                    if (Math.abs(diff) > 50) {
-                        app.setActiveThumb(diff > 0 ? window.app.currentIndex + 1 : window.app.currentIndex - 1);
-                    }
-                    if (window.innerWidth < 768) { app.startAutoRotate(); }
-                }, { passive: true });
-
-                app.startAutoRotate();
-                
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth >= 768) {
-                        app.stopAutoRotate();
-                        document.getElementById('galleryCol').classList.add('sticky-active');
-                    } else {
-                        app.startAutoRotate();
-                        document.getElementById('galleryCol').classList.remove('sticky-active');
-                    }
-                });
-                
-                if (window.innerWidth >= 768) document.getElementById('galleryCol').classList.add('sticky-active');
-            },
-
-            setActiveThumb: (index) => {
-                const images = window.app.allImagesArray;
-                if(images.length === 0) return;
-
-                window.app.currentIndex = (index + images.length) % images.length;
-                const cIdx = window.app.currentIndex;
-
-                const mainImg = document.getElementById('mainImage');
-                mainImg.style.opacity = 0;
-                setTimeout(() => {
-                    mainImg.src = images[cIdx];
-                    mainImg.style.opacity = 1;
-                }, 150);
-
-                // Update Thumbs
-                document.querySelectorAll('.thumb-item').forEach((item, i) => item.classList.toggle('active', i === cIdx));
-                // Update Dots
-                document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === cIdx));
-                // Scroll container
-                const thumbContainer = document.getElementById('thumbnailsContainer');
-                if(thumbContainer) thumbContainer.scrollTo({ top: cIdx * 80, behavior: 'smooth' });
-            },
-
-            scrollThumbs: (dir) => {
-                app.setActiveThumb(window.app.currentIndex + dir);
-            },
-
-            startAutoRotate: () => {
-                if (window.innerWidth < 768) {
-                    app.stopAutoRotate();
-                    window.app.autoRotateInterval = setInterval(() => { app.setActiveThumb(window.app.currentIndex + 1); }, 5000);
-                }
-            },
-            stopAutoRotate: () => {
-                if (window.app.autoRotateInterval) { clearInterval(window.app.autoRotateInterval); window.app.autoRotateInterval = null; }
-            },
-
-            // --- Product Functions ---
-            selectVariant: (btnElement, index) => {
-                window.app.selectedVariant = window.app.productData.variants[index];
-                document.querySelectorAll('.variant-box').forEach(b => b.classList.remove('active'));
-                btnElement.classList.add('active');
-                
-                // Sync Dock Selection UI 
-                document.querySelectorAll('.dock-size-option').forEach((o, i) => o.classList.toggle('active', i === index));
-                
-                window.app.updatePriceDisplay();
-            },
-
-            updatePriceDisplay: () => {
-                const wrapper = document.getElementById('price-display-wrapper');
-                const v = window.app.selectedVariant;
-                
-                let html = `<span class="current-price">₹${v.price}</span>`;
-                if (v.mrp && v.mrp > v.price) {
-                    const discount = Math.round(((v.mrp - v.price) / v.mrp) * 100);
-                    html += `<span class="old-price">₹${v.mrp}</span>`;
-                    html += `<span class="discount-badge">Save ${discount}%</span>`;
-                }
-                wrapper.innerHTML = html;
-
-                // Sync Sticky Dock Values
-                document.getElementById('dockPriceVal').innerText = `₹${v.price}`;
-                document.getElementById('dockPriceStrike').innerText = (v.mrp && v.mrp > v.price) ? `₹${v.mrp}` : '';
-                document.getElementById('dockSelectedLabel').innerText = v.weight;
-            },
-
-            updateQty: (change) => {
-                let newQty = window.app.quantity + change;
-                if (newQty < 1) newQty = 1;
-                if (newQty > 10) newQty = 10;
-                window.app.quantity = newQty;
-                document.getElementById('qtyValue').value = newQty;
-            },
-
-            toggleWishlist: (btn) => {
-                btn.classList.toggle('active');
-                const on = btn.classList.contains('active');
-                btn.innerHTML = on ? '<i class="fas fa-heart"></i> Wishlisted' : '<i class="fas fa-heart"></i> Wishlist';
-            },
-
-            toggleShipping: () => {
-                document.getElementById('shippingReturnsToggle').classList.toggle('open');
-                document.getElementById('shippingReturnsContent').classList.toggle('open');
-            },
-
-            toggleDesc: (btn) => {
-                const expanded = document.getElementById('descBody').classList.toggle('expanded');
-                btn.textContent = expanded ? 'View less' : 'View more';
-            },
-
-            addToCart: () => {
-                const item = {
-                    productId: window.app.productData.id,
-                    name: window.app.productData.name,
-                    image: window.app.productData.image,
-                    weight: window.app.selectedVariant.weight,
-                    price: window.app.selectedVariant.price,
-                    quantity: window.app.quantity
-                };
-
-                let cart = JSON.parse(localStorage.getItem('syncskill_cart')) || [];
-                const idx = cart.findIndex(c => c.productId === item.productId && c.weight === item.weight);
-                
-                if (idx > -1) cart[idx].quantity += item.quantity;
-                else cart.push(item);
-
-                localStorage.setItem('syncskill_cart', JSON.stringify(cart));
-                app.showToast(`🛒 ${item.weight} added to cart!`);
-            },
-
-            buyNow: () => {
-                window.app.addToCart();
-                window.location.href = 'checkout.html';
-            },
-
-            showToast: (msg, icon = '✨') => {
-                const toast = document.getElementById('toastPremium');
-                toast.innerHTML = `<span class="toast-icon">${icon}</span> <span id="toastMessage">${msg}</span>`;
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2500);
-            },
-
-            // ================= "YOU MAY ALSO LIKE" LOGIC =================
-            renderAlsoLike: (categoryProductsMap, currentProductId) => {
-                // Filter out current product and unavailable products
-                const relatedProds = Object.values(categoryProductsMap)
-                    .filter(p => p.id !== currentProductId && p.isavailable !== false)
-                    .slice(0, 4); // Max 4 items
-
-                if (relatedProds.length === 0) return;
-
-                const grid = document.getElementById('also-like-grid');
-                grid.innerHTML = relatedProds.map(prod => `
-                    <a href="view.html?id=${prod.id}" class="al-card">
-                        <div class="al-image-wrapper">
-                            <span class="al-badge al-badge-bestseller">Recommended</span>
-                            <img src="${prod.image}" alt="${prod.name}">
-                        </div>
-                        <div class="al-body">
-                            <div class="al-rating"><i class="fas fa-star"></i> Authentic </div>
-                            <div class="al-title">${prod.name}</div>
-                            <div class="al-price">₹${prod.minPrice} - ₹${prod.maxPrice}</div>
-                            <button class="al-btn"><i class="fas fa-arrow-right"></i> View Product</button>
-                        </div>
-                    </a>
-                `).join('');
-
-                document.getElementById('also-like-section').style.display = 'block';
-            },
-
-            // ================= COMBO LOGIC =================
-            renderComboSection: () => {
-                const combo = window.app.comboData;
-                document.getElementById('combo-display-title').innerText = combo.name;
-                document.getElementById('combo-display-price').innerText = `₹${combo.price}`;
-
-                const grid = document.getElementById('combo-grid-items');
-                grid.innerHTML = (combo.items || []).map(item => `
-                    <div class="pickle-item-premium" id="combo-item-${item.id}" onclick="app.toggleComboItem('${item.id}', '${item.name.replace(/'/g, "\\'")}')">
-                        <div class="pickle-image-plate"><img src="${item.image}" alt="${item.name}"></div>
-                        <span class="pickle-name-premium">${item.name}</span>
-                        <div class="pickle-check-premium"><i class="fas fa-check"></i></div>
-                    </div>
-                `).join('');
-
-                document.getElementById('combo-section').style.display = 'block';
-            },
-
-            toggleComboItem: (id, name) => {
-                const card = document.getElementById(`combo-item-${id}`);
-                const isSelected = window.app.selectedComboItems.some(i => i.id === id);
-
-                if (isSelected) {
-                    window.app.selectedComboItems = window.app.selectedComboItems.filter(i => i.id !== id);
-                    card.classList.remove('selected');
-                } else {
-                    if (window.app.selectedComboItems.length >= 4) {
-                        app.showToast('You can only select 4 items for this combo!', '⚠️');
-                        return;
-                    }
-                    window.app.selectedComboItems.push({ id, name });
-                    card.classList.add('selected');
+                // Construct images array
+                window.thumbImages = [window.productData.image];
+                if (window.productData.additionalImages && window.productData.additionalImages.length > 0) {
+                    window.thumbImages.push(...window.productData.additionalImages.filter(img => img.trim() !== ''));
                 }
 
-                window.app.updateComboUI();
-            },
-
-            updateComboUI: () => {
-                const count = window.app.selectedComboItems.length;
-                document.getElementById('countDisplay').innerText = count;
+                // 2. Fetch Category for "You may also like"
+                const catId = window.productData.categoryId;
+                const catPromise = catId ? getDoc(doc(db, 'categories', catId)) : Promise.resolve(null);
                 
-                const msg = document.getElementById('progressMsg');
-                const btn = document.getElementById('comboCheckoutBtn');
-                const ringFill = document.getElementById('ringFill');
-                const ringCount = document.getElementById('ringCount');
-                
-                const CIRCUMFERENCE = 2 * Math.PI * 20;
+                // 3. Fetch Combo
+                const combosPromise = getDocs(collection(db, 'combos'));
 
-                ringCount.innerText = count;
-                ringFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - count / 4);
+                const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
 
-                if (count === 4) {
-                    msg.innerHTML = '<strong style="color:#c41820;">Ready! Proceed to Buy.</strong>';
-                    btn.disabled = false;
-                    ringFill.classList.add('complete');
-                    ringCount.classList.add('complete');
-                    
-                    document.querySelectorAll('.pickle-item-premium').forEach(card => {
-                        if (!card.classList.contains('selected')) card.classList.add('locked-out');
-                    });
-                } else {
-                    msg.innerHTML = `Select <span class="highlight-red">${4 - count}</span> more items to unlock`;
-                    btn.disabled = true;
-                    ringFill.classList.remove('complete');
-                    ringCount.classList.remove('complete');
-                    
-                    document.querySelectorAll('.pickle-item-premium').forEach(card => {
-                        card.classList.remove('locked-out');
-                    });
+                // Render main product
+                renderProduct();
+
+                // Render You May Also Like
+                if (catSnap && catSnap.exists() && catSnap.data().products) {
+                    renderAlsoLike(catSnap.data().products, productId);
                 }
-            },
 
-            checkoutCombo: () => {
-                if (window.app.selectedComboItems.length !== 4) return;
-                const itemIds = window.app.selectedComboItems.map(i => i.id).join(',');
-                window.location.href = `checkout.html?comboId=${window.app.comboData.id}&items=${encodeURIComponent(itemIds)}`;
+                // Render Combo
+                const activeCombo = combosSnap.docs.map(d => ({id: d.id, ...d.data()})).find(c => c.isActive === true);
+                if (activeCombo) {
+                    window.activeComboId = activeCombo.id;
+                    renderCombo(activeCombo);
+                }
+
+                // Attach all UI event listeners (replacing the original IIFE)
+                initUI();
+
+            } catch (error) {
+                console.error("Error:", error);
             }
-        };
+        }
 
-        // Boot Application
-        window.app.init();
+        function renderProduct() {
+            const p = window.productData;
+            const container = document.getElementById('productContainer');
+
+            let thumbsHtml = window.thumbImages.map((img, idx) => `
+                <div class="thumb-item ${idx===0?'active':''}" data-index="${idx}">
+                    <img src="${img}" alt="View">
+                </div>
+            `).join('');
+            
+            let dotsHtml = window.thumbImages.map((img, idx) => `
+                <span class="dot ${idx===0?'active':''}"></span>
+            `).join('');
+
+            let variantsHtml = '';
+            let dropdownHtml = '';
+            
+            if (p.variants) {
+                variantsHtml = p.variants.map((v, idx) => {
+                    const hasDiscount = v.mrp && v.mrp > v.price;
+                    const discPercent = hasDiscount ? Math.round(((v.mrp - v.price)/v.mrp)*100) : 0;
+                    return `
+                    <div class="variant-box ${idx === 0 ? 'active' : ''}" data-price="${v.price}" data-old="${v.mrp||v.price}" data-discount="${discPercent}" data-size="${v.weight}">
+                        <div class="variant-title">${v.weight}</div>
+                        <div class="price-small">&#8377;${v.price} ${hasDiscount ? `<span class="old">&#8377;${v.mrp}</span> <span class="discount">${discPercent}%</span>` : ''}</div>
+                    </div>
+                    `;
+                }).join('');
+
+                dropdownHtml = p.variants.map((v, idx) => {
+                    const hasDiscount = v.mrp && v.mrp > v.price;
+                    const discPercent = hasDiscount ? Math.round(((v.mrp - v.price)/v.mrp)*100) : 0;
+                    return `
+                    <div class="dock-size-option ${idx === 0 ? 'active' : ''}" role="option" data-price="${v.price}" data-old="${v.mrp||v.price}" data-discount="${discPercent}" data-size="${v.weight}">
+                        <span class="opt-name">${v.weight}</span>
+                        <div class="opt-price-wrap">
+                            <span class="opt-price">&#8377;${v.price}</span>
+                            ${hasDiscount ? `<span class="opt-old">&#8377;${v.mrp}</span><span class="opt-disc">${discPercent}% off</span>` : ''}
+                            <i class="fas fa-check check-icon"></i>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            container.innerHTML = `
+                <div class="gallery-col" id="galleryCol">
+                    <div class="thumbnails-wrapper">
+                        <button class="thumb-scroll-btn" id="thumbUp"><i class="fas fa-chevron-up"></i></button>
+                        <div class="thumbnails" id="thumbnailsContainer">
+                            ${thumbsHtml}
+                        </div>
+                        <button class="thumb-scroll-btn" id="thumbDown"><i class="fas fa-chevron-down"></i></button>
+                    </div>
+                    <div class="main-image-wrapper" id="mainImageWrapper">
+                        <img id="mainImage" src="${window.thumbImages[0]}" alt="${p.name}">
+                        ${p.isavailable ? '<div class="badge-best">Best Seller</div>' : ''}
+                        <div class="dots-container" id="dotsContainer" ${window.thumbImages.length > 1 ? 'style="display:flex;"' : ''}>
+                            ${dotsHtml}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-col">
+                    <h1 class="product-title">${p.longName || p.name}</h1>
+                    <div class="rating-row">
+                        <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></span>
+                        <span class="review-count">Authentic Taste</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="current-price" id="currentPrice">&#8377;0</span>
+                        <span class="old-price hidden" id="oldPrice"></span>
+                        <span class="discount-badge hidden" id="discountBadge"></span>
+                    </div>
+                    <div class="tax-note">MRP Inclusive of All Taxes.</div>
+
+                    <div class="variant-header">Select Size</div>
+                    <div class="variant-grid" id="variantGrid">
+                        ${variantsHtml}
+                    </div>
+
+                    <div class="quantity-wrapper">
+                        <span class="quantity-label">Quantity</span>
+                        <div class="quantity-control">
+                            <button class="qty-btn minus" id="qtyMinus"><i class="fas fa-minus"></i></button>
+                            <input type="text" class="qty-value" id="qtyValue" value="1" readonly>
+                            <button class="qty-btn plus" id="qtyPlus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons" id="mainActionButtons">
+                        <div class="action-row">
+                            <button class="btn btn-cart" id="mainCartBtn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn btn-wishlist" id="wishlistBtn"><i class="fas fa-heart"></i> Wishlist</button>
+                        </div>
+                        <button class="btn btn-buynow" id="heroBuyNow">
+                            <img src="https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/upi_options.svg" alt="UPI Options" class="upi-icon">
+                            Buy Now
+                        </button>
+
+                        <div class="features-section">
+                            <hr class="feature-line">
+                            <div class="feature-items">
+                                <div class="feature-item"><i class="fas fa-gem"></i><span>Premium Quality</span></div>
+                                <div class="feature-item"><i class="fas fa-circle-check"></i><span>No Preservatives</span></div>
+                                <div class="feature-item"><i class="fas fa-truck-fast"></i><span>Fast Delivery</span></div>
+                                <div class="feature-item"><i class="fas fa-mortar-pestle"></i><span>Traditional Recipe</span></div>
+                                <div class="feature-item"><i class="fas fa-shield-halved"></i><span>Secure Packaging</span></div>
+                            </div>
+                            <hr class="feature-line">
+                        </div>
+
+                        <div class="shipping-returns-section">
+                            <div class="sr-header" id="shippingReturnsToggle">
+                                <span>Shipping &amp; Returns</span>
+                                <i class="fas fa-chevron-down arrow-icon"></i>
+                            </div>
+                            <div class="sr-content" id="shippingReturnsContent">
+                                <p><strong>Shipping:</strong> Free standard shipping on all orders over &#8377;999. Orders processed within 24&#8211;48 hours.</p>
+                                <p><strong>Returns:</strong> Returns accepted within 7 days of delivery for original, unopened items.</p>
+                            </div>
+                            <hr class="feature-line">
+                        </div>
+
+                        <div class="description-section">
+                            <div class="desc-heading">Description</div>
+                            <div class="desc-body" id="descBody">
+                                ${p.description ? p.description.replace(/\n/g, '<br>') : 'Authentic homemade style pickle.'}
+                            </div>
+                            <button class="desc-toggle" id="descToggle">View more</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('dockSizeDropdown').innerHTML = dropdownHtml;
+        }
+
+        function renderAlsoLike(categoryProductsMap, currentProductId) {
+            const relatedProds = Object.values(categoryProductsMap)
+                .filter(p => p.id !== currentProductId && p.isavailable !== false)
+                .slice(0, 4);
+
+            if (relatedProds.length === 0) return;
+
+            const grid = document.getElementById('alsoLikeGrid');
+            grid.innerHTML = relatedProds.map(prod => `
+                <a href="view.html?id=${prod.id}" class="al-card" style="text-decoration:none; color:inherit;">
+                    <div class="al-image-wrapper">
+                        <span class="al-badge al-badge-bestseller">Recommended</span>
+                        <img src="${prod.image}" alt="${prod.name}">
+                    </div>
+                    <div class="al-body">
+                        <div class="al-rating"><i class="fas fa-star"></i> Authentic</div>
+                        <div class="al-title">${prod.name}</div>
+                        <div class="al-price">&#8377;${prod.minPrice} - &#8377;${prod.maxPrice}</div>
+                        <button class="al-btn" onclick="event.preventDefault(); window.location.href='view.html?id=${prod.id}'"><i class="fas fa-shopping-cart"></i> View Product</button>
+                    </div>
+                </a>
+            `).join('');
+
+            document.getElementById('alsoLikeSection').style.display = 'block';
+        }
+
+        function renderCombo(combo) {
+            const grid = document.getElementById('pickleGridPremium');
+            grid.innerHTML = (combo.items || []).map(item => `
+                <div class="pickle-item-premium" data-pickle="${item.id}" data-name="${item.name.replace(/'/g,"\\'")}">
+                    <div class="pickle-image-plate"><img src="${item.image}" alt="${item.name}"></div>
+                    <span class="pickle-name-premium">${item.name}</span>
+                    <div class="pickle-check-premium"><i class="fas fa-check"></i></div>
+                </div>
+            `).join('');
+
+            document.getElementById('comboSection').style.display = 'block';
+        }
+
+        function addToCartHandler(redirect = false) {
+            const activeBox = document.querySelector('.variant-box.active');
+            if (!activeBox) return;
+
+            const item = {
+                productId: window.productData.id,
+                name: window.productData.name,
+                image: window.productData.image,
+                weight: activeBox.dataset.size,
+                price: parseFloat(activeBox.dataset.price),
+                quantity: parseInt(document.getElementById('qtyValue').value, 10)
+            };
+
+            let cart = JSON.parse(localStorage.getItem('syncskill_cart')) || [];
+            const idx = cart.findIndex(c => c.productId === item.productId && c.weight === item.weight);
+            if (idx > -1) cart[idx].quantity += item.quantity;
+            else cart.push(item);
+            
+            localStorage.setItem('syncskill_cart', JSON.stringify(cart));
+            
+            if (redirect) {
+                window.location.href = 'checkout.html';
+            } else {
+                showComboToast(`🛒 ${item.weight} added to cart!`, '🛒');
+            }
+        }
+
+        function showComboToast(msg, icon) {
+            const toast = document.getElementById('toastPremium');
+            const toastMsgEl = document.getElementById('toastMessage');
+            document.querySelector('.toast-icon').textContent = icon || '✨';
+            toastMsgEl.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(function () { toast.classList.remove('show'); }, 2500);
+        }
+
+        function initUI() {
+            var STICKY_BREAKPOINT = 768;
+
+            /* Gallery sticky */
+            var galleryCol = document.getElementById('galleryCol');
+            function syncStickyGallery() {
+                if (window.innerWidth >= STICKY_BREAKPOINT) {
+                    galleryCol.classList.add('sticky-active');
+                } else {
+                    galleryCol.classList.remove('sticky-active');
+                }
+            }
+            syncStickyGallery();
+            window.addEventListener('resize', syncStickyGallery);
+
+            /* Variant boxes */
+            var variantBoxes    = document.querySelectorAll('.variant-box');
+            var currentPriceEl  = document.getElementById('currentPrice');
+            var oldPriceEl      = document.getElementById('oldPrice');
+            var discountBadgeEl = document.getElementById('discountBadge');
+            var stickyBar       = document.getElementById('stickyBuyBar');
+            var stickyPriceEl   = document.getElementById('stickyPrice');
+
+            function formatPrice(val) {
+                return parseInt(val, 10).toLocaleString('en-IN');
+            }
+
+            var dockPriceVal    = document.getElementById('dockPriceVal');
+            var dockPriceStrike = document.getElementById('dockPriceStrike');
+            var dockSelectedLabel = document.getElementById('dockSelectedLabel');
+            var dockSelectedSize = null;
+
+            function updateDockFromVariant(box) {
+                if (!box) {
+                    dockPriceVal.textContent    = '\u20B90';
+                    dockPriceStrike.textContent = '';
+                    dockSelectedLabel.textContent = 'Select';
+                    dockSelectedSize = null;
+                    document.querySelectorAll('.dock-size-option').forEach(function(o){ o.classList.remove('active'); });
+                    return;
+                }
+                var price    = box.dataset.price;
+                var old      = box.dataset.old;
+                var sizeLabel = box.dataset.size || box.querySelector('.variant-title').textContent;
+                dockPriceVal.textContent    = '\u20B9' + formatPrice(price);
+                dockPriceStrike.textContent = (old && old > price) ? '\u20B9' + formatPrice(old) : '';
+                dockSelectedLabel.textContent = sizeLabel;
+                dockSelectedSize = sizeLabel;
+                document.querySelectorAll('.dock-size-option').forEach(function(opt) {
+                    opt.classList.toggle('active', opt.dataset.size === sizeLabel);
+                });
+            }
+
+            function updatePriceDisplay() {
+                var activeBox = document.querySelector('.variant-box.active');
+                if (activeBox) {
+                    var priceText = '\u20B9' + formatPrice(activeBox.dataset.price) + '.00';
+                    currentPriceEl.textContent = priceText;
+                    
+                    if(activeBox.dataset.old && parseInt(activeBox.dataset.old) > parseInt(activeBox.dataset.price)) {
+                        oldPriceEl.textContent      = '\u20B9' + formatPrice(activeBox.dataset.old) + '.00';
+                        discountBadgeEl.textContent = 'Save ' + activeBox.dataset.discount + '%';
+                        oldPriceEl.classList.remove('hidden');
+                        discountBadgeEl.classList.remove('hidden');
+                    } else {
+                        oldPriceEl.classList.add('hidden');
+                        discountBadgeEl.classList.add('hidden');
+                    }
+                    
+                    stickyPriceEl.textContent = priceText;
+                    if (window.innerWidth < STICKY_BREAKPOINT) { stickyBar.classList.add('visible'); }
+                    updateDockFromVariant(activeBox);
+                }
+            }
+
+            variantBoxes.forEach(function (box) {
+                box.addEventListener('click', function () {
+                    variantBoxes.forEach(function (b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    updatePriceDisplay();
+                });
+            });
+
+            // Initialize price
+            updatePriceDisplay();
+
+            /* Quantity */
+            var qtyValue = document.getElementById('qtyValue');
+            document.getElementById('qtyMinus').addEventListener('click', function () {
+                qtyValue.value = Math.max(1, parseInt(qtyValue.value, 10) - 1);
+            });
+            document.getElementById('qtyPlus').addEventListener('click', function () {
+                qtyValue.value = Math.min(99, parseInt(qtyValue.value, 10) + 1);
+            });
+
+            /* Wishlist */
+            var wishlistBtn = document.getElementById('wishlistBtn');
+            wishlistBtn.addEventListener('click', function () {
+                this.classList.toggle('active');
+                var on = this.classList.contains('active');
+                this.innerHTML = on ?
+                    '<i class="fas fa-heart"></i> Wishlisted' :
+                    '<i class="fas fa-heart"></i> Wishlist';
+            });
+
+            /* Add to Cart Actions (Main Product) */
+            document.getElementById('mainCartBtn').addEventListener('click', function() { addToCartHandler(false); });
+            document.getElementById('heroBuyNow').addEventListener('click', function() { addToCartHandler(true); });
+            document.getElementById('stickyCartBtn').addEventListener('click', function() { addToCartHandler(false); });
+            document.getElementById('stickyBuyBtn').addEventListener('click', function() { addToCartHandler(true); });
+            document.getElementById('dockCartBtn').addEventListener('click', function() { addToCartHandler(false); });
+            document.getElementById('dockBuyNowBtn').addEventListener('click', function() { addToCartHandler(true); });
+
+            /* Gallery thumbnails & swipe */
+            var thumbItems     = document.querySelectorAll('.thumb-item');
+            var mainImage      = document.getElementById('mainImage');
+            var thumbContainer = document.getElementById('thumbnailsContainer');
+            var dots           = document.querySelectorAll('.dot');
+            
+            var currentIndex       = 0;
+            var autoRotateInterval = null;
+            var touchStartX        = 0;
+
+            function setActiveThumb(index) {
+                if(window.thumbImages.length === 0) return;
+                currentIndex = (index + window.thumbImages.length) % window.thumbImages.length;
+                thumbItems.forEach(function (item, i) { item.classList.toggle('active', i === currentIndex); });
+                mainImage.src = window.thumbImages[currentIndex];
+                dots.forEach(function (dot, i) { dot.classList.toggle('active', i === currentIndex); });
+                if(thumbContainer) thumbContainer.scrollTo({ top: currentIndex * 80, behavior: 'smooth' });
+            }
+
+            thumbItems.forEach(function (item) {
+                item.addEventListener('click', function () { setActiveThumb(parseInt(this.dataset.index)); });
+            });
+            if(document.getElementById('thumbUp')) document.getElementById('thumbUp').addEventListener('click', function () { setActiveThumb(currentIndex - 1); });
+            if(document.getElementById('thumbDown')) document.getElementById('thumbDown').addEventListener('click', function () { setActiveThumb(currentIndex + 1); });
+
+            var mainWrapper = document.getElementById('mainImageWrapper');
+            mainWrapper.addEventListener('touchstart', function (e) {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAutoRotate();
+            }, { passive: true });
+            mainWrapper.addEventListener('touchend', function (e) {
+                var diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) { setActiveThumb(diff > 0 ? currentIndex + 1 : currentIndex - 1); }
+                if (window.innerWidth < STICKY_BREAKPOINT) { startAutoRotate(); }
+            }, { passive: true });
+
+            function startAutoRotate() {
+                if (window.innerWidth < STICKY_BREAKPOINT) {
+                    stopAutoRotate();
+                    autoRotateInterval = setInterval(function () { setActiveThumb(currentIndex + 1); }, 5000);
+                }
+            }
+            function stopAutoRotate() {
+                if (autoRotateInterval) { clearInterval(autoRotateInterval); autoRotateInterval = null; }
+            }
+
+            setActiveThumb(0);
+            startAutoRotate();
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= STICKY_BREAKPOINT) {
+                    stopAutoRotate();
+                } else {
+                    startAutoRotate();
+                }
+                handleDockVisibility();
+            });
+
+            /* Old mobile sticky bar scroll */
+            window.addEventListener('scroll', function () {
+                if (window.innerWidth >= STICKY_BREAKPOINT) return;
+                var buyBtns = document.querySelector('.action-buttons');
+                if (!buyBtns) return;
+                var rect = buyBtns.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    stickyBar.classList.remove('visible');
+                } else if (document.querySelector('.variant-box.active')) {
+                    stickyBar.classList.add('visible');
+                }
+            });
+
+            /* Shipping & description toggles */
+            document.getElementById('shippingReturnsToggle').addEventListener('click', function () {
+                this.classList.toggle('open');
+                document.getElementById('shippingReturnsContent').classList.toggle('open');
+            });
+
+            var descBody   = document.getElementById('descBody');
+            var descToggle = document.getElementById('descToggle');
+            descToggle.addEventListener('click', function () {
+                var expanded = descBody.classList.toggle('expanded');
+                this.textContent = expanded ? 'View less' : 'View more';
+            });
+
+            /* Sticky dock logic */
+            var pickleSticky      = document.getElementById('pickleSticky');
+            var heroBuyNow        = document.getElementById('heroBuyNow');
+            var dockSizeTrigger   = document.getElementById('dockSizeTrigger');
+            var dockSizeDropdown  = document.getElementById('dockSizeDropdown');
+            var dockNoSizeTip     = document.getElementById('dockNoSizeTip');
+            var tipTimeout        = null;
+
+            function openDropdown() {
+                dockSizeDropdown.classList.add('open');
+                dockSizeTrigger.classList.add('open');
+                dockSizeTrigger.setAttribute('aria-expanded', 'true');
+            }
+            function closeDropdown() {
+                dockSizeDropdown.classList.remove('open');
+                dockSizeTrigger.classList.remove('open');
+                dockSizeTrigger.setAttribute('aria-expanded', 'false');
+            }
+
+            dockSizeTrigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                if (dockSizeDropdown.classList.contains('open')) {
+                    closeDropdown();
+                } else {
+                    openDropdown();
+                }
+            });
+
+            document.querySelectorAll('.dock-size-option').forEach(function (opt) {
+                opt.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var price    = this.dataset.price;
+                    var old      = this.dataset.old;
+                    var sizeLabel = this.dataset.size;
+                    document.querySelectorAll('.dock-size-option').forEach(function(o){ o.classList.remove('active'); });
+                    this.classList.add('active');
+                    dockPriceVal.textContent      = '\u20B9' + formatPrice(price);
+                    dockPriceStrike.textContent   = (old && old > price) ? '\u20B9' + formatPrice(old) : '';
+                    dockSelectedLabel.textContent = sizeLabel;
+                    dockSelectedSize = sizeLabel;
+                    variantBoxes.forEach(function(box){
+                        box.classList.toggle('active', box.dataset.size === sizeLabel);
+                    });
+                    updatePriceDisplay();
+                    closeDropdown();
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!document.getElementById('dockSizeWrapper').contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+
+            dockSizeTrigger.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (dockSizeDropdown.classList.contains('open')) {
+                        closeDropdown();
+                    } else {
+                        openDropdown();
+                    }
+                }
+                if (e.key === 'Escape') {
+                    closeDropdown();
+                }
+            });
+
+            function showNoSizeTip() {
+                if (tipTimeout) { clearTimeout(tipTimeout); }
+                dockNoSizeTip.classList.add('show');
+                tipTimeout = setTimeout(function () { dockNoSizeTip.classList.remove('show'); }, 2200);
+                openDropdown();
+            }
+
+            function handleDockVisibility() {
+                var rect = heroBuyNow.getBoundingClientRect();
+                if (rect.bottom < 0) {
+                    pickleSticky.classList.add('dock-visible');
+                } else {
+                    pickleSticky.classList.remove('dock-visible');
+                    closeDropdown();
+                }
+            }
+            window.addEventListener('scroll', handleDockVisibility, { passive: true });
+            handleDockVisibility();
+
+            /* Combo section logic */
+            var comboItems   = document.querySelectorAll('.pickle-item-premium');
+            if(comboItems.length > 0) {
+                var ringCount    = document.getElementById('ringCount');
+                var ringFill     = document.getElementById('ringFill');
+                var countDisplay = document.getElementById('countDisplay');
+                var progressMsg  = document.getElementById('progressMsg');
+                var hiddenButtons = document.getElementById('hiddenButtons');
+                var viewMoreBtn  = document.getElementById('viewMoreBtn');
+                var addToCartBtn = document.getElementById('addToCartBtn');
+                var buyNowBtn    = document.getElementById('buyNowBtn');
+                var MAX          = 4;
+                var CIRCUMFERENCE = 2 * Math.PI * 20;
+                var selected      = new Set();
+
+                function updateComboUI() {
+                    var count = selected.size;
+                    ringCount.textContent = count;
+                    ringFill.style.strokeDashoffset = CIRCUMFERENCE * (1 - count / MAX);
+                    ringCount.classList.toggle('complete', count === MAX);
+                    ringFill.classList.toggle('complete', count === MAX);
+                    countDisplay.textContent = count;
+
+                    if (count === 0) {
+                        progressMsg.innerHTML = 'Select <strong>4</strong> pickles to unlock';
+                    } else if (count < MAX) {
+                        progressMsg.innerHTML = '<span class="highlight-red">' + count +
+                            '</span> of <strong>4</strong> selected \u2014 pick <span class="highlight-red">' + (MAX - count) + '</span> more';
+                    } else {
+                        progressMsg.innerHTML = '\u2705 <strong>Ready!</strong> All 4 pickles selected!';
+                    }
+
+                    if (count > 0) {
+                        viewMoreBtn.classList.add('hidden-btn');
+                        hiddenButtons.classList.add('show');
+                    } else {
+                        viewMoreBtn.classList.remove('hidden-btn');
+                        hiddenButtons.classList.remove('show');
+                    }
+
+                    comboItems.forEach(function (item) {
+                        item.classList.toggle('locked-out', count >= MAX && !selected.has(item.dataset.pickle));
+                    });
+
+                    addToCartBtn.disabled = count !== MAX;
+                    buyNowBtn.disabled    = count !== MAX;
+                }
+
+                comboItems.forEach(function (item) {
+                    item.addEventListener('click', function () {
+                        var key = this.dataset.pickle;
+                        if (selected.has(key)) {
+                            selected.delete(key);
+                            this.classList.remove('selected');
+                        } else {
+                            if (selected.size >= MAX) {
+                                showComboToast('You can only select 4 pickles!', '\u26a0\ufe0f');
+                                return;
+                            }
+                            selected.add(key);
+                            this.classList.add('selected');
+                        }
+                        updateComboUI();
+                    });
+                });
+
+                viewMoreBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.location.href = '#';
+                });
+
+                addToCartBtn.addEventListener('click', function () {
+                    if (selected.size !== MAX) { return; }
+                    var names = [];
+                    comboItems.forEach(function (item) {
+                        if (selected.has(item.dataset.pickle)) {
+                            names.push(item.dataset.name);
+                        }
+                    });
+                    showComboToast(names.join(', ') + ' combo added to cart!', '\ud83d\uded2');
+                });
+
+                buyNowBtn.addEventListener('click', function () {
+                    if (selected.size !== MAX) { return; }
+                    const itemIdsArray = Array.from(selected);
+                    window.location.href = `checkout.html?comboId=${window.activeComboId}&items=${encodeURIComponent(itemIdsArray.join(','))}`;
+                });
+
+                updateComboUI();
+            }
+        }
+
+        // Boot
+        init();
     </script>
 </body>
 </html>
