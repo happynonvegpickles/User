@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail | SyncSkill Pickles</title>
+    <title>Product Detail | Happy NonVeg Pickles</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Serif:wght@600;700&display=swap" rel="stylesheet">
@@ -24,6 +24,10 @@
             line-height: 1.4;
         }
 
+        /* LOADING SHIMMER */
+        .loading-shimmer { width: 100%; text-align: center; padding: 100px 0; color: #6b7280; font-size: 18px; font-weight: 500; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        
         .page-wrapper {
             padding: 28px 20px 48px 20px;
         }
@@ -828,7 +832,7 @@
             border-top-color: #1a1a1a;
         }
 
-        /* "You may also like" section */
+        /* Lists & Grids */
         .also-like-section {
             max-width: 1280px;
             margin: 0 auto;
@@ -847,7 +851,9 @@
             margin-bottom: 20px;
             letter-spacing: -0.2px;
         }
-        .also-like-grid {
+        
+        /* Unified horizontal scroll grid for both 'Also Like' and 'Recently Viewed' */
+        .scrollable-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
@@ -1027,22 +1033,13 @@
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
-        }
-        .brand-logo,
-        .brand-main-offer {
-            display: flex;
-            justify-content: center;
             align-items: center;
-            width: 100%;
+            text-align: center;
+            color: white;
         }
-        .brand-logo img,
-        .brand-main-offer .offer-image {
-            width: 100%;
-            height: auto;
-            max-width: 220px;
-            object-fit: contain;
-            border-radius: 6px;
-        }
+        .combo-display-price { font-size: 36px; font-weight: 700; color: #f5c842; }
+        .combo-display-title { font-size: 24px; font-weight: 700; line-height: 1.2; margin-top: 8px;}
+
         .delivery-info-line {
             display: flex;
             align-items: center;
@@ -1484,15 +1481,30 @@
             .product-title { font-size: 22px; }
             .current-price { font-size: 26px; }
             .thumbnails { height: 290px; }
-            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .scrollable-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
             .combo-left-brand { flex: 0 0 240px; padding: 28px 18px; }
             .combo-right-grid { padding: 28px 22px 28px 52px; }
             .pickle-image-plate { width: 80px; height: 80px; left: -26px; }
             .pickle-item-premium { padding-left: 62px; }
         }
 
-        /* Mobile pill dock tweaks */
+        /* Mobile pill dock tweaks & horizontal scrolling */
         @media (max-width: 767px) {
+            .scrollable-grid {
+                display: flex;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                gap: 16px;
+                padding-bottom: 16px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .scrollable-grid::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollable-grid .al-card {
+                flex: 0 0 240px; 
+            }
+
             .pickle-sticky-dock-wrapper {
                 bottom: 14px;
                 width: calc(100% - 24px);
@@ -1533,7 +1545,6 @@
                 font-size: 13px;
             }
 
-            /* IMPORTANT: dropdown anchored above the pill, not fixed center */
             .dock-size-dropdown {
                 position: absolute;
                 bottom: calc(100% + 10px);
@@ -1548,7 +1559,6 @@
                 transform: translateY(0) scale(1);
             }
 
-            /* hide buy now, show cart button filling remaining space */
             .dock-buynow-btn {
                 display: none !important;
             }
@@ -1564,7 +1574,6 @@
                 display: inline;
             }
 
-            /* OLD sticky bar hidden */
             .sticky-buy-bar { display: none !important; }
 
             body { padding-bottom: 90px; }
@@ -1585,7 +1594,7 @@
             .current-price { font-size: 26px; }
             .btn { padding: 15px 13px; font-size: 15px; }
             .qty-btn { width: 40px; height: 40px; }
-            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            
             .combo-card--premium { flex-direction: column; border-radius: 24px; }
             .combo-left-brand { flex: auto; padding: 22px 18px; }
             .brand-images-wrapper { flex-direction: row; gap: 12px; align-items: center; justify-content: center; }
@@ -1597,7 +1606,6 @@
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
 
-            /* ====== SPECIFICITY BOOSTED MOBILE BUTTON STYLES ====== */
             .btn.btn-cart,
             .btn.btn-wishlist,
             .btn.btn-buynow {
@@ -1648,7 +1656,6 @@
             .feature-item { min-width: 50px; max-width: 75px; font-size: 11px; }
             .feature-item i { font-size: 18px; }
             .also-like-section { padding: 0 12px 32px; }
-            .also-like-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
             .al-title { font-size: 12px; }
             .al-price { font-size: 14px; }
             .al-btn { font-size: 11px; padding: 9px 7px; }
@@ -1658,7 +1665,6 @@
             .brand-images-wrapper { flex-direction: row; gap: 8px; align-items: center; justify-content: center; }
             .brand-logo, .brand-main-offer { width: 50%; }
             .combo-right-grid { padding: 14px 12px 14px 26px; }
-            .pickle-grid-premium { gap: 12px; }
             .pickle-image-plate { width: 56px; height: 56px; left: -16px; border-width: 2px; }
             .pickle-item-premium { padding: 9px 9px 9px 44px; min-height: 60px; border-radius: 10px; }
             .pickle-name-premium { font-size: 11px; }
@@ -1746,7 +1752,7 @@
     <div class="also-like-section" id="alsoLikeSection" style="display: none;">
         <hr class="also-like-line">
         <h2 class="also-like-heading">You may also like</h2>
-        <div class="also-like-grid" id="alsoLikeGrid">
+        <div class="scrollable-grid" id="alsoLikeGrid">
             </div>
     </div>
 
@@ -1813,6 +1819,13 @@
         </div>
     </div>
 
+    <div class="also-like-section" id="recent-views-section" style="display: none; padding-top:0;">
+        <hr class="also-like-line">
+        <h2 class="also-like-heading">Recently Viewed</h2>
+        <div class="scrollable-grid" id="recent-views-grid">
+            </div>
+    </div>
+
     <div class="combo-toast-premium" id="toastPremium">
         <span class="toast-icon">&#10024;</span>
         <span id="toastMessage"></span>
@@ -1875,8 +1888,10 @@
 
                 const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
 
-                // Render main product
+                // Record Recent View & Render
+                saveRecentView();
                 renderProduct();
+                renderRecentViews();
 
                 // Render You May Also Like
                 if (catSnap && catSnap.exists() && catSnap.data().products) {
@@ -1890,12 +1905,54 @@
                     renderCombo(activeCombo);
                 }
 
-                // Attach all UI event listeners (replacing the original IIFE)
+                // Attach all UI event listeners 
                 initUI();
 
             } catch (error) {
                 console.error("Error:", error);
             }
+        }
+
+        function saveRecentView() {
+            const p = window.productData;
+            if (!p) return;
+            let recents = JSON.parse(localStorage.getItem('happynonveg_recent_views')) || [];
+            
+            recents = recents.filter(item => item.id !== p.id);
+            recents.unshift({
+                id: p.id,
+                name: p.name,
+                image: p.image,
+                minPrice: p.price,
+                maxPrice: p.maxPrice || null
+            });
+            if (recents.length > 5) recents = recents.slice(0, 5);
+            localStorage.setItem('happynonveg_recent_views', JSON.stringify(recents));
+        }
+
+        function renderRecentViews() {
+            let recents = JSON.parse(localStorage.getItem('happynonveg_recent_views')) || [];
+            const currentId = window.productData ? window.productData.id : null;
+            recents = recents.filter(item => item.id !== currentId).slice(0, 4);
+
+            if (recents.length === 0) return;
+
+            const grid = document.getElementById('recent-views-grid');
+            grid.innerHTML = recents.map(prod => `
+                <a href="view.html?id=${prod.id}" class="al-card" style="text-decoration:none; color:inherit;">
+                    <div class="al-image-wrapper">
+                        <img src="${prod.image}" alt="${prod.name}">
+                    </div>
+                    <div class="al-body">
+                        <div class="al-rating"><i class="fas fa-history"></i> Recently Viewed</div>
+                        <div class="al-title">${prod.name}</div>
+                        <div class="al-price">&#8377;${prod.minPrice} ${prod.maxPrice && prod.maxPrice !== prod.minPrice ? `- &#8377;${prod.maxPrice}` : ''}</div>
+                        <button class="al-btn" onclick="event.preventDefault(); window.location.href='view.html?id=${prod.id}'"><i class="fas fa-eye"></i> View Product</button>
+                    </div>
+                </a>
+            `).join('');
+
+            document.getElementById('recent-views-section').style.display = 'block';
         }
 
         function renderProduct() {
@@ -2088,12 +2145,12 @@
                 quantity: parseInt(document.getElementById('qtyValue').value, 10)
             };
 
-            let cart = JSON.parse(localStorage.getItem('syncskill_cart')) || [];
+            let cart = JSON.parse(localStorage.getItem('happynonveg_cart')) || [];
             const idx = cart.findIndex(c => c.productId === item.productId && c.weight === item.weight);
             if (idx > -1) cart[idx].quantity += item.quantity;
             else cart.push(item);
             
-            localStorage.setItem('syncskill_cart', JSON.stringify(cart));
+            localStorage.setItem('happynonveg_cart', JSON.stringify(cart));
             
             if (redirect) {
                 window.location.href = 'checkout.html';
