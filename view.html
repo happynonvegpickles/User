@@ -27,7 +27,7 @@
         /* LOADING SHIMMER */
         .loading-shimmer { width: 100%; text-align: center; padding: 100px 0; color: #6b7280; font-size: 18px; font-weight: 500; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-        
+
         .page-wrapper {
             padding: 28px 20px 48px 20px;
         }
@@ -136,7 +136,7 @@
             display: block;
             transition: opacity 0.3s ease;
         }
-        
+
         /* Dynamic Badges Overlay */
         .dynamic-badge-container {
             position: absolute;
@@ -154,18 +154,18 @@
             border-radius: 20px;
             width: fit-content;
         }
-        .badge-bestseller { background: #ffe6e6; color: #E61D26; border: 1px solid #f5c2c2; }
+        .badge-bestseller  { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
         .badge-recommended { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
-        .badge-spicy { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-        .badge-new { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
-        .badge-trending { background: #fce7f3; color: #831843; border: 1px solid #f9a8d4; }
-        .badge-limited { background: #ffedd5; color: #7c2d12; border: 1px solid #fdba74; }
-        .badge-mild { background: #ecfdf5; color: #064e3b; border: 1px solid #34d399; }
-        .badge-premium { background: #f0f9ff; color: #0c4a6e; border: 1px solid #7dd3fc; }
-        .badge-gift { background: #fdf4ff; color: #581c87; border: 1px solid #d8b4fe; }
-        .badge-seasonal { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; }
-        .badge-homemade { background: #f0fdf4; color: #14532d; border: 1px solid #86efac; }
-        .badge-glutenfree { background: #f0f9ff; color: #1e3a5f; border: 1px solid #93c5fd; }
+        .badge-spicy       { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .badge-new         { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
+        .badge-trending    { background: #fce7f3; color: #831843; border: 1px solid #f9a8d4; }
+        .badge-limited     { background: #ffedd5; color: #7c2d12; border: 1px solid #fdba74; }
+        .badge-mild        { background: #ecfdf5; color: #064e3b; border: 1px solid #34d399; }
+        .badge-premium     { background: #f0f9ff; color: #0c4a6e; border: 1px solid #7dd3fc; }
+        .badge-gift        { background: #fdf4ff; color: #581c87; border: 1px solid #d8b4fe; }
+        .badge-seasonal    { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; }
+        .badge-homemade    { background: #f0fdf4; color: #14532d; border: 1px solid #86efac; }
+        .badge-glutenfree  { background: #f0f9ff; color: #1e3a5f; border: 1px solid #93c5fd; }
 
         .dots-container {
             display: none;
@@ -604,7 +604,6 @@
             color: #fff;
         }
 
-        /* Price info */
         .dock-price-group {
             display: flex;
             flex-direction: column;
@@ -633,7 +632,6 @@
             margin-left: 5px;
         }
 
-        /* Size dropdown */
         .dock-size-wrapper {
             position: relative;
             flex-shrink: 0;
@@ -767,7 +765,6 @@
             display: inline;
         }
 
-        /* Dock buttons */
         .dock-cart-btn {
             display: flex;
             align-items: center;
@@ -819,7 +816,6 @@
             box-shadow: 0 8px 22px rgba(230,29,38,0.4);
         }
 
-        /* Tooltip on dock */
         .dock-no-size-tip {
             position: absolute;
             bottom: calc(100% + 10px);
@@ -890,7 +886,7 @@
             color: #c41820;
             text-decoration: underline;
         }
-        
+
         .scrollable-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -940,6 +936,10 @@
             align-items: center;
             gap: 4px;
         }
+        .al-rating span {
+            color: #888;
+            font-weight: 400;
+        }
         .al-title {
             font-size: 15px;
             font-weight: 700;
@@ -980,7 +980,9 @@
             background: #E61D26;
         }
 
-        /* Combo section */
+        /* ================================================
+           COMBO SECTION  (fully restored from original)
+           ================================================ */
         .pickle-combo-section {
             max-width: 1280px;
             margin: 0 auto;
@@ -1054,13 +1056,22 @@
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
-            align-items: center;
-            text-align: center;
-            color: white;
         }
-        .combo-display-price { font-size: 36px; font-weight: 700; color: #f5c842; }
-        .combo-display-title { font-size: 24px; font-weight: 700; line-height: 1.2; margin-top: 8px;}
-
+        .brand-logo,
+        .brand-main-offer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .brand-logo img,
+        .brand-main-offer .offer-image {
+            width: 100%;
+            height: auto;
+            max-width: 220px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
         .delivery-info-line {
             display: flex;
             align-items: center;
@@ -1482,35 +1493,158 @@
             color: #fff;
         }
 
-        /* Dynamic Badges Overlay */
-        .dynamic-badge-container {
-            position: absolute;
-            top: 12px;
-            left: 12px;
+        /* ================================================
+           RECENTLY VIEWED SECTION
+           ================================================ */
+        .recently-viewed-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 56px;
+            display: none;
+        }
+        .rv-divider {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 0 0 28px;
+        }
+        .rv-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .rv-heading {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            letter-spacing: -0.2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .rv-heading-icon {
+            width: 32px;
+            height: 32px;
+            background: #fff0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #E61D26;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        .rv-clear-btn {
+            background: none;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            font-family: 'IBM Plex Sans', sans-serif;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .rv-clear-btn:hover {
+            border-color: #E61D26;
+            color: #E61D26;
+            background: #fff0f0;
+        }
+        .rv-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .rv-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+        .rv-card:hover {
+            transform: translateY(-4px);
+        }
+        .rv-card-image {
+            position: relative;
+            background: #f8f2ec;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+        .rv-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .rv-current-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #E61D26;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
             z-index: 2;
         }
-        .al-badge {
-            font-size: 11px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            width: fit-content;
+        .rv-card-body {
+            padding: 12px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
-        .badge-bestseller { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-        .badge-recommended { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
-        .badge-spicy { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-        .badge-new { background: #ede9fe; color: #4c1d95; border: 1px solid #c4b5fd; }
-        .badge-trending { background: #fce7f3; color: #831843; border: 1px solid #f9a8d4; }
-        .badge-limited { background: #ffedd5; color: #7c2d12; border: 1px solid #fdba74; }
-        .badge-mild { background: #ecfdf5; color: #064e3b; border: 1px solid #34d399; }
-        .badge-premium { background: #f0f9ff; color: #0c4a6e; border: 1px solid #7dd3fc; }
-        .badge-gift { background: #fdf4ff; color: #581c87; border: 1px solid #d8b4fe; }
-        .badge-seasonal { background: #fff7ed; color: #7c2d12; border: 1px solid #fed7aa; }
-        .badge-homemade { background: #f0fdf4; color: #14532d; border: 1px solid #86efac; }
-        .badge-glutenfree { background: #f0f9ff; color: #1e3a5f; border: 1px solid #93c5fd; }
+        .rv-card-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111;
+            line-height: 1.3;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .rv-card-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+        }
+        .rv-card-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 11px 14px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            transition: background 0.2s;
+        }
+        .rv-card-btn:hover {
+            background: #E61D26;
+        }
 
         /* ================================================
            RESPONSIVE
@@ -1533,13 +1667,14 @@
             .current-price { font-size: 26px; }
             .thumbnails { height: 290px; }
             .scrollable-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .rv-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
             .combo-left-brand { flex: 0 0 240px; padding: 28px 18px; }
             .combo-right-grid { padding: 28px 22px 28px 52px; }
             .pickle-image-plate { width: 80px; height: 80px; left: -26px; }
             .pickle-item-premium { padding-left: 62px; }
         }
 
-        /* Mobile pill dock tweaks & horizontal scrolling */
+        /* Mobile pill dock tweaks */
         @media (max-width: 767px) {
             .scrollable-grid {
                 display: flex;
@@ -1549,12 +1684,8 @@
                 padding-bottom: 16px;
                 -webkit-overflow-scrolling: touch;
             }
-            .scrollable-grid::-webkit-scrollbar {
-                display: none;
-            }
-            .scrollable-grid .al-card {
-                flex: 0 0 240px; 
-            }
+            .scrollable-grid::-webkit-scrollbar { display: none; }
+            .scrollable-grid .al-card { flex: 0 0 240px; }
 
             .pickle-sticky-dock-wrapper {
                 bottom: 14px;
@@ -1562,41 +1693,20 @@
                 max-width: 100%;
             }
             .pickle-sticky-dock {
-                padding: 10px 10px 10px 16px;  /* taller pill */
+                padding: 10px 10px 10px 16px;
                 gap: 8px;
                 border-radius: 100px;
                 width: 100%;
             }
-            .dock-price-group {
-                min-width: 56px;
-                flex-shrink: 0;
-            }
-            .dock-price-label {
-                display: none;
-            }
-            .dock-price-val {
-                font-size: 16px;
-            }
-            .dock-price-strike {
-                font-size: 11px;
-            }
-            .dock-size-wrapper {
-                flex-shrink: 0;
-            }
-            .dock-size-trigger {
-                height: 42px;
-                padding: 0 11px;
-                font-size: 13px;
-                gap: 5px;
-            }
-            .dock-size-label {
-                display: none;
-            }
-            .dock-selected-size {
-                font-size: 13px;
-            }
+            .dock-price-group { min-width: 56px; flex-shrink: 0; }
+            .dock-price-label { display: none; }
+            .dock-price-val { font-size: 16px; }
+            .dock-price-strike { font-size: 11px; }
+            .dock-size-wrapper { flex-shrink: 0; }
+            .dock-size-trigger { height: 42px; padding: 0 11px; font-size: 13px; gap: 5px; }
+            .dock-size-label { display: none; }
+            .dock-selected-size { font-size: 13px; }
 
-            /* IMPORTANT: dropdown anchored above the pill, not fixed center */
             .dock-size-dropdown {
                 position: absolute;
                 bottom: calc(100% + 10px);
@@ -1607,27 +1717,11 @@
                 max-height: 280px;
                 overflow-y: auto;
             }
-            .dock-size-dropdown.open {
-                transform: translateY(0) scale(1);
-            }
+            .dock-size-dropdown.open { transform: translateY(0) scale(1); }
+            .dock-buynow-btn { display: none !important; }
+            .dock-cart-btn { height: 44px; padding: 0 14px; font-size: 14px; gap: 6px; flex: 1 1 auto; flex-shrink: 1; }
+            .dock-cart-btn span { display: inline; }
 
-            /* hide buy now, show cart button filling remaining space */
-            .dock-buynow-btn {
-                display: none !important;
-            }
-            .dock-cart-btn {
-                height: 44px;
-                padding: 0 14px;
-                font-size: 14px;
-                gap: 6px;
-                flex: 1 1 auto;
-                flex-shrink: 1;
-            }
-            .dock-cart-btn span {
-                display: inline;
-            }
-
-            /* OLD sticky bar hidden */
             .sticky-buy-bar { display: none !important; }
 
             body { padding-bottom: 90px; }
@@ -1648,7 +1742,6 @@
             .current-price { font-size: 26px; }
             .btn { padding: 15px 13px; font-size: 15px; }
             .qty-btn { width: 40px; height: 40px; }
-            
             .combo-card--premium { flex-direction: column; border-radius: 24px; }
             .combo-left-brand { flex: auto; padding: 22px 18px; }
             .brand-images-wrapper { flex-direction: row; gap: 12px; align-items: center; justify-content: center; }
@@ -1660,6 +1753,30 @@
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
 
+            /* Recently viewed – single row horizontal scroll on mobile */
+            .rv-grid {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 12px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding-bottom: 4px;
+            }
+            .rv-grid::-webkit-scrollbar { display: none; }
+            .rv-card {
+                min-width: 160px;
+                max-width: 160px;
+                flex-shrink: 0;
+                scroll-snap-align: start;
+            }
+            .rv-card-name { font-size: 13px; }
+            .rv-card-price { font-size: 14px; }
+            .rv-card-btn { font-size: 12px; padding: 10px 10px; }
+            .recently-viewed-section { padding: 0 16px 48px; }
+
             /* ====== SPECIFICITY BOOSTED MOBILE BUTTON STYLES ====== */
             .btn.btn-cart,
             .btn.btn-wishlist,
@@ -1670,28 +1787,12 @@
             }
             .btn.btn-cart i,
             .btn.btn-wishlist i,
-            .btn.btn-buynow i {
-                font-size: 18px !important;
-            }
-            .al-btn.al-btn {
-                padding-top: 15px !important;
-                padding-bottom: 15px !important;
-                font-size: 13px !important;
-            }
-            .al-btn.al-btn i {
-                font-size: 14px !important;
-            }
-            .btn-viewdetails.btn-viewdetails {
-                padding-top: 18px !important;
-                padding-bottom: 18px !important;
-                font-size: 14px !important;
-            }
+            .btn.btn-buynow i { font-size: 18px !important; }
+            .al-btn.al-btn { padding-top: 15px !important; padding-bottom: 15px !important; font-size: 13px !important; }
+            .al-btn.al-btn i { font-size: 14px !important; }
+            .btn-viewdetails.btn-viewdetails { padding-top: 18px !important; padding-bottom: 18px !important; font-size: 14px !important; }
             .btn-combo-cart.btn-combo-cart,
-            .btn-combo-buynow.btn-combo-buynow {
-                padding-top: 18px !important;
-                padding-bottom: 18px !important;
-                font-size: 14px !important;
-            }
+            .btn-combo-buynow.btn-combo-buynow { padding-top: 18px !important; padding-bottom: 18px !important; font-size: 14px !important; }
         }
 
         @media (max-width: 479px) {
@@ -1735,6 +1836,10 @@
             .sticky-bar-btn { font-size: 13px; padding: 10px 8px; }
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
+            .rv-card { min-width: 140px; max-width: 140px; }
+            .rv-card-name { font-size: 12px; }
+            .rv-card-price { font-size: 13px; }
+            .rv-card-btn { font-size: 11px; padding: 8px 8px; gap: 4px; }
         }
 
         @media (max-width: 380px) {
@@ -1746,6 +1851,7 @@
             .feature-item { flex: 1 1 0; min-width: 0; max-width: none; padding: 0; }
             .btn-viewdetails { width: 100%; }
             .combo-action-buttons { width: 100%; }
+            .rv-card { min-width: 128px; max-width: 128px; }
         }
 
         @media (min-width: 768px) and (max-width: 900px) {
@@ -1764,7 +1870,6 @@
 
     <div class="pickle-sticky-dock-wrapper" id="pickleSticky">
         <div class="pickle-sticky-dock">
-
             <div class="dock-price-group">
                 <span class="dock-price-label">Price</span>
                 <div>
@@ -1772,27 +1877,20 @@
                     <span class="dock-price-strike" id="dockPriceStrike"></span>
                 </div>
             </div>
-
             <div class="dock-size-wrapper" id="dockSizeWrapper">
                 <div class="dock-size-trigger" id="dockSizeTrigger" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
                     <span class="dock-size-label">Size</span>
                     <span class="dock-selected-size" id="dockSelectedLabel">Select</span>
                     <i class="fas fa-chevron-down size-arrow"></i>
                 </div>
-                <div class="dock-size-dropdown" id="dockSizeDropdown" role="listbox">
-                    </div>
+                <div class="dock-size-dropdown" id="dockSizeDropdown" role="listbox"></div>
                 <div class="dock-no-size-tip" id="dockNoSizeTip">Please select a size first</div>
             </div>
-
             <button class="dock-cart-btn" id="dockCartBtn">
                 <i class="fas fa-shopping-cart"></i>
                 <span>Add to Cart</span>
             </button>
-
-            <button class="dock-buynow-btn" id="dockBuyNowBtn">
-                Buy Now
-            </button>
-
+            <button class="dock-buynow-btn" id="dockBuyNowBtn">Buy Now</button>
         </div>
     </div>
 
@@ -1805,17 +1903,19 @@
         </div>
     </div>
 
+    <!-- You may also like -->
     <div class="also-like-section" id="alsoLikeSection" style="display: none;">
+        <hr class="also-like-line">
         <div class="also-like-header-row">
             <h2 class="also-like-heading">You may also like</h2>
             <a href="#" class="view-more-link" id="viewMoreCategoryLink">
                 View all <i class="fas fa-arrow-right"></i>
             </a>
         </div>
-        <div class="scrollable-grid" id="alsoLikeGrid">
-            </div>
+        <div class="scrollable-grid" id="alsoLikeGrid"></div>
     </div>
 
+    <!-- Combo section (fully restored original structure) -->
     <div class="pickle-combo-section" id="comboSection">
         <hr class="combo-divider">
         <h2 class="combo-section-heading">Build Your Combo</h2>
@@ -1849,8 +1949,7 @@
                         <span id="countDisplay">0</span>/<strong>4</strong>
                     </span>
                 </div>
-                <div class="pickle-grid-premium" id="pickleGridPremium">
-                    </div>
+                <div class="pickle-grid-premium" id="pickleGridPremium"></div>
                 <div class="selection-progress-area">
                     <div class="progress-left">
                         <div class="progress-ring">
@@ -1865,8 +1964,10 @@
                         </div>
                     </div>
                     <div class="combo-action-buttons" id="comboActionButtons">
-                        <div class="combo-hidden-buttons show" id="hiddenButtons">
-                            <button class="combo-btn btn-combo-buynow" id="comboCheckoutBtn" disabled onclick="app.checkoutCombo()">
+                        <button class="combo-btn btn-viewdetails" id="viewMoreBtn">View Details</button>
+                        <div class="combo-hidden-buttons" id="hiddenButtons">
+                            <button class="combo-btn btn-combo-cart" id="addToCartBtn"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="combo-btn btn-combo-buynow" id="buyNowBtn">
                                 <img src="https://fastrr-boost-ui.pickrr.com/assets/images/boost_button/upi_options.svg" alt="UPI" class="upi-icon">
                                 Buy Now
                             </button>
@@ -1877,11 +1978,19 @@
         </div>
     </div>
 
-    <div class="also-like-section" id="recent-views-section" style="display: none; padding-top:0;">
-        <hr class="also-like-line">
-        <h2 class="also-like-heading">Recently Viewed</h2>
-        <div class="scrollable-grid" id="recent-views-grid">
-            </div>
+    <!-- Recently Viewed (original full implementation) -->
+    <div class="recently-viewed-section" id="recentlyViewedSection">
+        <hr class="rv-divider">
+        <div class="rv-header">
+            <h2 class="rv-heading">
+                <span class="rv-heading-icon"><i class="fas fa-clock-rotate-left"></i></span>
+                Recently Viewed
+            </h2>
+            <button class="rv-clear-btn" id="rvClearBtn">
+                <i class="fas fa-xmark"></i> Clear
+            </button>
+        </div>
+        <div class="rv-grid" id="rvGrid"></div>
     </div>
 
     <div class="combo-toast-premium" id="toastPremium">
@@ -1908,41 +2017,48 @@
         window.thumbImages = [];
         window.currentCategoryName = '';
 
-        /* BADGE RENDERER */
+        /* ====================================================
+           NEW: BADGE RENDERER
+           ==================================================== */
         const BADGE_DEFS = [
-            { key: 'bestseller',  label: 'Best Seller',   icon: '🔥', cls: 'badge-bestseller'  },
-            { key: 'recommended', label: 'Recommended',   icon: '⭐', cls: 'badge-recommended' },
-            { key: 'spicy',       label: 'Spicy',         icon: '🌶️', cls: 'badge-spicy'       },
-            { key: 'new',         label: 'New Arrival',   icon: '✨', cls: 'badge-new'         },
-            { key: 'trending',    label: 'Trending',      icon: '📈', cls: 'badge-trending'    },
-            { key: 'limited',     label: 'Limited Stock', icon: '⏳', cls: 'badge-limited'     },
-            { key: 'mild',        label: 'Mild & Tangy',  icon: '🍋', cls: 'badge-mild'        },
-            { key: 'premium',     label: 'Premium',       icon: '💎', cls: 'badge-premium'     },
-            { key: 'gift',        label: 'Gift Pick',     icon: '🎁', cls: 'badge-gift'        },
-            { key: 'seasonal',    label: 'Seasonal',      icon: '🌿', cls: 'badge-seasonal'    },
-            { key: 'homemade',    label: 'Homemade Style',icon: '🏠', cls: 'badge-homemade'    },
-            { key: 'glutenfree',  label: 'Gluten Free',   icon: '🌾', cls: 'badge-glutenfree'  },
+            { key: 'bestseller',  label: 'Best Seller',    icon: '🔥', cls: 'badge-bestseller'  },
+            { key: 'recommended', label: 'Recommended',    icon: '⭐', cls: 'badge-recommended' },
+            { key: 'spicy',       label: 'Spicy',          icon: '🌶️', cls: 'badge-spicy'       },
+            { key: 'new',         label: 'New Arrival',    icon: '✨', cls: 'badge-new'         },
+            { key: 'trending',    label: 'Trending',       icon: '📈', cls: 'badge-trending'    },
+            { key: 'limited',     label: 'Limited Stock',  icon: '⏳', cls: 'badge-limited'     },
+            { key: 'mild',        label: 'Mild & Tangy',   icon: '🍋', cls: 'badge-mild'        },
+            { key: 'premium',     label: 'Premium',        icon: '💎', cls: 'badge-premium'     },
+            { key: 'gift',        label: 'Gift Pick',      icon: '🎁', cls: 'badge-gift'        },
+            { key: 'seasonal',    label: 'Seasonal',       icon: '🌿', cls: 'badge-seasonal'    },
+            { key: 'homemade',    label: 'Homemade Style', icon: '🏠', cls: 'badge-homemade'    },
+            { key: 'glutenfree',  label: 'Gluten Free',    icon: '🌾', cls: 'badge-glutenfree'  },
         ];
 
-        function renderBadgesHtml(badgeKeys = []) {
+        function renderBadgesHtml(badgeKeys) {
             if (!badgeKeys || badgeKeys.length === 0) return '';
-            return `<div class="dynamic-badge-container">` + badgeKeys.map(k => {
+            const items = badgeKeys.map(k => {
                 const def = BADGE_DEFS.find(d => d.key === k);
                 if (!def) return '';
                 return `<span class="al-badge ${def.cls}">${def.icon} ${def.label}</span>`;
-            }).join('') + `</div>`;
+            }).join('');
+            return items ? `<div class="dynamic-badge-container">${items}</div>` : '';
         }
 
-        /* RECENTLY VIEWED LOGIC */
+        /* ====================================================
+           RECENTLY VIEWED – localStorage helpers
+           ==================================================== */
         const RV_KEY = 'hnvp_recently_viewed';
         const RV_MAX = 4;
 
         function getRVList() {
-            try { return JSON.parse(localStorage.getItem(RV_KEY)) || []; } catch (e) { return []; }
+            try { return JSON.parse(localStorage.getItem(RV_KEY)) || []; }
+            catch (e) { return []; }
         }
 
         function saveRVList(list) {
-            try { localStorage.setItem(RV_KEY, JSON.stringify(list)); } catch (e) {}
+            try { localStorage.setItem(RV_KEY, JSON.stringify(list)); }
+            catch (e) {}
         }
 
         function addToRV(product) {
@@ -1953,11 +2069,16 @@
             saveRVList(list);
         }
 
+        function clearRV() {
+            localStorage.removeItem(RV_KEY);
+        }
+
         function renderRecentlyViewed(currentProductId) {
             var list = getRVList();
             var displayList = list.filter(function(p) { return p.id !== currentProductId; });
-            var section = document.getElementById('recent-views-section');
-            var grid = document.getElementById('recent-views-grid');
+
+            var section = document.getElementById('recentlyViewedSection');
+            var grid    = document.getElementById('rvGrid');
 
             if (displayList.length === 0) {
                 section.style.display = 'none';
@@ -1965,20 +2086,21 @@
             }
 
             section.style.display = 'block';
-            grid.innerHTML = displayList.map(function(prod) {
+
+            grid.innerHTML = displayList.map(function(prod, idx) {
                 var priceText = prod.minPrice === prod.maxPrice
                     ? '&#8377;' + prod.minPrice
                     : '&#8377;' + prod.minPrice + ' &ndash; &#8377;' + prod.maxPrice;
-                return '<a href="view.html?id=' + prod.id + '" class="al-card">' +
-                    '<div class="al-image-wrapper">' +
+                return '<a href="view.html?id=' + prod.id + '" class="rv-card" style="text-decoration:none;">' +
+                    '<div class="rv-card-image">' +
+                    (idx === 0 ? '<span class="rv-current-badge">Last Viewed</span>' : '') +
                     '<img src="' + prod.image + '" alt="' + prod.name + '" loading="lazy">' +
                     '</div>' +
-                    '<div class="al-body">' +
-                    '<div class="al-rating"><i class="fas fa-history"></i> Recently Viewed</div>' +
-                    '<div class="al-title">' + prod.name + '</div>' +
-                    '<div class="al-price">' + priceText + '</div>' +
-                    '<button class="al-btn" onclick="event.preventDefault(); window.location.href=\'view.html?id=' + prod.id + '\'">' +
-                    '<i class="fas fa-eye"></i> View Product' +
+                    '<div class="rv-card-body">' +
+                    '<div class="rv-card-name">' + prod.name + '</div>' +
+                    '<div class="rv-card-price">' + priceText + '</div>' +
+                    '<button class="rv-card-btn" onclick="event.preventDefault(); window.location.href=\'view.html?id=' + prod.id + '\'">' +
+                    '<i class="fas fa-eye"></i> View' +
                     '</button>' +
                     '</div>' +
                     '</a>';
@@ -1992,7 +2114,6 @@
             if (!productId) { window.location.href = 'index.html'; return; }
 
             try {
-                // 1. Fetch Product
                 const productRef = doc(db, 'products', productId);
                 const snap = await getDoc(productRef);
 
@@ -2008,6 +2129,7 @@
 
                 window.productData = { id: snap.id, ...snap.data() };
 
+                // Save to Recently Viewed
                 var minP = window.productData.minPrice;
                 var maxP = window.productData.maxPrice;
                 if (!minP && window.productData.variants && window.productData.variants.length > 0) {
@@ -2023,7 +2145,7 @@
                     maxPrice: maxP || 0
                 });
 
-                // Construct images array holding original order from Firestore
+                // NEW: Preserve Firestore index order for additional images
                 window.thumbImages = [window.productData.image];
                 if (window.productData.additionalImages && window.productData.additionalImages.length > 0) {
                     window.thumbImages.push(...window.productData.additionalImages.filter(img => img.trim() !== ''));
@@ -2035,6 +2157,7 @@
 
                 const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
 
+                // NEW: Store category name for "also like" section
                 if (catSnap && catSnap.exists()) {
                     window.currentCategoryName = catSnap.data().name || 'Category';
                 }
@@ -2053,6 +2176,12 @@
 
                 renderRecentlyViewed(productId);
 
+                // Clear button for recently viewed
+                document.getElementById('rvClearBtn').addEventListener('click', function() {
+                    clearRV();
+                    document.getElementById('recentlyViewedSection').style.display = 'none';
+                });
+
                 initUI();
 
             } catch (error) {
@@ -2069,14 +2198,14 @@
                     <img src="${img}" alt="View">
                 </div>
             `).join('');
-            
+
             let dotsHtml = window.thumbImages.map((img, idx) => `
                 <span class="dot ${idx===0?'active':''}"></span>
             `).join('');
 
             let variantsHtml = '';
             let dropdownHtml = '';
-            
+
             if (p.variants) {
                 variantsHtml = p.variants.map((v, idx) => {
                     const hasDiscount = v.mrp && v.mrp > v.price;
@@ -2105,6 +2234,7 @@
                 }).join('');
             }
 
+            // NEW: dynamic badges instead of hardcoded "Best Seller"
             container.innerHTML = `
                 <div class="gallery-col" id="galleryCol">
                     <div class="thumbnails-wrapper">
@@ -2198,18 +2328,17 @@
             document.getElementById('dockSizeDropdown').innerHTML = dropdownHtml;
         }
 
+        // NEW: sortOrder support + dynamic category name + View All link + dynamic badges on cards
         function renderAlsoLike(categoryProductsMap, currentProductId, categoryId) {
             let relatedProds = Object.values(categoryProductsMap)
                 .filter(p => p.id !== currentProductId && p.isavailable !== false)
                 .sort((a, b) => {
                     if (a.sortOrder !== undefined && b.sortOrder !== undefined) return a.sortOrder - b.sortOrder;
                     return 0;
-                });
+                })
+                .slice(0, 4);
 
             if (relatedProds.length === 0) return;
-
-            // Restrict to max 4 items
-            relatedProds = relatedProds.slice(0, 4);
 
             const grid = document.getElementById('alsoLikeGrid');
             grid.innerHTML = relatedProds.map(prod => {
@@ -2229,9 +2358,9 @@
                 </a>
             `}).join('');
 
-            // Attach dynamic category link
+            // Dynamic "View all" link points to correct category
             const viewMoreLink = document.getElementById('viewMoreCategoryLink');
-            viewMoreLink.href = `shop.html?categoryId=${categoryId}`;
+            if (viewMoreLink) viewMoreLink.href = `shop.html?categoryId=${categoryId}`;
 
             document.getElementById('alsoLikeSection').style.display = 'block';
         }
@@ -2245,6 +2374,8 @@
                     <div class="pickle-check-premium"><i class="fas fa-check"></i></div>
                 </div>
             `).join('');
+
+            document.getElementById('comboSection').style.display = 'block';
         }
 
         function addToCartHandler(redirect = false) {
@@ -2308,25 +2439,25 @@
                 return parseInt(val, 10).toLocaleString('en-IN');
             }
 
-            var dockPriceVal    = document.getElementById('dockPriceVal');
-            var dockPriceStrike = document.getElementById('dockPriceStrike');
+            var dockPriceVal      = document.getElementById('dockPriceVal');
+            var dockPriceStrike   = document.getElementById('dockPriceStrike');
             var dockSelectedLabel = document.getElementById('dockSelectedLabel');
-            var dockSelectedSize = null;
+            var dockSelectedSize  = null;
 
             function updateDockFromVariant(box) {
                 if (!box) {
-                    dockPriceVal.textContent    = '\u20B90';
-                    dockPriceStrike.textContent = '';
+                    dockPriceVal.textContent      = '\u20B90';
+                    dockPriceStrike.textContent   = '';
                     dockSelectedLabel.textContent = 'Select';
                     dockSelectedSize = null;
                     document.querySelectorAll('.dock-size-option').forEach(function(o){ o.classList.remove('active'); });
                     return;
                 }
-                var price    = box.dataset.price;
-                var old      = box.dataset.old;
+                var price     = box.dataset.price;
+                var old       = box.dataset.old;
                 var sizeLabel = box.dataset.size || box.querySelector('.variant-title').textContent;
-                dockPriceVal.textContent    = '\u20B9' + formatPrice(price);
-                dockPriceStrike.textContent = (old && old > price) ? '\u20B9' + formatPrice(old) : '';
+                dockPriceVal.textContent      = '\u20B9' + formatPrice(price);
+                dockPriceStrike.textContent   = (old && old > price) ? '\u20B9' + formatPrice(old) : '';
                 dockSelectedLabel.textContent = sizeLabel;
                 dockSelectedSize = sizeLabel;
                 document.querySelectorAll('.dock-size-option').forEach(function(opt) {
@@ -2340,7 +2471,7 @@
                     var priceText = '\u20B9' + formatPrice(activeBox.dataset.price) + '.00';
                     currentPriceEl.textContent = priceText;
 
-                    if(activeBox.dataset.old && parseInt(activeBox.dataset.old) > parseInt(activeBox.dataset.price)) {
+                    if (activeBox.dataset.old && parseInt(activeBox.dataset.old) > parseInt(activeBox.dataset.price)) {
                         oldPriceEl.textContent      = '\u20B9' + formatPrice(activeBox.dataset.old) + '.00';
                         discountBadgeEl.textContent = 'Save ' + activeBox.dataset.discount + '%';
                         oldPriceEl.classList.remove('hidden');
@@ -2400,19 +2531,19 @@
             var touchStartX        = 0;
 
             function setActiveThumb(index) {
-                if(window.thumbImages.length === 0) return;
+                if (window.thumbImages.length === 0) return;
                 currentIndex = (index + window.thumbImages.length) % window.thumbImages.length;
                 thumbItems.forEach(function (item, i) { item.classList.toggle('active', i === currentIndex); });
                 mainImage.src = window.thumbImages[currentIndex];
                 dots.forEach(function (dot, i) { dot.classList.toggle('active', i === currentIndex); });
-                if(thumbContainer) thumbContainer.scrollTo({ top: currentIndex * 80, behavior: 'smooth' });
+                if (thumbContainer) thumbContainer.scrollTo({ top: currentIndex * 80, behavior: 'smooth' });
             }
 
             thumbItems.forEach(function (item) {
                 item.addEventListener('click', function () { setActiveThumb(parseInt(this.dataset.index)); });
             });
-            if(document.getElementById('thumbUp')) document.getElementById('thumbUp').addEventListener('click', function () { setActiveThumb(currentIndex - 1); });
-            if(document.getElementById('thumbDown')) document.getElementById('thumbDown').addEventListener('click', function () { setActiveThumb(currentIndex + 1); });
+            if (document.getElementById('thumbUp'))   document.getElementById('thumbUp').addEventListener('click', function () { setActiveThumb(currentIndex - 1); });
+            if (document.getElementById('thumbDown')) document.getElementById('thumbDown').addEventListener('click', function () { setActiveThumb(currentIndex + 1); });
 
             var mainWrapper = document.getElementById('mainImageWrapper');
             mainWrapper.addEventListener('touchstart', function (e) {
@@ -2471,12 +2602,12 @@
                 this.textContent = expanded ? 'View less' : 'View more';
             });
 
-            var pickleSticky      = document.getElementById('pickleSticky');
-            var heroBuyNow        = document.getElementById('heroBuyNow');
-            var dockSizeTrigger   = document.getElementById('dockSizeTrigger');
-            var dockSizeDropdown  = document.getElementById('dockSizeDropdown');
-            var dockNoSizeTip     = document.getElementById('dockNoSizeTip');
-            var tipTimeout        = null;
+            var pickleSticky     = document.getElementById('pickleSticky');
+            var heroBuyNow       = document.getElementById('heroBuyNow');
+            var dockSizeTrigger  = document.getElementById('dockSizeTrigger');
+            var dockSizeDropdown = document.getElementById('dockSizeDropdown');
+            var dockNoSizeTip    = document.getElementById('dockNoSizeTip');
+            var tipTimeout       = null;
 
             function openDropdown() {
                 dockSizeDropdown.classList.add('open');
@@ -2491,18 +2622,14 @@
 
             dockSizeTrigger.addEventListener('click', function (e) {
                 e.stopPropagation();
-                if (dockSizeDropdown.classList.contains('open')) {
-                    closeDropdown();
-                } else {
-                    openDropdown();
-                }
+                if (dockSizeDropdown.classList.contains('open')) { closeDropdown(); } else { openDropdown(); }
             });
 
             document.querySelectorAll('.dock-size-option').forEach(function (opt) {
                 opt.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    var price    = this.dataset.price;
-                    var old      = this.dataset.old;
+                    var price     = this.dataset.price;
+                    var old       = this.dataset.old;
                     var sizeLabel = this.dataset.size;
                     document.querySelectorAll('.dock-size-option').forEach(function(o){ o.classList.remove('active'); });
                     this.classList.add('active');
@@ -2527,15 +2654,9 @@
             dockSizeTrigger.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    if (dockSizeDropdown.classList.contains('open')) {
-                        closeDropdown();
-                    } else {
-                        openDropdown();
-                    }
+                    if (dockSizeDropdown.classList.contains('open')) { closeDropdown(); } else { openDropdown(); }
                 }
-                if (e.key === 'Escape') {
-                    closeDropdown();
-                }
+                if (e.key === 'Escape') { closeDropdown(); }
             });
 
             function showNoSizeTip() {
@@ -2557,8 +2678,9 @@
             window.addEventListener('scroll', handleDockVisibility, { passive: true });
             handleDockVisibility();
 
-            var comboItems   = document.querySelectorAll('.pickle-item-premium');
-            if(comboItems.length > 0) {
+            // ============ COMBO UI (fully restored from original) ============
+            var comboItems = document.querySelectorAll('.pickle-item-premium');
+            if (comboItems.length > 0) {
                 var ringCount    = document.getElementById('ringCount');
                 var ringFill     = document.getElementById('ringFill');
                 var countDisplay = document.getElementById('countDisplay');
@@ -2569,7 +2691,7 @@
                 var buyNowBtn    = document.getElementById('buyNowBtn');
                 var MAX          = 4;
                 var CIRCUMFERENCE = 2 * Math.PI * 20;
-                var selected      = new Set();
+                var selected     = new Set();
 
                 function updateComboUI() {
                     var count = selected.size;
@@ -2631,26 +2753,21 @@
                     if (selected.size !== MAX) { return; }
                     var names = [];
                     comboItems.forEach(function (item) {
-                        if (selected.has(item.dataset.pickle)) {
-                            names.push(item.dataset.name);
-                        }
+                        if (selected.has(item.dataset.pickle)) { names.push(item.dataset.name); }
                     });
                     showComboToast(names.join(', ') + ' combo added to cart!', '\ud83d\uded2');
                 });
 
-                window.app.checkoutCombo = function() {
+                buyNowBtn.addEventListener('click', function () {
                     if (selected.size !== MAX) { return; }
                     const itemIdsArray = Array.from(selected);
                     window.location.href = `checkout.html?comboId=${window.activeComboId}&items=${encodeURIComponent(itemIdsArray.join(','))}`;
-                }
-
-                buyNowBtn.addEventListener('click', window.app.checkoutCombo);
+                });
 
                 updateComboUI();
             }
         }
 
-        // Boot
         init();
     </script>
 </body>
