@@ -2026,29 +2026,31 @@
 
                 const catId = window.productData.categoryId;
                 const catPromise = catId ? getDoc(doc(db, 'categories', catId)) : Promise.resolve(null);
+// Fetch Combo
                 const combosPromise = getDocs(collection(db, 'combos'));
 
                 const [catSnap, combosSnap] = await Promise.all([catPromise, combosPromise]);
 
-                if (catSnap && catSnap.exists()) {
-                    window.currentCategoryName = catSnap.data().name || 'Category';
-                }
-
+                // Render main product
                 renderProduct();
 
+                // Render You May Also Like
                 if (catSnap && catSnap.exists() && catSnap.data().products) {
-                    renderAlsoLike(catSnap.data().products, productId, catId);
+                    renderAlsoLike(catSnap.data().products, productId);
                 }
 
+                // Render Combo
                 const activeCombo = combosSnap.docs.map(d => ({id: d.id, ...d.data()})).find(c => c.isActive === true);
                 if (activeCombo) {
                     window.activeComboId = activeCombo.id;
+                    window.comboData = activeCombo; // ADD THIS LINE
                     renderCombo(activeCombo);
                 }
 
-                renderRecentlyViewed(productId);
-
+                // Attach all UI event listeners (replacing the original IIFE)
                 initUI();
+
+
 
             } catch (error) {
                 console.error("Error:", error);
